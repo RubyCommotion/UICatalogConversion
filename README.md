@@ -3,7 +3,7 @@ UICatalogConversion
 
 The conversion of Apple's UICatalog source code to RubyMotion source code
 
-Apple's Readme - including their copyright notice - rto be changed later
+Apple's Readme - including their copyright notice - to be changed later
 
 UICatalog
 =========
