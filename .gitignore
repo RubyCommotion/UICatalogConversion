@@ -2,6 +2,7 @@
 build
 tags
 app/pixate_code.rb
+.idea
 resources/*.nib
 resources/*.momd
 resources/*.storyboardc
@@ -28,5 +29,5 @@ test/version_tmp
 tmp
 # YARD artifacts
 .yardoc
-_yardoc
+yardoc
 doc/
