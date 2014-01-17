@@ -1,4 +1,4 @@
-class MCMainViewController < UITableViewController
+class RCMainViewController < UITableViewController
   attr_accessor :menu_list
 
   TITLE_KEY = "title"
@@ -22,7 +22,7 @@ class MCMainViewController < UITableViewController
     self.menu_list.addObject({TITLE_KEY => "Test View Controller",EXPLAIN_KEY => "just for test", VIEW_CONTROLLER_KEY => test_viewcontroller})
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
-    tableView.registerClass(MCMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
+    tableView.registerClass(RCMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
   end
 
   def viewWillAppear(animated)

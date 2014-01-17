@@ -1,4 +1,4 @@
-class AlertsViewController < UITableViewController
+class RCAlertsViewController < UITableViewController
 
   ALERT_CELL_ID = "AlertCellID"
   SOURCE_CELL_ID = "SourceCellID"
@@ -16,13 +16,13 @@ class AlertsViewController < UITableViewController
     self.title = "AlertTitle"
  
     @data_source_array = [
-      { title: "UIActionSheet", label: "Show Simple", source: "AlertsViewController.m - dialogSimpleAction" },
-      { title: "UIActionSheet", label: "Show OK-Cancel", source: "AlertsViewController.m - dialogOKCancelAction" },
-      { title: "UIActionSheet", label: "Show Customized", source: "AlertsViewController.m - dialogOtherAction" },
-      { title: "UIAlertView", label: "Show Simple", source: "AlertsViewController.m - alertSimpleAction" },
-      { title: "UIAlertView", label: "Show OK-Cancel", source: "AlertsViewController.m - alertOKCancelAction" },
-      { title: "UIAlertView", label: "Show Custom", source: "AlertsViewController.m - alertOtherAction" },
-      { title: "UIAlertView", label: "Show Text Input", source: "AlertsViewController.m - alertSecureTextAction" }
+      { title: "UIActionSheet", label: "Show Simple", source: "RCAlertsViewController.rb - dialogSimpleAction" },
+      { title: "UIActionSheet", label: "Show OK-Cancel", source: "RCAlertsViewController.rb - dialogOKCancelAction" },
+      { title: "UIActionSheet", label: "Show Customized", source: "RCAlertsViewController.rb - dialogOtherAction" },
+      { title: "UIAlertView", label: "Show Simple", source: "RCAlertsViewController.rb - alertSimpleAction" },
+      { title: "UIAlertView", label: "Show OK-Cancel", source: "RCAlertsViewController.rb - alertOKCancelAction" },
+      { title: "UIAlertView", label: "Show Custom", source: "RCAlertsViewController.rb - alertOtherAction" },
+      { title: "UIAlertView", label: "Show Secure Text Input", source: "RCAlertsViewController.rb - alertSecureTextAction" }
     ]
   end
 
@@ -93,7 +93,7 @@ class AlertsViewController < UITableViewController
 
   def alertSecureTextAction
     alert = UIAlertView.alloc.initWithTitle("UIAlertViewTitle",
-      message: "UIAlertViewMessage",
+      message: "Secure Text Input",
       delegate: self,
       cancelButtonTitle: "CancelButtonTitle",
       otherButtonTitles: "OKButtonTitle", nil

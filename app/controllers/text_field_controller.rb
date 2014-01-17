@@ -1,4 +1,4 @@
-class TextFieldController < UITableViewController
+class RCTextFieldController < UITableViewController
 
   TEXT_FIELD_WIDTH = 260.0
   TEXT_FIELD_CELL_ID = "TextFieldCellID"
@@ -10,10 +10,10 @@ class TextFieldController < UITableViewController
     self.title = "TextFieldTitle"
 
     @data_source_array = [
-      {  title: "UITextField",            source: "TextFieldController.m: textFieldNormal",   view: textFieldNormal},
-      {  title: "UITextField Rounded",    source: "TextFieldController.m: textFieldRounded",  view: textFieldRounded},
-      {  title: "UITextField Secure",     source: "TextFieldController.m: textFieldSecure",   view: textFieldSecure},
-      {  title: "UITextField Left View",  source: "TextFieldController.m: textFieldLeftView", view: textFieldLeftView}
+      {  title: "UITextField",            source: "RCTextFieldController.rb: textFieldNormal",   view: textFieldNormal},
+      {  title: "UITextField Rounded",    source: "RCTextFieldController.rb: textFieldRounded",  view: textFieldRounded},
+      {  title: "UITextField Secure",     source: "RCTextFieldController.rb: textFieldSecure",   view: textFieldSecure},
+      {  title: "UITextField Left View",  source: "RCTextFieldController.rb: textFieldLeftView", view: textFieldLeftView}
     ]
 
     # we aren't editing any fields yet, it will be in edit when the user touches an edit field
