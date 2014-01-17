@@ -1,5 +1,7 @@
 class RCTextFieldController < UITableViewController
 
+  LEFT_MARGING = 20
+  TEXT_FIELD_HEIGHT = 20
   TEXT_FIELD_WIDTH = 260.0
   TEXT_FIELD_CELL_ID = "TextFieldCellID"
   SOURCE_CELL_ID = "SourceCellID"
@@ -8,6 +10,20 @@ class RCTextFieldController < UITableViewController
   def viewDidLoad
     super
     self.title = "TextFieldTitle"
+
+ # UIKeyboardTypeDefault,                // Default type for the current input method.
+ #    UIKeyboardTypeASCIICapable,           // Displays a keyboard which can enter ASCII characters, non-ASCII keyboards remain active
+ #    UIKeyboardTypeNumbersAndPunctuation,  // Numbers and assorted punctuation.
+ #    UIKeyboardTypeURL,                    // A type optimized for URL entry (shows . / .com prominently).
+ #    UIKeyboardTypeNumberPad,              // A number pad (0-9). Suitable for PIN entry.
+ #    UIKeyboardTypePhonePad,               // A phone pad (1-9, *, 0, #, with letters under the numbers).
+ #    UIKeyboardTypeNamePhonePad,           // A type optimized for entering a person's name or phone number.
+ #    UIKeyboardTypeEmailAddress,           // A type optimized for multiple email address entry (shows space @ . prominently).
+ #    UIKeyboardTypeDecimalPad,             // A number pad including a decimal point
+ #    UIKeyboardTypeTwitter,                // Optimized for entering Twitter messages (shows # and @)
+ #    UIKeyboardTypeWebSearch,              // Optimized for URL and search term entry (shows space and .)
+
+ #    UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable,
 
     @data_source_array = [
       {  title: "UITextField",            source: "RCTextFieldController.rb: textFieldNormal",   view: textFieldNormal},
@@ -25,8 +41,7 @@ class RCTextFieldController < UITableViewController
   end
 
 
-
-  def numberOfSectionsInTableView
+  def numberOfSectionsInTableView(tableview)
     @data_source_array.count
   end
 
@@ -46,41 +61,43 @@ class RCTextFieldController < UITableViewController
 
   def tableView(tableView, cellForRowAtIndexPath:index_path)
 
+    puts "indexpath => row: #{index_path.row} section: #{index_path.section}"
     cell = nil
 
     if index_path.row == 0
-      cell = tableView.dequeueReusableCellWithIdentifier(TEXT_FIELD_CELL_ID,forIndexPath:index_path)
+      cell = tableView.dequeueReusableCellWithIdentifier(TEXT_FIELD_CELL_ID) || begin
+        UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:TEXT_FIELD_CELL_ID)
+      end
       cell.selectionStyle = UITableViewCellSelectionStyleNone
 
+
       viewToCheck = nil
-      cell.contentView(viewWithTag:VIEW_TAG)
-      if viewToCheck
-        viewToCheck.removeFromSuperview
+      viewToCheck = cell.contentView(VIEW_TAG)
+      
+      viewToCheck.removeFromSuperview unless viewToCheck.nil?
 
-        textField = @data_source_array[index_path.section][:view]
-        
-        CGRect newFrame = textField.frame # make sure this textfield's width matches the width of the cell
-        newFrame.size.width = CGRectGetWidth(cell.contentView.frame) - kLeftMargin*2
-        textField.frame = newFrame
-        textField.autoresizingMask = UIViewAutoresizingFlexibleWidth # if the cell is ever resized, keep the textfield's width to match the cell's width
+      textField = @data_source_array[index_path.section][:view]
 
-        cell.contentView.addSubview(textField)
-      else
-        cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID, index_path) || begin
-          UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:SOURCE_CELL_ID)
-        end
+      newFrame = textField.frame 
+      newFrame.size.width = CGRectGetWidth(cell.contentView.frame) - LEFT_MARGING*2
+      textField.frame = newFrame
+      textField.autoresizingMask = UIViewAutoresizingFlexibleWidth 
 
-        cell.selectionStyle = UITableViewCellSelectionStyleNone
-        cell.textLabel.textAlignment = NSTextAlignmentCenter
-        cell.textLabel.textColor = UIColor.grayColor
-        cell.textLabel.highlightedTextColor = UIColor.blackColor
-        cell.textLabel.font = UIFont.systemFontOfSize(12.0)
-
-        cell.textLabel.text = @data_source_array[index_path.section][:source]
+      cell.contentView.addSubview(textField)
+    else
+      cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID) || begin
+        UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:SOURCE_CELL_ID)
       end
+      cell.selectionStyle = UITableViewCellSelectionStyleNone
+      cell.textLabel.textAlignment = NSTextAlignmentCenter
+      cell.textLabel.textColor = UIColor.grayColor
+      cell.textLabel.highlightedTextColor = UIColor.blackColor
+      cell.textLabel.font = UIFont.systemFontOfSize(12.0)
 
-      return cell
+      cell.textLabel.text = @data_source_array[index_path.section][:source]
     end
+    puts "cell.inspect = #{cell.textLabel.text}"
+    return cell
   end
 
 
@@ -91,7 +108,7 @@ class RCTextFieldController < UITableViewController
 
   def textFieldNormal
     if @text_field_normal.nil?     
-      frame = CGRectMake(kLeftMargin, 8.0, TEXT_FIELD_WIDTH, kTextFieldHeight)
+      frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_normal = UITextField.alloc.initWithFrame(frame)
 
       @text_field_normal.borderStyle = UITextBorderStyleBezel
@@ -109,14 +126,14 @@ class RCTextFieldController < UITableViewController
       @text_field_normal.tag = VIEW_TAG                                     # tag this control so we can remove it later for recycled cell
       @text_field_normal.delegate = self                                    # let us be the delegate so we know when the keyboard's "Done" button is pressed
 
-      @text_field_normal.setAccessibilityLabel = "NormalTextField"
+      @text_field_normal.setAccessibilityLabel("NormalTextField")
     end 
     return @text_field_normal
   end
 
   def textFieldRounded
     if @text_field_rounded.nil?
-      frame = CGRectMake(kLeftMargin, 8.0, TEXT_FIELD_WIDTH, kTextFieldHeight)
+      frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_rounded = UITextField.alloc.initWithFrame(frame)
 
       @text_field_rounded.borderStyle = UITextBorderStyleRoundedRect
@@ -143,7 +160,7 @@ class RCTextFieldController < UITableViewController
 
   def textFieldSecure
     if (@text_field_secure == nil)
-      frame = CGRectMake(kLeftMargin, 8.0, TEXT_FIELD_WIDTH, kTextFieldHeight)
+      frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_secure = UITextField.alloc.initWithFrame(frame)
 
       @text_field_secure.borderStyle = UITextBorderStyleBezel
@@ -170,7 +187,7 @@ class RCTextFieldController < UITableViewController
 
   def textFieldLeftView
     if @text_field_left_view.nil?
-      frame = CGRectMake(kLeftMargin, 8.0, TEXT_FIELD_WIDTH, kTextFieldHeight)
+      frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_left_view = UITextField.alloc.initWithFrame(frame)
       @text_field_left_view.borderStyle = UITextBorderStyleBezel
       @text_field_left_view.textColor = UIColor.blackColor
@@ -186,9 +203,9 @@ class RCTextFieldController < UITableViewController
       @text_field_left_view.tag = VIEW_TAG      # tag this control so we can remove it later for recycled cell
 
       # Add an accessibility label that describes the text field.
-      @text_field_left_view.setAccessibilityLabel("CheckMarkIcon")
+       @text_field_left_view.setAccessibilityLabel("CheckMarkIcon")
 
-      UIImageView *image = UIImageView.alloc.initWithImage(imageNamed:"segment_check.png")
+      image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"right_round-26.png")
       @text_field_left_view.leftView = image
       @text_field_left_view.leftViewMode = UITextFieldViewModeAlways
 
