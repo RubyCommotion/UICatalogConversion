@@ -1,9 +1,9 @@
-describe 'RCAlertsViewController' do
-  tests RCAlertsViewController
+describe 'RcAlertsViewController' do
+  tests RcAlertsViewController
 
   def controller
     rotate_device to: :portrait, button: :bottom
-    @alerts_view_controller = RCAlertsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
+    @alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
   end
 
   after do
@@ -11,7 +11,7 @@ describe 'RCAlertsViewController' do
   end
 
   it 'sets the title' do
-    @alerts_view_controller.title.should == 'AlertTitle'
+    @alerts_view_controller.title.should == 'Alerts'
   end
 
   it 'should have 7 rows' do

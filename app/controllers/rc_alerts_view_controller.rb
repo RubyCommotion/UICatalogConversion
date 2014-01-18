@@ -13,7 +13,7 @@ class RcAlertsViewController < UITableViewController
 
   def viewDidLoad
     super
-    self.title = "AlertTitle"
+    self.title = "Alerts"
  
     @data_source_array = [
       { title: "UIActionSheet", label: "Show Simple", source: "RCAlertsViewController.rb - dialogSimpleAction" },
