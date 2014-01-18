@@ -17,9 +17,11 @@ class RCMainViewController < UITableViewController
 
     # this is just an example for how to add VCs and their info
     test_viewcontroller = UIViewController.alloc.initWithNibName(nil, bundle:nil)
+    controls_view_controller = RCControlsViewController.alloc.initWithStyle(UITableViewStylePlain)
 
     # adding the VC info 
-    self.menu_list.addObject({TITLE_KEY => "Test View Controller",EXPLAIN_KEY => "just for test", VIEW_CONTROLLER_KEY => test_viewcontroller})
+    #self.menu_list.addObject({TITLE_KEY => "Test View Controller",EXPLAIN_KEY => "just for test", VIEW_CONTROLLER_KEY => test_viewcontroller})
+    self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RCMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
