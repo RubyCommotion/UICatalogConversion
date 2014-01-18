@@ -1,4 +1,4 @@
-class RCAlertsViewController < UITableViewController
+class RcAlertsViewController < UITableViewController
 
   ALERT_CELL_ID = "AlertCellID"
   SOURCE_CELL_ID = "SourceCellID"

@@ -1,4 +1,4 @@
-class RCControlsViewController < UITableViewController
+class RcControlsViewController < UITableViewController
 
 	DISPLAY_CELL_ID = "DisplayCellID"
   SOURCE_CELL_ID = "SourceCellID"
@@ -98,7 +98,7 @@ class RCControlsViewController < UITableViewController
 
   # Actions
   def switchAction(sender)
-  	puts "Nothing for now, Mr. #{sender}..."
+  	puts "Nothing for now, Mr. Switch..."
   	true
   end
 
