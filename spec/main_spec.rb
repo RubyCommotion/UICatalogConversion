@@ -4,6 +4,6 @@ describe "Application 'UICatalogConversion'" do
   end
 
   it "has one window" do
-    @app.windows.size.should == 2
+    @app.windows.size.should == 1
   end
 end
