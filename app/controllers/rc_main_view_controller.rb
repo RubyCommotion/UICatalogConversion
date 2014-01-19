@@ -25,11 +25,7 @@ class RcMainViewController < UITableViewController
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
     self.menu_list << {TITLE_KEY => "ImagesView", EXPLAIN_KEY => "User of UIImageView", VIEW_CONTROLLER_KEY => images_view_controller}
-<<<<<<< HEAD
-
     self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
-=======
->>>>>>> c03814ae6b0a48326b39098aecb6e940afc5308e
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
