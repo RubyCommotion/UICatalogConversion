@@ -2,6 +2,7 @@ class RcControlsViewController < UITableViewController
 
 	DISPLAY_CELL_ID = "DisplayCellID"
   SOURCE_CELL_ID = "SourceCellID"
+  SLIDER_HEIGHT = 7.0
   VIEW_TAG = 1
 
 	def viewDidLoad
@@ -12,14 +13,28 @@ class RcControlsViewController < UITableViewController
     @data_source_array = [
 			{
 				:title => "UISwitch", :label => "Standard Switch",
-				:source => "rc_controls_view_controller.rb: standardSwitch",
-				:view => self.standardSwitch
+				:source => "rc_controls_view_controller.rb: switchControl",
+				:view => self.switchControl
+			},
+			{
+				:title => "UISlider", :label => "Standard Slider",
+				:source => "rc_controls_view_controller.rb: sliderControl",
+				:view => self.sliderControl
+			},
+			{
+				:title => "UIPageControl", :label => "Ten Pages",
+				:source => "rc_controls_view_controller.rb: pageControl",
+				:view => self.pageControl
 			}
 		]
 
     self.tableView.registerClass(UITableViewCell, :forCellReuseIdentifier => DISPLAY_CELL_ID)
     self.tableView.registerClass(UITableViewCell, :forCellReuseIdentifier => SOURCE_CELL_ID)
   end
+
+  # -----------------------------
+  # Table View Delegates
+  # -----------------------------
 
   def numberOfSectionsInTableView(table_view)
     @data_source_array.count
@@ -84,22 +99,53 @@ class RcControlsViewController < UITableViewController
 
   protected
 
-  # View methods
-  def standardSwitch
-  	@switchCtrl ||= begin
-	    @switchCtrl = UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0))
-	    @switchCtrl.addTarget(self, action: "switchAction:", forControlEvents: UIControlEventValueChanged)
-	    @switchCtrl.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
-			@switchCtrl.setAccessibilityLabel("StandardSwitch")
-			@switchCtrl.tag = VIEW_TAG	# tag this view for later so we can remove it from recycled table cells
-			@switchCtrl
+  # -----------------------------
+  # UI Control Rendering
+  # -----------------------------
+
+  def switchControl
+  	@switchControl ||= begin
+	    UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0)).tap do |control|
+	    	control.addTarget(self, action: "switchAction:", forControlEvents: UIControlEventValueChanged)
+	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+				control.setAccessibilityLabel("StandardSwitch")
+				control.tag = VIEW_TAG	# tag this view for later so we can remove it from recycled table cells
+			end
     end
   end
 
-  # Actions
-  def switchAction(sender)
-  	puts "Nothing for now, Mr. Switch..."
-  	true
+  def sliderControl
+  	@sliderControl ||= begin
+  		UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
+      	control.addTarget(self, action: "sliderAction:", forControlEvents: UIControlEventValueChanged)
+	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+				control.setAccessibilityLabel("StandardSlider")
+      	control.minimumValue = 0.0
+      	control.maximumValue = 100.0
+      	control.continuous = true
+      	control.value = 50.0
+				control.tag = VIEW_TAG
+			end
+  	end
   end
+
+  def pageControl
+  	@pageControl ||= begin
+  		UIPageControl.alloc.initWithFrame(CGRectMake(0.0, 14.0, 178.0, 20.0)).tap do |control|
+      	control.addTarget(self, action: "pageAction:", forControlEvents: UIControlEventTouchUpInside)
+	    	control.backgroundColor = UIColor.grayColor
+      	control.numberOfPages = 10
+				control.tag = VIEW_TAG
+			end
+  	end
+  end
+
+  # -----------------------------
+  # UI Control Actions
+  # -----------------------------
+
+  def switchAction(sender);end
+  def sliderAction(sender);end
+  def pageAction(sender);end
 
 end
