@@ -19,11 +19,19 @@ class RcMainViewController < UITableViewController
     controls_view_controller = RcControlsViewController.alloc.initWithStyle(UITableViewStylePlain)
     alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
     text_view_controller = RcTextViewController.alloc.init
+<<<<<<< HEAD
     search_bar_view_controller = RcSearchBarController.alloc.init
+=======
+    images_view_controller = RcImagesViewController.alloc.init
+>>>>>>> a0e1d57c7dee70fd57ec0347a281d570dc7b1d9e
 
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
+<<<<<<< HEAD
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
+=======
+    self.menu_list << {TITLE_KEY => "ImagesView", EXPLAIN_KEY => "User of UIImageView", VIEW_CONTROLLER_KEY => images_view_controller}
+>>>>>>> a0e1d57c7dee70fd57ec0347a281d570dc7b1d9e
     self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
     self.menu_list << {TITLE_KEY => 'SearchBar', EXPLAIN_KEY => 'Various uses of UISearchBar', VIEW_CONTROLLER_KEY => search_bar_view_controller}
 
