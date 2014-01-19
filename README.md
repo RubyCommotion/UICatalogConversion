@@ -1,7 +1,7 @@
 UICatalogConversion
 ===================
 
-The conversion of Apple's UICatalog source code to RubyMotion source code
+UICatalogConversion is a conversion of Apple's UICatalog source code to RubyMotion source code.
 
 Apple's Readme - including their copyright notice - to be changed later
 
@@ -9,26 +9,26 @@ UICatalog
 =========
  
 This sample is a catalog exhibiting many views and controls in the UIKit framework, along with their various properties and styles.
-If you need code to create specific UI controls or views, refer to this sample and it should give you a good head start in building your user interface.
+If you need RubyMotion code to create specific UI controls or views, refer to this sample and it should give you a good head start in building your user interface.
 In most cases you can simply copy and paste the code snippets you need. 
 When images or custom views are used, accessibility code has been added. Using the iOS Accessibility API enhances the user experience of VoiceOver users.
  
  
 Build Requirements
-iOS 6.0 SDK or later
+iOS 7.0 SDK or later
  
  
 Runtime Requirements
-iOS 6.0 or later, Automatic Reference Counting (ARC)
+iOS 7.0 or later, Automatic Reference Counting (ARC)
  
  
 Using the Sample
-Build and run the sample using iOS 6.0 SDK.
+Build and run the sample using iOS 7.0 SDK and RubyMotion version 2.19 or later.
 To run in the simulator, set the Active SDK to Simulator. To run on a device, set the Active SDK to the appropriate Device setting.
  
 In most areas of this sample, as you see various UI elements, you will see a corresponding explanation as to where you can find the code. 
-So for example the Buttons page - the gray button will have "ButtonsViewController.m - createGrayButton".
-This means refer to the ButtonsViewController.m source file and search for the createGrayButton Objective-C method.
+So for example the Alerts page - there will be a label that identifies the source file for the Alert code e.g. rc_alerts_view_controller.rb".
+This means refer to the rc_alerts_view_controller.rb
  
 Buttons - This UIViewController or page contains various kinds of UIButton controls complete with background images.
  
@@ -58,41 +58,9 @@ Localization - You will notice this sample in various places shows you how to lo
  
  
 Packaging List
-main.m - Main source file for this sample.
-AppDelegate.h/.m - The application's delegate to setup its window and content.
-Contants.h - Contains various screen placement constants used across all the UIViewControllers.
- 
-MainViewController.h/.m - The front UIViewController containing a UITableView to navigate to all its pages.
-ButtonsViewController.h/.m -UIViewController that hosts all the varying UIButtons.
-ControlsViewController.h/.m - UIViewController that hosts all the varying UIControls.
-TextFieldViewController.h/.m - UIViewController that contains UITextFields and how to use them.
-SearchBarController.h/.m - UIViewController that contains a UISearchBar.
-TextViewController.h/.m - UIViewController that shows how to use UITextView.
-PickerViewController.h/.m - UIViewController that shows all the different kinds of picker controls.
-ImagesViewController.h/.m - UIViewController that contains a UIImageView.
-WebViewController.h/.m - UIViewController that shows how to use UIWebView.
-AlertsViewController.h/.m - UIViewController that hosts all the varying kinds of alerts and action sheets.
-SegmentViewController.h/.m - UIViewController that hosts all the varying UISegmentedControls.
-ToolbarViewController.h/.m - UIViewController that hosts a UIToolbar and its UIBarButtonItems.
-TransitionViewController.h/.m - UIViewController that shows how to flip between two different views.
- 
-Changes from Previous Versions
-1.0 - First release
-1.1 - Updated the user interface layout to show proper use or proper context in using the UIKit controls and views.
-1.2 - Changes due to API updates in the Beta 3 SDK: reusable UITableView cells.
-1.3 - Updated for Beta 4, changed to use Interface Builder xib files, removed un-needed QuartzCore framework, added Toolbar view for UIToolbar and UIBarButtonItems, added additional UIButtonTypes, added UISearchBar.
-1.4 - Updated for Beta 5, renamed some classes.
-1.5 - Beta 6 Release, updated to use xib file for MainViewController, fixed bad blur effect on UIView classes by properly rounding of coordinates, introduced "UIViewAnimationTransitionCurlUp/UIViewAnimationTransitionCurlDown" UIView transitions, adopted UITextField's "leftView" property.
-1.6 - Minor UI modifications, changed bundle identifier.
-1.7 - Improved custom UIPicker, Updated for and tested with iPhone OS 2.0. First public release.
-2.0 - Upgraded for 3.0 SDK due to deprecated APIs, more use of UITableViewController.
-2.5 - Minor bug fixes, all view controllers created from separate nibs, more use of properties, further code optimizations, added viewDidUnload methods.
-2.6 - Used the iPhone Accessibility API to improve the accessibility of UICatalog and demonstrate how accessibility should be employed.
-2.7 - Removed deprecation use of UIKeyboard info keys, upgraded project to build with the iOS 4 SDK.
-2.8 - Deployment target set to iPhone OS 3.2.
-2.9 - Upgraded to support 4.2 SDK, Picker page now supports landscape orientation.
-2.10 - Upgraded to support 5.0 SDK, UIStepper control added, tinting/background image support added where possible, and secure text entry for UIAlertView.
-2.11 - Upgraded for iOS 6.0, now using Automatic Reference Counting (ARC), now using UIStatusBarTintParameters, UITextView, UIButton and UIBarButtonItem attributed strings, updated to adopt current best practices for Objective-C.
- 
-Copyright (C) 2008-2013 Apple Inc. All rights reserved.
 
+ To be updated
+
+Changes from Previous Versions
+
+ This is first version

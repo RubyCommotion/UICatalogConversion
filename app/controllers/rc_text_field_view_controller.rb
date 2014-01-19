@@ -13,10 +13,10 @@ class RcTextFieldViewController < UITableViewController
 
 
     @data_source_array = [
-      {  title: "UITextField Normal",     source: "RCTextFieldController.rb: textFieldNormal",   view: textFieldNormal},
-      {  title: "UITextField Rounded",    source: "RCTextFieldController.rb: textFieldRounded",  view: textFieldRounded},
-      {  title: "UITextField Secure",     source: "RCTextFieldController.rb: textFieldSecure",   view: textFieldSecure},
-      {  title: "UITextField Left View",  source: "RCTextFieldController.rb: textFieldLeftView", view: textFieldLeftView}
+      {  title: "UITextField Normal",     source: "rc_text_field_view_controller.rb: textFieldNormal",   view: textFieldNormal},
+      {  title: "UITextField Rounded",    source: "rc_text_field_view_controller.rb: textFieldRounded",  view: textFieldRounded},
+      {  title: "UITextField Secure",     source: "rc_text_field_view_controller.rb: textFieldSecure",   view: textFieldSecure},
+      {  title: "UITextField Left View",  source: "rc_text_field_view_controller.rb: textFieldLeftView", view: textFieldLeftView}
     ]
   end
 
@@ -121,7 +121,10 @@ class RcTextFieldViewController < UITableViewController
       # Add an accessibility label that describes the text field.
       @text_field_left_view.setAccessibilityLabel("CheckMarkIcon")
 
-      image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"right_round-26.png")
+
+      # converted to Ruby syntax
+      #image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"right_round-26.png")
+      image = UIImageView.alloc.initWithImage(UIImage.imageNamed('right_round-26.png'))
       @text_field_left_view.leftView = image
       @text_field_left_view.leftViewMode = UITextFieldViewModeAlways
 

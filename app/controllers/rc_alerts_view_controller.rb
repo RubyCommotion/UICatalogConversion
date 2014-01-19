@@ -16,15 +16,16 @@ class RcAlertsViewController < UITableViewController
     self.title = "Alerts"
  
     @data_source_array = [
-      { title: "UIActionSheet", label: "Show Simple", source: "RCAlertsViewController.rb - dialogSimpleAction" },
-      { title: "UIActionSheet", label: "Show OK-Cancel", source: "RCAlertsViewController.rb - dialogOKCancelAction" },
-      { title: "UIActionSheet", label: "Show Customized", source: "RCAlertsViewController.rb - dialogOtherAction" },
-      { title: "UIAlertView", label: "Show Simple", source: "RCAlertsViewController.rb - alertSimpleAction" },
-      { title: "UIAlertView", label: "Show OK-Cancel", source: "RCAlertsViewController.rb - alertOKCancelAction" },
-      { title: "UIAlertView", label: "Show Custom", source: "RCAlertsViewController.rb - alertOtherAction" },
-      { title: "UIAlertView", label: "Show Secure Text Input", source: "RCAlertsViewController.rb - alertSecureTextAction" }
+      { title: "UIActionSheet", label: "Show Simple", source: "rc_alerts_view_controller.rb - dialogSimpleAction" },
+      { title: "UIActionSheet", label: "Show OK-Cancel", source: "rc_alerts_view_controller.rb - dialogOKCancelAction" },
+      { title: "UIActionSheet", label: "Show Customized", source: "rc_alerts_view_controller.rb - dialogOtherAction" },
+      { title: "UIAlertView", label: "Show Simple", source: "rc_alerts_view_controller.rb - alertSimpleAction" },
+      { title: "UIAlertView", label: "Show OK-Cancel", source: "rc_alerts_view_controller.rb - alertOKCancelAction" },
+      { title: "UIAlertView", label: "Show Custom", source: "rc_alerts_view_controller.rb - alertOtherAction" },
+      { title: "UIAlertView", label: "Show Secure Text Input", source: "rc_alerts_view_controller.rb - alertSecureTextAction" }
     ]
   end
+
 
   def dialogSimpleAction
     action_sheet = UIActionSheet.alloc.initWithTitle("UIActionSheetTitle",

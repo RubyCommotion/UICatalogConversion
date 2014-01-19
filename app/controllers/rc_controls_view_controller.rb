@@ -12,7 +12,7 @@ class RcControlsViewController < UITableViewController
     @data_source_array = [
 			{
 				:title => "UISwitch", :label => "Standard Switch",
-				:source => "ControlsViewController.rb: standardSwitch",
+				:source => "rc_controls_view_controller.rb: standardSwitch",
 				:view => self.standardSwitch
 			}
 		]
