@@ -1,4 +1,4 @@
-class RCTextFieldController < UITableViewController
+class RcTextFieldViewController < UITableViewController
 
   TEXT_FIELD_WIDTH = 260.0
   TEXT_FIELD_CELL_ID = "TextFieldCellID"
@@ -54,6 +54,7 @@ class RCTextFieldController < UITableViewController
 
       viewToCheck = nil
       cell.contentView(viewWithTag:VIEW_TAG)
+
       if viewToCheck
         viewToCheck.removeFromSuperview
 
