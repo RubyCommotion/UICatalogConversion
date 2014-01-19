@@ -18,10 +18,13 @@ class RcMainViewController < UITableViewController
     # instantiate VCs for the menu
     controls_view_controller = RcControlsViewController.alloc.initWithStyle(UITableViewStylePlain)
     alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
-
+    text_view_controller = RcTextViewController.alloc.init
+    
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
+
+    self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
