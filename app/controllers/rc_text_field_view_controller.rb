@@ -123,8 +123,9 @@ class RcTextFieldViewController < UITableViewController
 
 
       # converted to Ruby syntax
-      #image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"right_round-26.png")
-      image = UIImageView.alloc.initWithImage(UIImage.imageNamed('right_round-26.png'))
+      #image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"/images/right_round-26.png")
+      # changed image to match image used by Obj-C source code for text field left view
+      image = UIImageView.alloc.initWithImage(UIImage.imageNamed('/images/segment_check-24.png'))
       @text_field_left_view.leftView = image
       @text_field_left_view.leftViewMode = UITextFieldViewModeAlways
 

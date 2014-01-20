@@ -23,26 +23,11 @@ class RcSearchBarController < UIViewController
        #You can choose to add an UIImage as one of the items instead of NSString
        my_segments = ['Normal', 'Tinted', 'Background']
 
-       #create an intialize our segmented control
        self.my_segmented_control = UISegmentedControl.alloc.initWithItems(my_segments)
-
-       #set the size and placement
        self.my_segmented_control.frame = my_frame
-
-       #set the style for the segmented control
-       #self.my_segmented_control.segmentedControlStyle  = UISegmentedControlStyleBar
-
-       #remove the third index from the control
        self.my_segmented_control.removeSegmentAtIndex(2, animated:true)
-
-       #add another control at the end
        self.my_segmented_control.insertSegmentWithTitle('Brown', atIndex:3, animated:true)
-
-
-       #default the selection to second item
        self.my_segmented_control.setSelectedSegmentIndex(0)
-
-       #attach target action for if the selection is changed by the user
        self.my_segmented_control.addTarget(self, action: 'which_colour:' , forControlEvents:UIControlEventValueChanged)
 
        #add the control to the view

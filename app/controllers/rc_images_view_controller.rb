@@ -36,11 +36,11 @@ class RcImagesViewController < UIViewController
     
     # set up our UIImage with a group or array of images to animate (or in our case a slideshow)
     @imageView.animationImages = [
-      UIImage.imageNamed("scene1.jpg"),
-      UIImage.imageNamed("scene2.jpg"),
-      UIImage.imageNamed("scene3.jpg"),
-      UIImage.imageNamed("scene4.jpg"),
-      UIImage.imageNamed("scene5.jpg")
+      UIImage.imageNamed("/images/scene1.jpg"),
+      UIImage.imageNamed("/images/scene2.jpg"),
+      UIImage.imageNamed("/images/scene3.jpg"),
+      UIImage.imageNamed("/images/scene4.jpg"),
+      UIImage.imageNamed("/images/scene5.jpg")
     ]
     @imageView.animationDuration = 5.0
     @imageView.stopAnimating
