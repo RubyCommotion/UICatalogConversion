@@ -22,6 +22,7 @@ class RcMainViewController < UITableViewController
     text_view_controller = RcTextViewController.alloc.init
     search_bar_view_controller = RcSearchBarController.alloc.init
     images_view_controller = RcImagesViewController.alloc.init
+    segment_view_controller = RcSegmentViewController.alloc.init
 
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
@@ -30,6 +31,7 @@ class RcMainViewController < UITableViewController
     self.menu_list << {TITLE_KEY => 'SearchBar', EXPLAIN_KEY => 'Various uses of UISearchBar', VIEW_CONTROLLER_KEY => search_bar_view_controller}
     self.menu_list << {TITLE_KEY => "TextFields", EXPLAIN_KEY => "Various uses of UITextField", VIEW_CONTROLLER_KEY => text_field_view_controller}
     self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
+    self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
