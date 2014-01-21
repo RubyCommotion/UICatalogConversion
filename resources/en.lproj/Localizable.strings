@@ -4,8 +4,10 @@
 "ControlsExplain" = "Various uses of UIControl";
 "TextFieldTitle" = "TextFields";
 "TextFieldExplain" = "Uses of UITextField";
+"SearchBarExplain" = "UISearchBar Display Options";
 "SearchBarTitle" = "SearchBar";
-"SearchBarExplain" = "Use of UISearchBar";
+"SearchBarBackgroundImages" = "Background Images";
+"SearchBarTint" = "Tint";
 "TextViewTitle" = "TextView";
 "TextViewExplain" = "Use of UITextField";
 "SegmentTitle" = "Segments";

@@ -1,73 +1,50 @@
 class RcSearchBarController < UIViewController
 
-  # TODO flesh our remaining UISearchBar delegate methods and implement Obj-C xib file rendition of Segmented Control
-  attr_accessor :my_search_bar, :content_options, :my_segmented_control
+  attr_accessor :my_search_bar
 
   def viewDidLoad
   	super
+  	self.title = 'SearchBar'.localized
 
-  	self.title = 'SearchBar STUB'
-
-  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(0.0, 0.0, CGRectGetWidth(self.view.bounds), 44.0))
+  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(0.0, 120.0, CGRectGetWidth(self.view.bounds), 44.0))
   	self.my_search_bar.delegate = self
   	self.my_search_bar.showsCancelButton = true
     self.my_search_bar.showsBookmarkButton = true
   	self.view.addSubview(self.my_search_bar)
     self.my_search_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    self.view.backgroundColor = UIColor.whiteColor
+    #self.view.backgroundColor = UIColor.blackColor
 
-    #frame for the segemented button
-       my_frame = CGRectMake(10.0, 110.0, 300.0, 40.0)
+    #frame for the segmented button
+    my_frame = CGRectMake(34.0, 65.0, 252.0, 30.0)
+    my_segments = ['Tint'.localized, 'Background Images'.localized]
+    my_segmented_control = UISegmentedControl.alloc.initWithItems(my_segments)
+    my_segmented_control.frame = my_frame
+    my_segmented_control.setSelectedSegmentIndex(0)
+    my_segmented_control.addTarget(self, action: 'content_choice:' , forControlEvents:UIControlEventValueChanged)
 
-       #Array of items to go inside the segment control
-       #You can choose to add an UIImage as one of the items instead of NSString
-       my_segments = ['Normal', 'Tinted', 'Background']
-
-       self.my_segmented_control = UISegmentedControl.alloc.initWithItems(my_segments)
-       self.my_segmented_control.frame = my_frame
-       self.my_segmented_control.removeSegmentAtIndex(2, animated:true)
-       self.my_segmented_control.insertSegmentWithTitle('Brown', atIndex:3, animated:true)
-       self.my_segmented_control.setSelectedSegmentIndex(0)
-       self.my_segmented_control.addTarget(self, action: 'which_colour:' , forControlEvents:UIControlEventValueChanged)
-
-       #add the control to the view
-       self.view.addSubview(self.my_segmented_control)
-
+    self.view.addSubview(my_segmented_control)
   end
 
   def content_choice(selected_segment_index)
+    # SearchBar defaults
     self.my_search_bar.tintColor = nil
     self.my_search_bar.backgroundImage = nil
     self.my_search_bar.setImage(nil, forSearchBarIcon: UISearchBarIconBookmark, state:UIControlStateNormal)
 
-    case selected_segment_index
-    when 1
+    case selected_segment_index.selectedSegmentIndex
       #tinted background
-      self.my_search_bar.tintColor = UIColor.blueColor
-    when 2
+      when 0
+        self.my_search_bar.tintColor = UIColor.blueColor
+      when 1
       # image background
-      self.my_search_bar.backgroundImage = UIImage.imageNamed('searchBarBackground')
-      self.my_search_bar.setImage(UIImage.imageNamed('bookmarkImage', forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateNormal))
-      self.my_search_bar.setImage(UIImage.imageNamed('bookmarkImageHighlighted', forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateHighlighted))
+        self.my_search_bar.backgroundImage = UIImage.imageNamed('/images/searchBarBackground')
+        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImage'), forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateNormal)
+        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImageHighlighted'), forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateHighlighted)
     end
    end
 
 
-  def which_colour(paramSender)
-      #check if its the same control that triggered the change event
-      if paramSender.isEqual(self.my_segmented_control)
-
-          #get index position for the selected control
-          selected_index = paramSender.selectedSegmentIndex
-
-          #get the Text for the segmented control that was selected
-          my_choice = paramSender.titleForSegmentAtIndex(selected_index)
-          #let log this info to the console
-          puts("Segment at position #{selected_index} with #{my_choice} text is selected")
-      end
-  end
-
-  #pragma mark - UISearchBarDelegate
+  # UISearchBarDelegate methods
 
   # called when the bookmark button inside the search bar is tapped
   def searchBarBookmarkButtonClicked(searchBar)
@@ -75,7 +52,7 @@ class RcSearchBarController < UIViewController
 
   # called when keyboard search button pressed
   def searchBarSearchButtonClicked(searchBar)
-  	self.my_search_bar.resignFirstResponder
+    self.my_search_bar.resignFirstResponder
   end
 
   # called when cancel button pressed
