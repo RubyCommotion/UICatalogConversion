@@ -1,21 +1,28 @@
 class RcSearchBarController < UIViewController
 
+  SEARCHBAR_X = 0.0
+  SEARCHBAR_Y = 120.0
+  SEARCHBAR_HEIGHT = 44.0
+  SEGMENTED_BUTTONS_X = 34.0
+  SEGMENTED_BUTTONS_Y = 65.0
+  SEGMENTED_BUTTONS_WIDTH = 252.0
+  SEGMENTED_BUTTONS_HEIGHT = 30.0
+
   attr_accessor :my_search_bar
 
   def viewDidLoad
   	super
   	self.title = 'SearchBar'.localized
 
-  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(0.0, 120.0, CGRectGetWidth(self.view.bounds), 44.0))
+  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X, SEARCHBAR_Y, CGRectGetWidth(self.view.bounds), SEARCHBAR_HEIGHT))
   	self.my_search_bar.delegate = self
   	self.my_search_bar.showsCancelButton = true
     self.my_search_bar.showsBookmarkButton = true
   	self.view.addSubview(self.my_search_bar)
     self.my_search_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    #self.view.backgroundColor = UIColor.blackColor
 
-    #frame for the segmented button
-    my_frame = CGRectMake(34.0, 65.0, 252.0, 30.0)
+    #frame for the segmented buttons
+    my_frame = CGRectMake(SEGMENTED_BUTTONS_X, SEGMENTED_BUTTONS_Y, SEGMENTED_BUTTONS_WIDTH, SEGMENTED_BUTTONS_HEIGHT)
     my_segments = ['Tint'.localized, 'Background Images'.localized]
     my_segmented_control = UISegmentedControl.alloc.initWithItems(my_segments)
     my_segmented_control.frame = my_frame
