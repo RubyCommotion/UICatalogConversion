@@ -17,21 +17,23 @@ class RcSegmentViewController < UIViewController
 
     # set the content size of our scroll view to match the entire screen,  this will allow the content to scroll in landscape
 
-    @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame), CGRectGetHeight(@scroll_view.frame) - CGRectGetHeight(self.navigationController.navigationBar.frame)))
+    @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame),
+                                           CGRectGetHeight(@scroll_view.frame) - CGRectGetHeight(self.navigationController.navigationBar.frame)))
     create_controls
   end
 
   def create_controls
 
     segment_text_content = ['Check', 'Search', 'Tools']
-    
+
     # Label
     y_placement = TOP_MARGIN
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0), LABEL_HEIGHT)
     @scroll_view.addSubview(label_with_frame(frame, title:"UISegmentedControl:"))
-    
+
     # UISegmentedControl
-    segmented_control = UISegmentedControl.alloc.initWithItems([UIImage.imageNamed("segment_check.png"), UIImage.imageNamed("segment_search.png"), UIImage.imageNamed("segment_tools.png") ])
+    segmented_control = UISegmentedControl.alloc.initWithItems([UIImage.imageNamed("/images/segment_check.png"),
+                        UIImage.imageNamed("/images/segment_search.png"), UIImage.imageNamed("/images/segment_tools.png") ])
     y_placement += TWEEN_MARGIN + LABEL_HEIGHT
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0),SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
@@ -92,7 +94,7 @@ class RcSegmentViewController < UIViewController
     segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     segmented_control.tintColor = UIColor.colorWithRed(0.70, green:0.171, blue:0.1, alpha:1.0)
     segmented_control.selectedSegmentIndex = 1
-    segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin  
+    segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @scroll_view.addSubview(segmented_control)
 
     # Label
@@ -110,18 +112,19 @@ class RcSegmentViewController < UIViewController
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
 
-    segmented_control.setBackgroundImage(UIImage.imageNamed("segmentedBackground"), forState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
-    segmented_control.setDividerImage(UIImage.imageNamed("divider"), forLeftSegmentState:UIControlStateNormal, rightSegmentState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
+    segmented_control.setBackgroundImage(UIImage.imageNamed("/images/segmentedBackground.png"), forState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
+    segmented_control.setDividerImage(UIImage.imageNamed("/images/divider.png"), forLeftSegmentState:UIControlStateNormal,
+                                      rightSegmentState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
 
     textAttributes = {UITextAttributeTextColor => UIColor.blueColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
     segmented_control.setTitleTextAttributes(textAttributes, forState:UIControlStateNormal)
     textAttributes = {UITextAttributeTextColor => UIColor.redColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
     segmented_control.setTitleTextAttributes(textAttributes, forState:UIControlStateNormal)
-    
+
     @scroll_view.addSubview(segmented_control)
 
   end
-
+  #
   def label_with_frame(frame, title:title)
     label = UILabel.alloc.initWithFrame(frame)
     label.text = title
