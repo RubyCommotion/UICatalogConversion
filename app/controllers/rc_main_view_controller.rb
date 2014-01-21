@@ -23,10 +23,15 @@ class RcMainViewController < UITableViewController
     search_bar_view_controller = RcSearchBarController.alloc.init
     images_view_controller = RcImagesViewController.alloc.init
     transition_view_controller = RcTransitionViewController.alloc.init
+<<<<<<< HEAD
     segment_view_controller = RcSegmentViewController.alloc.init
+=======
+    buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
+>>>>>>> 33a3401e4da6a076875f36ae5af573826bd7947e
 
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
+    self.menu_list << {TITLE_KEY => "ButtonsTitle"._, EXPLAIN_KEY => "ButtonsExplain"._, VIEW_CONTROLLER_KEY => buttons_view_controller}
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
     self.menu_list << {TITLE_KEY => "ImagesView", EXPLAIN_KEY => "User of UIImageView", VIEW_CONTROLLER_KEY => images_view_controller}
     self.menu_list << {TITLE_KEY => 'SearchBar'.localized, EXPLAIN_KEY => 'SearchBarExplain'.localized, VIEW_CONTROLLER_KEY => search_bar_view_controller}
