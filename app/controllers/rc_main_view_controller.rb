@@ -22,6 +22,7 @@ class RcMainViewController < UITableViewController
     text_view_controller = RcTextViewController.alloc.init
     search_bar_view_controller = RcSearchBarController.alloc.init
     images_view_controller = RcImagesViewController.alloc.init
+    web_view_controller = RcWebViewController.alloc.init
     transition_view_controller = RcTransitionViewController.alloc.init
     segment_view_controller = RcSegmentViewController.alloc.init
     buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
@@ -31,6 +32,7 @@ class RcMainViewController < UITableViewController
     self.menu_list << {TITLE_KEY => "ButtonsTitle"._, EXPLAIN_KEY => "ButtonsExplain"._, VIEW_CONTROLLER_KEY => buttons_view_controller}
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
     self.menu_list << {TITLE_KEY => "ImagesView", EXPLAIN_KEY => "User of UIImageView", VIEW_CONTROLLER_KEY => images_view_controller}
+    self.menu_list << {TITLE_KEY => "Web", EXPLAIN_KEY => "Use of UIWebView", VIEW_CONTROLLER_KEY => web_view_controller}
     self.menu_list << {TITLE_KEY => 'SearchBar'.localized, EXPLAIN_KEY => 'SearchBarExplain'.localized, VIEW_CONTROLLER_KEY => search_bar_view_controller}
     self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
     self.menu_list << {TITLE_KEY => "TextFields", EXPLAIN_KEY => "Various uses of UITextField", VIEW_CONTROLLER_KEY => text_field_view_controller}
