@@ -16,17 +16,18 @@ class RcMainViewController < UITableViewController
     self.menu_list = []
 
     # instantiate VCs for the menu
+    buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
     controls_view_controller = RcControlsViewController.alloc.initWithStyle(UITableViewStylePlain)
-    alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
     text_field_view_controller = RcTextFieldViewController.alloc.initWithStyle(UITableViewStylePlain)
-    text_view_controller = RcTextViewController.alloc.init
     search_bar_view_controller = RcSearchBarController.alloc.init
+    text_view_controller = RcTextViewController.alloc.init
+    picker_view_controller = RcPickerViewController.alloc.init
     images_view_controller = RcImagesViewController.alloc.init
     web_view_controller = RcWebViewController.alloc.init
-    transition_view_controller = RcTransitionViewController.alloc.init
     segment_view_controller = RcSegmentViewController.alloc.init
-    buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
-    picker_view_controller = RcPickerViewController.alloc.init
+#   toolbar_view_controller = RcToolbarViewController.alloc.init
+    alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
+    transition_view_controller = RcTransitionViewController.alloc.init
 
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "ButtonsTitle"._, EXPLAIN_KEY => "ButtonsExplain"._, VIEW_CONTROLLER_KEY => buttons_view_controller}
@@ -38,6 +39,7 @@ class RcMainViewController < UITableViewController
     self.menu_list << {TITLE_KEY => "ImagesTitle".localized, EXPLAIN_KEY => "ImagesExplain".localized, VIEW_CONTROLLER_KEY => images_view_controller}
     self.menu_list << {TITLE_KEY => "Web", EXPLAIN_KEY => "Use of UIWebView", VIEW_CONTROLLER_KEY => web_view_controller}
     self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
+#    self.menu_list << {TITLE_KEY => "Toolbar", EXPLAIN_KEY => "Uses of UIToolbar", VIEW_CONTROLLER_KEY => toolbar_view_controller}
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
     self.menu_list << {TITLE_KEY => "Transitions", EXPLAIN_KEY => "Shows UIViewAnimationTrasitions", VIEW_CONTROLLER_KEY => transition_view_controller}
 
