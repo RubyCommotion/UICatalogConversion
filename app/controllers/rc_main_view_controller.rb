@@ -29,18 +29,17 @@ class RcMainViewController < UITableViewController
     picker_view_controller = RcPickerViewController.alloc.init
 
     # add the info needed for each VC
-    self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
     self.menu_list << {TITLE_KEY => "ButtonsTitle"._, EXPLAIN_KEY => "ButtonsExplain"._, VIEW_CONTROLLER_KEY => buttons_view_controller}
     self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
-    self.menu_list << {TITLE_KEY => "ImagesView", EXPLAIN_KEY => "User of UIImageView", VIEW_CONTROLLER_KEY => images_view_controller}
-    self.menu_list << {TITLE_KEY => "Web", EXPLAIN_KEY => "Use of UIWebView", VIEW_CONTROLLER_KEY => web_view_controller}
-    self.menu_list << {TITLE_KEY => 'SearchBar'.localized, EXPLAIN_KEY => 'SearchBarExplain'.localized, VIEW_CONTROLLER_KEY => search_bar_view_controller}
-    self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
     self.menu_list << {TITLE_KEY => "TextFields", EXPLAIN_KEY => "Various uses of UITextField", VIEW_CONTROLLER_KEY => text_field_view_controller}
+    self.menu_list << {TITLE_KEY => 'SearchBar'.localized, EXPLAIN_KEY => 'SearchBarExplain'.localized, VIEW_CONTROLLER_KEY => search_bar_view_controller}
     self.menu_list << {TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller}
+    self.menu_list << {TITLE_KEY => "PickerTitle".localized, EXPLAIN_KEY => "PickerExplain".localized, VIEW_CONTROLLER_KEY => picker_view_controller}
+    self.menu_list << {TITLE_KEY => "ImagesTitle".localized, EXPLAIN_KEY => "ImagesExplain".localized, VIEW_CONTROLLER_KEY => images_view_controller}
+    self.menu_list << {TITLE_KEY => "Web", EXPLAIN_KEY => "Use of UIWebView", VIEW_CONTROLLER_KEY => web_view_controller}
+    self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
+    self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
     self.menu_list << {TITLE_KEY => "Transitions", EXPLAIN_KEY => "Shows UIViewAnimationTrasitions", VIEW_CONTROLLER_KEY => transition_view_controller}
-    self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
-    self.menu_list << ({TITLE_KEY => "PickerTitle".localized, EXPLAIN_KEY => "PickerExplain".localized, VIEW_CONTROLLER_KEY => picker_view_controller})
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)

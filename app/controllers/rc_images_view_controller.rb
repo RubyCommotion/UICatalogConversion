@@ -6,10 +6,10 @@ class RcImagesViewController < UIViewController
     self.title = "ImagesTitle".localized
     self.view.backgroundColor = UIColor.blackColor
     
-    @imageView = UIImageView.alloc.initWithFrame [[42, 20], [236, 174]]
-    @imageView.contentMode = UIViewContentModeScaleAspectFit
-    @imageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin
-    self.view.addSubview @imageView
+    @image_view = UIImageView.alloc.initWithFrame [[42, 20], [236, 174]]
+    @image_view.contentMode = UIViewContentModeScaleAspectFit
+    @image_view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin
+    self.view.addSubview @image_view
     
     @slider = UISlider.alloc.init
     frame = @slider.frame
@@ -35,31 +35,31 @@ class RcImagesViewController < UIViewController
     self.view.addSubview label
     
     # set up our UIImage with a group or array of images to animate (or in our case a slideshow)
-    @imageView.animationImages = [
+    @image_view.animationImages = [
       UIImage.imageNamed("/images/scene1.jpg"),
       UIImage.imageNamed("/images/scene2.jpg"),
       UIImage.imageNamed("/images/scene3.jpg"),
       UIImage.imageNamed("/images/scene4.jpg"),
       UIImage.imageNamed("/images/scene5.jpg")
     ]
-    @imageView.animationDuration = 5.0
-    @imageView.stopAnimating
+    @image_view.animationDuration = 5.0
+    @image_view.stopAnimating
     
     # set actions
     @slider.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
     
     # Set the appropriate accessibility labels.
-    @imageView.setIsAccessibilityElement true
-    @imageView.setAccessibilityLabel self.title
+    @image_view.setIsAccessibilityElement true
+    @image_view.setAccessibilityLabel self.title
     @slider.setAccessibilityLabel "DurationSlider".localized
   end
   
   # slown down or speed up the slide show as the slider is moved
   def sliderAction(sender)
     durationSlider = sender
-    @imageView.animationDuration = durationSlider.value
+    @image_view.animationDuration = durationSlider.value
     
-    @imageView.startAnimating unless @imageView.isAnimating
+    @image_view.startAnimating unless @image_view.isAnimating
   end
   
   #pragma mark - UIViewController delegate methods
@@ -68,14 +68,14 @@ class RcImagesViewController < UIViewController
   def viewWillDisappear(animated)
     super
     
-    @imageView.stopAnimating
+    @image_view.stopAnimating
   end
  
   # called after this controller's view will appear
   def viewWillAppear(animated)
     super
     
-    @imageView.startAnimating
+    @image_view.startAnimating
     
     # for aesthetic reasons (the background is black), make the nav bar black for this particular page
     self.navigationController.navigationBar.tintColor = UIColor.blackColor
