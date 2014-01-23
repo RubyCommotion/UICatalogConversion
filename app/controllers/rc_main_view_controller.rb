@@ -1,9 +1,6 @@
 class RcMainViewController < UITableViewController
   attr_accessor :menu_list
 
-  TITLE_KEY = "title"
-  EXPLAIN_KEY = "explanation"
-  VIEW_CONTROLLER_KEY = "viewController"
   CELL_IDENTIFIER = "MyIdentifier"
 
   def viewDidLoad
@@ -30,21 +27,21 @@ class RcMainViewController < UITableViewController
     transition_view_controller = RcTransitionViewController.alloc.init
 
     # add the info needed for each VC
-    self.menu_list << {TITLE_KEY => "ButtonsTitle"._, EXPLAIN_KEY => "ButtonsExplain"._, VIEW_CONTROLLER_KEY => buttons_view_controller}
-    self.menu_list << {TITLE_KEY => "Controls", EXPLAIN_KEY => "Various uses of UIControl", VIEW_CONTROLLER_KEY => controls_view_controller}
-    self.menu_list << {TITLE_KEY => "TextFields", EXPLAIN_KEY => "Various uses of UITextField", VIEW_CONTROLLER_KEY => text_field_view_controller}
-    self.menu_list << {TITLE_KEY => 'SearchBar'.localized, EXPLAIN_KEY => 'SearchBarExplain'.localized, VIEW_CONTROLLER_KEY => search_bar_view_controller}
-    self.menu_list << {TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller}
-    self.menu_list << {TITLE_KEY => "PickerTitle".localized, EXPLAIN_KEY => "PickerExplain".localized, VIEW_CONTROLLER_KEY => picker_view_controller}
-    self.menu_list << {TITLE_KEY => "ImagesTitle".localized, EXPLAIN_KEY => "ImagesExplain".localized, VIEW_CONTROLLER_KEY => images_view_controller}
-    self.menu_list << {TITLE_KEY => "Web", EXPLAIN_KEY => "Use of UIWebView", VIEW_CONTROLLER_KEY => web_view_controller}
-    self.menu_list << {TITLE_KEY => "Segments", EXPLAIN_KEY => "Various uses of UISegmentedControl", VIEW_CONTROLLER_KEY =>  segment_view_controller}
-#    self.menu_list << {TITLE_KEY => "Toolbar", EXPLAIN_KEY => "Uses of UIToolbar", VIEW_CONTROLLER_KEY => toolbar_view_controller}
-    self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
-    self.menu_list << {TITLE_KEY => "Transitions", EXPLAIN_KEY => "Shows UIViewAnimationTrasitions", VIEW_CONTROLLER_KEY => transition_view_controller}
+    self.menu_list << {:title => "ButtonsTitle"._, :explain => "ButtonsExplain"._, :view_controller => buttons_view_controller}
+    self.menu_list << {:title => "Controls", :explain => "Various uses of UIControl", :view_controller => controls_view_controller}
+    self.menu_list << {:title => "TextFields", :explain => "Various uses of UITextField", :view_controller => text_field_view_controller}
+    self.menu_list << {:title => 'SearchBar'.localized, :explain => 'SearchBarExplain'.localized, :view_controller => search_bar_view_controller}
+    self.menu_list << {:title => "Text View", :explain => "An example of a TextView", :view_controller => text_view_controller}
+    self.menu_list << {:title => "PickerTitle".localized, :explain => "PickerExplain".localized, :view_controller => picker_view_controller}
+    self.menu_list << {:title => "ImagesTitle".localized, :explain => "ImagesExplain".localized, :view_controller => images_view_controller}
+    self.menu_list << {:title => "Web", :explain => "Use of UIWebView", :view_controller => web_view_controller}
+    self.menu_list << {:title => "Segments", :explain => "Various uses of UISegmentedControl", :view_controller =>  segment_view_controller}
+#    self.menu_list << {:title => "Toolbar", :title => "Uses of UIToolbar", :view_controller => toolbar_view_controller}
+    self.menu_list << {:title => "Alerts", :explain => "Various uses of UIAlertView, UIActionSheet", :view_controller => alerts_view_controller}
+    self.menu_list << {:title => "Transitions", :explain => "Shows UIViewAnimationTrasitions", :view_controller => transition_view_controller}
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
-    tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
+    tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier: CELL_IDENTIFIER)
   end
 
   def viewWillAppear(animated)
@@ -61,8 +58,8 @@ class RcMainViewController < UITableViewController
   # the table's selection has changed, switch to that item's UIViewController
 
   def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    #target_viewcontroller = self.menu_list.objectAtIndex(indexPath.row).objectForKey(VIEW_CONTROLLER_KEY)
-    target_viewcontroller = self.menu_list[indexPath.row][VIEW_CONTROLLER_KEY]
+    #target_viewcontroller = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:view_controller)
+    target_viewcontroller = self.menu_list[indexPath.row][:view_controller]
     self.navigationController.pushViewController(target_viewcontroller, animated:true)
   end
 
@@ -78,8 +75,8 @@ class RcMainViewController < UITableViewController
   def tableView(tableView, cellForRowAtIndexPath: indexPath)
     cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER)
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
-    cell.textLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(TITLE_KEY)
-    cell.detailTextLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(EXPLAIN_KEY)
+    cell.textLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:title)
+    cell.detailTextLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:explain)
     cell
   end
 

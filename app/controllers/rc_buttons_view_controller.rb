@@ -4,11 +4,6 @@ class RcButtonsViewController < UITableViewController
   STD_BUTTON_HEIGHT = 40.0
   VIEW_TAG          = 1
 
-  SECTION_TITLE_KEY = "sectionTitleKey"
-  LABEL_KEY         = "labelKey"
-  SOURCE_KEY        = "sourceKey"
-  VIEW_KEY          = "viewKey"
-
   # table view cell id constants
   DISPLAY_CELL_ID   = "DisplayCellID"
   SOURCE_CELL_ID    = "SourceCellID"
