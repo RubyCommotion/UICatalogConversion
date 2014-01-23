@@ -26,6 +26,7 @@ class RcMainViewController < UITableViewController
     transition_view_controller = RcTransitionViewController.alloc.init
     segment_view_controller = RcSegmentViewController.alloc.init
     buttons_view_controller = RcButtonsViewController.alloc.initWithStyle(UITableViewStyleGrouped)
+    picker_view_controller = RcPickerViewController.alloc.init
 
     # add the info needed for each VC
     self.menu_list << {TITLE_KEY => "Alerts", EXPLAIN_KEY => "Various uses of UIAlertView, UIActionSheet", VIEW_CONTROLLER_KEY => alerts_view_controller}
@@ -38,6 +39,8 @@ class RcMainViewController < UITableViewController
     self.menu_list << {TITLE_KEY => "TextFields", EXPLAIN_KEY => "Various uses of UITextField", VIEW_CONTROLLER_KEY => text_field_view_controller}
     self.menu_list << {TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller}
     self.menu_list << {TITLE_KEY => "Transitions", EXPLAIN_KEY => "Shows UIViewAnimationTrasitions", VIEW_CONTROLLER_KEY => transition_view_controller}
+    self.menu_list << ({TITLE_KEY => "Text View", EXPLAIN_KEY => "An example of a TextView", VIEW_CONTROLLER_KEY => text_view_controller})
+    self.menu_list << ({TITLE_KEY => "PickerTitle".localized, EXPLAIN_KEY => "PickerExplain".localized, VIEW_CONTROLLER_KEY => picker_view_controller})
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier:CELL_IDENTIFIER)
