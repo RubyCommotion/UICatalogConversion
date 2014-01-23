@@ -15,17 +15,17 @@ class RcCustomView < UIView
   
   def initWithTitle(title, image: image)
     initWithFrame([[0.0, 0.0], [VIEW_WIDTH, VIEW_HEIGHT]])
-    yCoord = (self.bounds.size.height - LABEL_HEIGHT) / 2
+    y_coord = (self.bounds.size.height - LABEL_HEIGHT) / 2
     
-    @titleLabel = UILabel.alloc.initWithFrame([[MARGIN_SIZE + image.size.width + MARGIN_SIZE, yCoord], [CGRectGetWidth(self.frame) - MARGIN_SIZE + image.size.width + MARGIN_SIZE, LABEL_HEIGHT]])
-    @titleLabel.text = title
-    @titleLabel.backgroundColor = UIColor.clearColor
-    self.addSubview @titleLabel
+    @title_label = UILabel.alloc.initWithFrame([[MARGIN_SIZE + image.size.width + MARGIN_SIZE, y_coord], [CGRectGetWidth(self.frame) - MARGIN_SIZE + image.size.width + MARGIN_SIZE, LABEL_HEIGHT]])
+    @title_label.text = title
+    @title_label.backgroundColor = UIColor.clearColor
+    self.addSubview @title_label
     
-    yCoord = (self.bounds.size.height - image.size.height) / 2
-    imageView = UIImageView.alloc.initWithFrame([[MARGIN_SIZE, yCoord], [image.size.width, image.size.height]])
-    imageView.image = image
-    self.addSubview imageView
+    y_coord = (self.bounds.size.height - image.size.height) / 2
+    image_view = UIImageView.alloc.initWithFrame([[MARGIN_SIZE, y_coord], [image.size.width, image.size.height]])
+    image_view.image = image
+    self.addSubview image_view
     self
   end
   
@@ -36,7 +36,7 @@ class RcCustomView < UIView
   
   # Return a string that describes this view.
   def accessibilityLabel
-    return @titleLabel.text
+    return @title_label.text
   end
   
 end
