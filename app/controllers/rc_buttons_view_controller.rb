@@ -37,48 +37,48 @@ class RcButtonsViewController < UITableViewController
   def viewDidLoad
     super
 
-    self.title = "ButtonsTitle"._
+    self.title = "ButtonsTitle".localized
 
     @data_source_array = [
       {
         :title => "UIButton",
-        :label => "Background Image"._,
+        :label => "Background Image".localized,
         :source => "rc_buttons_view_controller.rb:\rdef grayButton",
         :view  => self.grayButton
       },
       {
         :title => "UIButton",
-        :label => "Button with Image"._,
+        :label => "Button with Image".localized,
         :source => "rc_buttons_view_controller.rb:\rdef imageButton",
         :view => self.imageButton
       },
       {
         :title => "UIButtonTypeRoundedRect",
-        :label => "Rounded Button"._,
+        :label => "Rounded Button".localized,
         :source => "rc_buttons_view_controller.rb:\rdef roundedButtonType",
         :view => self.roundedButtonType
       },
       {
         :title => "UIButtonTypeRoundedRect",
-        :label => "Attributed Text"._,
+        :label => "Attributed Text".localized,
         :source => "rc_buttons_view_controller.rb:\rdef attrTextButton",
         :view => self.attrTextButton
       },
       {
         :title => "UIButtonTypeDetailDisclosure",
-        :label => "Detail Disclosure"._,
+        :label => "Detail Disclosure".localized,
         :source => "rc_buttons_view_controller.rb:\rdef detailDisclosureButton",
         :view => self.detailDisclosureButton
       },
       {
         :title => "UIButtonTypeInfoLight",
-        :label => "Info Light"._,
+        :label => "Info Light".localized,
         :source => "rc_buttons_view_controller.rb:\rdef infoLightButtonType",
         :view => self.infoLightButtonType
       },
       {
         :title => "UIButtonTypeInfoDark",
-        :label => "Info Dark"._,
+        :label => "Info Dark".localized,
         :source => "rc_buttons_view_controller.rb:\rdef infoDarkButtonType",
         :view => self.infoDarkButtonType
       },
@@ -195,7 +195,7 @@ class RcButtonsViewController < UITableViewController
                                                   darkTextColor: true ).tap do |button| 
 
         button.setImage( UIImage.imageNamed( "/images/UIButton_custom.png" ), forState: UIControlStateNormal )
-        button.setAccessibilityLabel( "ArrowButton"._ )
+        button.setAccessibilityLabel( "ArrowButton".localized )
 
         button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
       end
@@ -222,7 +222,7 @@ class RcButtonsViewController < UITableViewController
       button.addTarget( self, action: "action:", forControlEvents: UIControlEventTouchUpInside )
 
       # add an accessibility label
-      button.setAccessibilityLabel( "AttrTextButton"._ )
+      button.setAccessibilityLabel( "AttrTextButton".localized )
 
       # apply red text for normal state
       normal_attr_string = NSMutableAttributedString.alloc.initWithString( "Rounded" ).tap do |attr_string|
@@ -249,7 +249,7 @@ class RcButtonsViewController < UITableViewController
       button.addTarget( self, action: "action:", forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
-      button.setAccessibilityLabel( "MoreInfoButton"._ )
+      button.setAccessibilityLabel( "MoreInfoButton".localized )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
@@ -264,7 +264,7 @@ class RcButtonsViewController < UITableViewController
       button.addTarget( self, action: "action:", forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
-      button.setAccessibilityLabel( "MoreInfoButton"._ )
+      button.setAccessibilityLabel( "MoreInfoButton".localized )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
@@ -279,7 +279,7 @@ class RcButtonsViewController < UITableViewController
       button.addTarget( self, action: "action:", forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
-      button.setAccessibilityLabel( "MoreInfoButton"._ )
+      button.setAccessibilityLabel( "MoreInfoButton".localized )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
@@ -294,7 +294,7 @@ class RcButtonsViewController < UITableViewController
       button.addTarget( self, action: "action:", forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
-      button.setAccessibilityLabel( "AddContactButton"._ )
+      button.setAccessibilityLabel( "AddContactButton".localized )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end

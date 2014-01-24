@@ -7,14 +7,14 @@ class RcTransitionViewController < UIViewController
   def viewDidLoad
     super
 
-    self.title = "TransitionsTitle"._
+    self.title = "TransitionsTitle".localized
     self.view.backgroundColor = UIColor.blackColor
 
     # create two toolbar buttons and center them with flexible space on both sides
     toolbar_buttons = [
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
-      UIBarButtonItem.alloc.initWithTitle( "FlipTitle"._, style: UIBarButtonItemStylePlain, target: self, action: "flipAction:" ),
-      UIBarButtonItem.alloc.initWithTitle( "CurlTitle"._, style: UIBarButtonItemStylePlain, target: self, action: "curlAction:" ),
+      UIBarButtonItem.alloc.initWithTitle( "FlipTitle".localized, style: UIBarButtonItemStylePlain, target: self, action: "flipAction:" ),
+      UIBarButtonItem.alloc.initWithTitle( "CurlTitle".localized, style: UIBarButtonItemStylePlain, target: self, action: "curlAction:" ),
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
     ]
     self.setToolbarItems( toolbar_buttons )
@@ -28,7 +28,7 @@ class RcTransitionViewController < UIViewController
     @container_view = UIView.alloc.initWithFrame( container_frame )
     @container_view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @container_view.setIsAccessibilityElement( true )
-    @container_view.setAccessibilityLabel( "ImagesTitle"._ )
+    @container_view.setAccessibilityLabel( "ImagesTitle".localized )
 
     # image 1
     @main_view = UIImageView.alloc.initWithFrame( image_frame )

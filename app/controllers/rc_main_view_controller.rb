@@ -27,18 +27,18 @@ class RcMainViewController < UITableViewController
     transition_view_controller = RcTransitionViewController.alloc.init
 
     # add the info needed for each VC
-    self.menu_list << {:title => "ButtonsTitle"._, :explain => "ButtonsExplain"._, :view_controller => buttons_view_controller}
-    self.menu_list << {:title => "ControlsTitle"._, :explain => "ControlsExplain"._, :view_controller => controls_view_controller}
-    self.menu_list << {:title => "TextFieldTitle"._, :explain => "TextFieldExplain"._, :view_controller => text_field_view_controller}
-    self.menu_list << {:title => "SearchBarTitle"._, :explain => "SearchBarExplain"._, :view_controller => search_bar_view_controller}
-    self.menu_list << {:title => "TextViewTitle"._, :explain => "TextViewExplain"._, :view_controller => text_view_controller}
-    self.menu_list << {:title => "PickerTitle"._, :explain => "PickerExplain"._, :view_controller => picker_view_controller}
-    self.menu_list << {:title => "ImagesTitle"._, :explain => "ImagesExplain"._, :view_controller => images_view_controller}
-    self.menu_list << {:title => "WebTitle"._, :explain => "WebExplain"._, :view_controller => web_view_controller}
-    self.menu_list << {:title => "SegmentTitle"._, :explain => "SegmentExplain"._, :view_controller =>  segment_view_controller}
-#    self.menu_list << {:title => "ToolbarTitle"._, :title => "ToolbarExplain"._, :view_controller => toolbar_view_controller}
-    self.menu_list << {:title => "AlertTitle"._, :explain => "AlertExplain"._, :view_controller => alerts_view_controller}
-    self.menu_list << {:title => "TransitionsTitle"._, :explain => "TransitionsExplain"._, :view_controller => transition_view_controller}
+    self.menu_list << {:title => "ButtonsTitle".localized, :explain => "ButtonsExplain".localized, :view_controller => buttons_view_controller}
+    self.menu_list << {:title => "ControlsTitle".localized, :explain => "ControlsExplain".localized, :view_controller => controls_view_controller}
+    self.menu_list << {:title => "TextFieldTitle".localized, :explain => "TextFieldExplain".localized, :view_controller => text_field_view_controller}
+    self.menu_list << {:title => "SearchBarTitle".localized, :explain => "SearchBarExplain".localized, :view_controller => search_bar_view_controller}
+    self.menu_list << {:title => "TextViewTitle".localized, :explain => "TextViewExplain".localized, :view_controller => text_view_controller}
+    self.menu_list << {:title => "PickerTitle".localized, :explain => "PickerExplain".localized, :view_controller => picker_view_controller}
+    self.menu_list << {:title => "ImagesTitle".localized, :explain => "ImagesExplain".localized, :view_controller => images_view_controller}
+    self.menu_list << {:title => "WebTitle".localized, :explain => "WebExplain".localized, :view_controller => web_view_controller}
+    self.menu_list << {:title => "SegmentTitle".localized, :explain => "SegmentExplain".localized, :view_controller =>  segment_view_controller}
+#    self.menu_list << {:title => "ToolbarTitle".localized, :title => "ToolbarExplain".localized, :view_controller => toolbar_view_controller}
+    self.menu_list << {:title => "AlertTitle".localized, :explain => "AlertExplain".localized, :view_controller => alerts_view_controller}
+    self.menu_list << {:title => "TransitionsTitle".localized, :explain => "TransitionsExplain".localized, :view_controller => transition_view_controller}
 
     # register our cell ID for later when we are asked for UITableViewCells (iOS 6.0 a later)
     tableView.registerClass(RcMyTableViewCell, forCellReuseIdentifier: CELL_IDENTIFIER)
