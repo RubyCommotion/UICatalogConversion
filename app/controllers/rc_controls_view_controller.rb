@@ -1,7 +1,7 @@
 class RcControlsViewController < UITableViewController
 
-	DISPLAY_CELL_ID = "DisplayCellID"
-  SOURCE_CELL_ID = "SourceCellID"
+	DISPLAY_CELL_ID = 'DisplayCellID'
+  SOURCE_CELL_ID = 'SourceCellID'
 
   PROGRESS_INDICATOR_SIZE = 40.0
   PROGRESS_BAR_HEIGHT = 24.0
@@ -15,47 +15,47 @@ class RcControlsViewController < UITableViewController
 	def viewDidLoad
     super
 
-    self.title = "Controls"
+    self.title = 'Controls'
 
     @data_source_array = [
 			{
-				:title => "UISwitch", :label => "Standard Switch",
-				:source => "rc_controls_view_controller.rb:\n switchControl",
+				:title => 'UISwitch', :label => 'Standard Switch',
+				:source => 'rc_controls_view_controller.rb:\n switchControl',
 				:view => self.switchControl
 			},
 			{
-				:title => "UISlider", :label => "Standard Slider",
-				:source => "rc_controls_view_controller.rb:\n sliderControl",
+				:title => 'UISlider', :label => 'Standard Slider',
+				:source => 'rc_controls_view_controller.rb:\n sliderControl',
 				:view => self.sliderControl
 			},
       {
-        :title => "UISlider", :label => "Customized Slider",
-        :source => "rc_controls_view_controller.rb:\n customSliderControl",
+        :title => 'UISlider', :label => 'Customized Slider',
+        :source => 'rc_controls_view_controller.rb:\n customSliderControl',
         :view => self.customSliderControl
       },
 			{
-				:title => "UIPageControl", :label => "Ten Pages",
-				:source => "rc_controls_view_controller.rb:\n pageControl",
+				:title => 'UIPageControl', :label => 'Ten Pages',
+				:source => 'rc_controls_view_controller.rb:\n pageControl',
 				:view => self.pageControl
 			},
       {
-        :title => "UIActivityIndicatorView", :label => "Style Gray",
-        :source => "rc_controls_view_controller.rb:\n progressIndicator",
+        :title => 'UIActivityIndicatorView', :label => 'Style Gray',
+        :source => 'rc_controls_view_controller.rb:\n progressIndicator',
         :view => self.progressIndicator
       },
       {
-        :title => "UIProgressView", :label => "Style Default",
-        :source => "rc_controls_view_controller.rb:\n progressBar",
+        :title => 'UIProgressView', :label => 'Style Default',
+        :source => 'rc_controls_view_controller.rb:\n progressBar',
         :view => self.progressBar
       },
       {
-        :title => "UIStepper", :label => "Stepper 1 to 10",
-        :source => "rc_controls_view_controller.rb:\n stepper",
+        :title => 'UIStepper', :label => 'Stepper 1 to 10',
+        :source => 'rc_controls_view_controller.rb:\n stepper',
         :view => self.stepper
       }
 		]
 
-    tintButton = UIBarButtonItem.alloc.initWithTitle("Tinted", style: UIBarButtonItemStyleBordered, target: self, action: "tintAction:")
+    tintButton = UIBarButtonItem.alloc.initWithTitle('Tinted', style: UIBarButtonItemStyleBordered, target: self, action: 'tintAction:')
     self.navigationItem.rightBarButtonItem = tintButton
 
     self.tableView.registerClass(UITableViewCell, :forCellReuseIdentifier => DISPLAY_CELL_ID)
@@ -135,9 +135,9 @@ class RcControlsViewController < UITableViewController
   def switchControl
   	@switchControl ||= begin
 	    UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0)).tap do |control|
-	    	control.addTarget(self, action: "switchAction:", forControlEvents: UIControlEventValueChanged)
+	    	control.addTarget(self, action: 'switchAction:', forControlEvents: UIControlEventValueChanged)
 	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
-				control.setAccessibilityLabel("Standard Switch")
+				control.setAccessibilityLabel('Standard Switch')
 				control.tag = VIEW_TAG	# tag this view for later so we can remove it from recycled table cells
 			end
     end
@@ -146,9 +146,9 @@ class RcControlsViewController < UITableViewController
   def sliderControl
   	@sliderControl ||= begin
   		UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
-      	control.addTarget(self, action: "sliderAction:", forControlEvents: UIControlEventValueChanged)
+      	control.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
 	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
-				control.setAccessibilityLabel("Standard Slider")
+				control.setAccessibilityLabel('Standard Slider')
       	control.minimumValue = 0.0
       	control.maximumValue = 100.0
       	control.continuous = true
@@ -161,20 +161,20 @@ class RcControlsViewController < UITableViewController
   def customSliderControl
     @customSliderControl ||= begin
       UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
-        control.addTarget(self, action: "sliderAction:", forControlEvents: UIControlEventValueChanged)
+        control.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor
 
-        stetchLeftTrack = UIImage.imageNamed("/images/orangeslide.png").stretchableImageWithLeftCapWidth(10.0, topCapHeight: 0.0)
-        stetchRightTrack = UIImage.imageNamed("/images/yellowslide.png").stretchableImageWithLeftCapWidth(10.0, topCapHeight: 0.0)
+        stetchLeftTrack = UIImage.imageNamed('/images/orangeslide.png').stretchableImageWithLeftCapWidth(10.0, topCapHeight: 0.0)
+        stetchRightTrack = UIImage.imageNamed('/images/yellowslide.png').stretchableImageWithLeftCapWidth(10.0, topCapHeight: 0.0)
 
-        control.setThumbImage(UIImage.imageNamed("/images/slider_ball.png"), forState: UIControlStateNormal)
+        control.setThumbImage(UIImage.imageNamed('/images/slider_ball.png'), forState: UIControlStateNormal)
         control.setMinimumTrackImage(stetchLeftTrack, forState: UIControlStateNormal)
         control.setMaximumTrackImage(stetchRightTrack, forState: UIControlStateNormal)
         control.minimumValue = 0.0
         control.maximumValue = 100.0
         control.continuous = true
         control.value = 50.0
-        control.setAccessibilityLabel("Custom Slider")
+        control.setAccessibilityLabel('Custom Slider')
         control.tag = VIEW_TAG
       end
     end
@@ -183,7 +183,7 @@ class RcControlsViewController < UITableViewController
   def pageControl
   	@pageControl ||= begin
   		UIPageControl.alloc.initWithFrame(CGRectMake(0.0, 14.0, 178.0, 20.0)).tap do |control|
-      	control.addTarget(self, action: "pageAction:", forControlEvents: UIControlEventTouchUpInside)
+      	control.addTarget(self, action: 'pageAction:', forControlEvents: UIControlEventTouchUpInside)
 	    	control.backgroundColor = UIColor.grayColor
       	control.numberOfPages = 10
 				control.tag = VIEW_TAG
@@ -223,7 +223,7 @@ class RcControlsViewController < UITableViewController
         stepper.minimumValue = 0
         stepper.maximumValue = 10
         stepper.stepValue = 1
-        stepper.addTarget(self, action: "stepperAction:", forControlEvents: UIControlEventValueChanged)
+        stepper.addTarget(self, action: 'stepperAction:', forControlEvents: UIControlEventValueChanged)
       end
     end
   end

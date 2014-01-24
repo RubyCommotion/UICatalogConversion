@@ -3,20 +3,20 @@ class RcTextFieldViewController < UITableViewController
   LEFT_MARGING = 20
   TEXT_FIELD_HEIGHT = 15
   TEXT_FIELD_WIDTH = 260.0
-  TEXT_FIELD_CELL_ID = "TextFieldCellID"
-  SOURCE_CELL_ID = "SourceCellID"
+  TEXT_FIELD_CELL_ID = 'TextFieldCellID'
+  SOURCE_CELL_ID = 'SourceCellID'
   VIEW_TAG = 1
 
   def viewDidLoad
     super
-    self.title = "TextFieldTitle"
+    self.title = 'TextFieldTitle'
 
 
     @data_source_array = [
-      {  title: "UITextField Normal",     source: "rc_text_field_view_controller.rb: textFieldNormal",   view: textFieldNormal},
-      {  title: "UITextField Rounded",    source: "rc_text_field_view_controller.rb: textFieldRounded",  view: textFieldRounded},
-      {  title: "UITextField Secure",     source: "rc_text_field_view_controller.rb: textFieldSecure",   view: textFieldSecure},
-      {  title: "UITextField Left View",  source: "rc_text_field_view_controller.rb: textFieldLeftView", view: textFieldLeftView}
+      {  title: 'UITextField Normal',     source: 'rc_text_field_view_controller.rb: textFieldNormal',   view: textFieldNormal},
+      {  title: 'UITextField Rounded',    source: 'rc_text_field_view_controller.rb: textFieldRounded',  view: textFieldRounded},
+      {  title: 'UITextField Secure',     source: 'rc_text_field_view_controller.rb: textFieldSecure',   view: textFieldSecure},
+      {  title: 'UITextField Left View',  source: 'rc_text_field_view_controller.rb: textFieldLeftView', view: textFieldLeftView}
     ]
   end
 
@@ -29,7 +29,7 @@ class RcTextFieldViewController < UITableViewController
       @text_field_normal_view.borderStyle = UITextBorderStyleBezel
       @text_field_normal_view.textColor = UIColor.blackColor
       @text_field_normal_view.font = UIFont.systemFontOfSize(14.0)
-      @text_field_normal_view.placeholder = "<enter text for normal textfield>"
+      @text_field_normal_view.placeholder = '<enter text for normal textfield>'
       @text_field_normal_view.backgroundColor = UIColor.whiteColor
       @text_field_normal_view.autocorrectionType = UITextAutocorrectionTypeNo    # no auto correction support
 
@@ -39,9 +39,9 @@ class RcTextFieldViewController < UITableViewController
       @text_field_normal_view.clearButtonMode = UITextFieldViewModeWhileEditing  # has a clear 'x' button to the right
 
       @text_field_normal_view.tag = VIEW_TAG                                     # tag this control so we can remove it later for recycled cell
-      @text_field_normal_view.delegate = self                                    # let us be the delegate so we know when the keyboard's "Done" button is pressed
+      @text_field_normal_view.delegate = self                                    # let us be the delegate so we know when the keyboard's 'Done' button is pressed
 
-      @text_field_normal_view.setAccessibilityLabel("NormalTextField")
+      @text_field_normal_view.setAccessibilityLabel('NormalTextField')
     end 
     return @text_field_normal_view
   end
@@ -54,7 +54,7 @@ class RcTextFieldViewController < UITableViewController
       @text_field_rounded_view.borderStyle = UITextBorderStyleRoundedRect
       @text_field_rounded_view.textColor = UIColor.blackColor
       @text_field_rounded_view.font = UIFont.systemFontOfSize(14.0)
-      @text_field_rounded_view.placeholder = "<enter text for rounded textfield>"
+      @text_field_rounded_view.placeholder = '<enter text for rounded textfield>'
       @text_field_rounded_view.backgroundColor = UIColor.whiteColor
 
       @text_field_rounded_view.autocorrectionType = UITextAutocorrectionTypeNo  # no auto correction support
@@ -66,9 +66,9 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_rounded_view.tag = VIEW_TAG       # tag this control so we can remove it later for recycled cell
 
-      @text_field_rounded_view.delegate = self  # let us be the delegate so we know when the keyboard's "Done" button is pressed
+      @text_field_rounded_view.delegate = self  # let us be the delegate so we know when the keyboard's 'Done' button is pressed
 
-      @text_field_rounded_view.setAccessibilityLabel("RoundedTextField")
+      @text_field_rounded_view.setAccessibilityLabel('RoundedTextField')
     end
     return @text_field_rounded_view
   end
@@ -81,7 +81,7 @@ class RcTextFieldViewController < UITableViewController
       @text_field_secure_view.borderStyle = UITextBorderStyleBezel
       @text_field_secure_view.textColor = UIColor.blackColor
       @text_field_secure_view.font = UIFont.systemFontOfSize(14.0)
-      @text_field_secure_view.placeholder = "<enter password>"
+      @text_field_secure_view.placeholder = '<enter password>'
       @text_field_secure_view.backgroundColor = UIColor.whiteColor
 
       @text_field_secure_view.keyboardType = UIKeyboardTypeDefault
@@ -93,9 +93,9 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_secure_view.tag = VIEW_TAG        # tag this control so we can remove it later for recycled cell
 
-      @text_field_secure_view.delegate = self   # let us be the delegate so we know when the keyboard's "Done" button is pressed
+      @text_field_secure_view.delegate = self   # let us be the delegate so we know when the keyboard's 'Done' button is pressed
 
-      @text_field_secure_view.setAccessibilityLabel("SecureTextField")
+      @text_field_secure_view.setAccessibilityLabel('SecureTextField')
     end
     return @text_field_secure_view
   end
@@ -108,7 +108,7 @@ class RcTextFieldViewController < UITableViewController
       @text_field_left_view.borderStyle = UITextBorderStyleBezel
       @text_field_left_view.textColor = UIColor.blackColor
       @text_field_left_view.font = UIFont.systemFontOfSize(14.0)
-      @text_field_left_view.placeholder = "<enter text for left textfield>"
+      @text_field_left_view.placeholder = '<enter text for left textfield>'
       @text_field_left_view.backgroundColor = UIColor.whiteColor
 
       @text_field_left_view.keyboardType = UIKeyboardTypeDefault
@@ -119,17 +119,17 @@ class RcTextFieldViewController < UITableViewController
       @text_field_left_view.tag = VIEW_TAG      # tag this control so we can remove it later for recycled cell
 
       # Add an accessibility label that describes the text field.
-      @text_field_left_view.setAccessibilityLabel("CheckMarkIcon")
+      @text_field_left_view.setAccessibilityLabel('CheckMarkIcon')
 
 
       # converted to Ruby syntax
-      #image = UIImageView.alloc.initWithImage(UIImage.imageNamed:"/images/right_round-26.png")
+      #image = UIImageView.alloc.initWithImage(UIImage.imageNamed:'/images/right_round-26.png')
       # changed image to match image used by Obj-C source code for text field left view
       image = UIImageView.alloc.initWithImage(UIImage.imageNamed('/images/segment_check-24.png'))
       @text_field_left_view.leftView = image
       @text_field_left_view.leftViewMode = UITextFieldViewModeAlways
 
-      @text_field_left_view.delegate = self # let us be the delegate so we know when the keyboard's "Done" button is pressed
+      @text_field_left_view.delegate = self # let us be the delegate so we know when the keyboard's 'Done' button is pressed
     end
     return @text_field_left_view
   end
@@ -192,7 +192,7 @@ class RcTextFieldViewController < UITableViewController
 
 
  def textFieldShouldReturn(textField)
-    textField.resignFirstResponder # the user pressed the "Done" button, so dismiss the keyboard
+    textField.resignFirstResponder # the user pressed the 'Done' button, so dismiss the keyboard
     true
   end
 

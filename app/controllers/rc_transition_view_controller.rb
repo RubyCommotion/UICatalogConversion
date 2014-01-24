@@ -7,14 +7,14 @@ class RcTransitionViewController < UIViewController
   def viewDidLoad
     super
 
-    self.title = "TransitionsTitle".localized
+    self.title = 'TransitionsTitle'.localized
     self.view.backgroundColor = UIColor.blackColor
 
     # create two toolbar buttons and center them with flexible space on both sides
     toolbar_buttons = [
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
-      UIBarButtonItem.alloc.initWithTitle( "FlipTitle".localized, style: UIBarButtonItemStylePlain, target: self, action: "flipAction:" ),
-      UIBarButtonItem.alloc.initWithTitle( "CurlTitle".localized, style: UIBarButtonItemStylePlain, target: self, action: "curlAction:" ),
+      UIBarButtonItem.alloc.initWithTitle( 'FlipTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'flipAction:' ),
+      UIBarButtonItem.alloc.initWithTitle( 'CurlTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'curlAction:' ),
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
     ]
     self.setToolbarItems( toolbar_buttons )
@@ -28,15 +28,15 @@ class RcTransitionViewController < UIViewController
     @container_view = UIView.alloc.initWithFrame( container_frame )
     @container_view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @container_view.setIsAccessibilityElement( true )
-    @container_view.setAccessibilityLabel( "ImagesTitle".localized )
+    @container_view.setAccessibilityLabel( 'ImagesTitle'.localized )
 
     # image 1
     @main_view = UIImageView.alloc.initWithFrame( image_frame )
-    @main_view.image = UIImage.imageNamed( "/images/scene1.jpg" )
+    @main_view.image = UIImage.imageNamed( '/images/scene1.jpg' )
 
     # image 2
     @flip_to_view = UIImageView.alloc.initWithFrame( image_frame )
-    @flip_to_view.image = UIImage.imageNamed( "/images/scene2.jpg" )
+    @flip_to_view.image = UIImage.imageNamed( '/images/scene2.jpg' )
 
     # assemble
     @container_view.addSubview( @main_view )

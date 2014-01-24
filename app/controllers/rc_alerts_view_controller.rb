@@ -1,7 +1,7 @@
 class RcAlertsViewController < UITableViewController
 
-  ALERT_CELL_ID = "AlertCellID"
-  SOURCE_CELL_ID = "SourceCellID"
+  ALERT_CELL_ID = 'AlertCellID'
+  SOURCE_CELL_ID = 'SourceCellID'
 
   UIACTION_SIMPLE_SECTION = 0
   UIACTION_OKCANCEL_SECTION = 1
@@ -13,25 +13,25 @@ class RcAlertsViewController < UITableViewController
 
   def viewDidLoad
     super
-    self.title = "Alerts"
+    self.title = 'Alerts'
  
     @data_source_array = [
-      { title: "UIActionSheet", label: "Show Simple", source: "rc_alerts_view_controller.rb - dialogSimpleAction" },
-      { title: "UIActionSheet", label: "Show OK-Cancel", source: "rc_alerts_view_controller.rb - dialogOKCancelAction" },
-      { title: "UIActionSheet", label: "Show Customized", source: "rc_alerts_view_controller.rb - dialogOtherAction" },
-      { title: "UIAlertView", label: "Show Simple", source: "rc_alerts_view_controller.rb - alertSimpleAction" },
-      { title: "UIAlertView", label: "Show OK-Cancel", source: "rc_alerts_view_controller.rb - alertOKCancelAction" },
-      { title: "UIAlertView", label: "Show Custom", source: "rc_alerts_view_controller.rb - alertOtherAction" },
-      { title: "UIAlertView", label: "Show Secure Text Input", source: "rc_alerts_view_controller.rb - alertSecureTextAction" }
+      { title: 'UIActionSheet', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - dialogSimpleAction' },
+      { title: 'UIActionSheet', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - dialogOKCancelAction' },
+      { title: 'UIActionSheet', label: 'Show Customized', source: 'rc_alerts_view_controller.rb - dialogOtherAction' },
+      { title: 'UIAlertView', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - alertSimpleAction' },
+      { title: 'UIAlertView', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - alertOKCancelAction' },
+      { title: 'UIAlertView', label: 'Show Custom', source: 'rc_alerts_view_controller.rb - alertOtherAction' },
+      { title: 'UIAlertView', label: 'Show Secure Text Input', source: 'rc_alerts_view_controller.rb - alertSecureTextAction' }
     ]
   end
 
 
   def dialogSimpleAction
-    action_sheet = UIActionSheet.alloc.initWithTitle("UIActionSheetTitle",
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
       delegate:self,
       cancelButtonTitle: nil,
-      destructiveButtonTitle: "OKButtonTitle",
+      destructiveButtonTitle: 'OKButtonTitle',
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
@@ -39,10 +39,10 @@ class RcAlertsViewController < UITableViewController
   end
  
   def dialogOKCancelAction
-    action_sheet = UIActionSheet.alloc.initWithTitle("UIActionSheetTitle",
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
       delegate:self,
-      cancelButtonTitle: "CancelButtonTitle",
-      destructiveButtonTitle: "OKButtonTitle",
+      cancelButtonTitle: 'CancelButtonTitle',
+      destructiveButtonTitle: 'OKButtonTitle',
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
@@ -50,11 +50,11 @@ class RcAlertsViewController < UITableViewController
   end
  
   def dialogOtherAction
-    action_sheet = UIActionSheet.alloc.initWithTitle("UIActionSheetTitle",
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
       delegate:self,
       cancelButtonTitle: nil,
       destructiveButtonTitle: nil,
-      otherButtonTitles: "ButtonTitle1", "ButtonTitle2", nil
+      otherButtonTitles: 'ButtonTitle1', 'ButtonTitle2', nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
     action_sheet.destructiveButtonIndex = 1
@@ -63,41 +63,41 @@ class RcAlertsViewController < UITableViewController
  
  
   def alertSimpleAction
-    alert = UIAlertView.alloc.initWithTitle("UIAlertViewTitle",
-      message: "UIAlertViewMessageGeneric",
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
+      message: 'UIAlertViewMessageGeneric',
       delegate: self,
-      cancelButtonTitle: "OKButtonTitle",
+      cancelButtonTitle: 'OKButtonTitle',
       otherButtonTitles: nil
     )
     alert.show
   end
  
   def alertOKCancelAction
-    alert = UIAlertView.alloc.initWithTitle("UIAlertViewTitle",
-      message: "UIAlertViewMessageGeneric",
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
+      message: 'UIAlertViewMessageGeneric',
       delegate: self,
-      cancelButtonTitle: "CancelButtonTitle",
-      otherButtonTitles: "OKButtonTitle", nil
+      cancelButtonTitle: 'CancelButtonTitle',
+      otherButtonTitles: 'OKButtonTitle', nil
     )
     alert.show
   end
 
   def alertOtherAction
-    alert = UIAlertView.alloc.initWithTitle("UIAlertViewTitle",
-      message: "UIAlertViewMessageGeneric",
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
+      message: 'UIAlertViewMessageGeneric',
       delegate: self,
-      cancelButtonTitle: "CancelButtonTitle",
-      otherButtonTitles: "ButtonTitle1", "ButtonTitle2", nil
+      cancelButtonTitle: 'CancelButtonTitle',
+      otherButtonTitles: 'ButtonTitle1', 'ButtonTitle2', nil
     )
     alert.show
   end
 
   def alertSecureTextAction
-    alert = UIAlertView.alloc.initWithTitle("UIAlertViewTitle",
-      message: "Secure Text Input",
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
+      message: 'Secure Text Input',
       delegate: self,
-      cancelButtonTitle: "CancelButtonTitle",
-      otherButtonTitles: "OKButtonTitle", nil
+      cancelButtonTitle: 'CancelButtonTitle',
+      otherButtonTitles: 'OKButtonTitle', nil
     )
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput
     alert.show
@@ -105,15 +105,15 @@ class RcAlertsViewController < UITableViewController
 
   def actionSheet(action_sheet, clickedButtonAtIndex: button_index)
     if button_index == 0
-      NSLog("ok")
+      NSLog('ok')
     else
-      NSLog("cancel")
+      NSLog('cancel')
     end
   end
  
   def alertView(action_sheet, clickedButtonAtIndex: button_index)
     NSLog("Clicked alert view at index: #{button_index}")
-    # use "buttonIndex" to decide your action
+    # use 'buttonIndex' to decide your action
   end
  
   def numberOfSectionsInTableView(table_view)

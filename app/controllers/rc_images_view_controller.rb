@@ -3,7 +3,7 @@ class RcImagesViewController < UIViewController
   def viewDidLoad
     super
     
-    self.title = "ImagesTitle".localized
+    self.title = 'ImagesTitle'.localized
     self.view.backgroundColor = UIColor.blackColor
     
     @image_view = UIImageView.alloc.initWithFrame [[42, 20], [236, 174]]
@@ -29,18 +29,18 @@ class RcImagesViewController < UIViewController
     frame.origin.y = CGRectGetHeight(self.view.frame) - frame.size.height - 20
     label.frame = frame
     label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin
-    label.text = "Duration".localized
+    label.text = 'Duration'.localized
     label.textColor = UIColor.whiteColor
     label.font = UIFont.systemFontOfSize(14.0)
     self.view.addSubview label
     
     # set up our UIImage with a group or array of images to animate (or in our case a slideshow)
     @image_view.animationImages = [
-      UIImage.imageNamed("/images/scene1.jpg"),
-      UIImage.imageNamed("/images/scene2.jpg"),
-      UIImage.imageNamed("/images/scene3.jpg"),
-      UIImage.imageNamed("/images/scene4.jpg"),
-      UIImage.imageNamed("/images/scene5.jpg")
+      UIImage.imageNamed('/images/scene1.jpg'),
+      UIImage.imageNamed('/images/scene2.jpg'),
+      UIImage.imageNamed('/images/scene3.jpg'),
+      UIImage.imageNamed('/images/scene4.jpg'),
+      UIImage.imageNamed('/images/scene5.jpg')
     ]
     @image_view.animationDuration = 5.0
     @image_view.stopAnimating
@@ -51,7 +51,7 @@ class RcImagesViewController < UIViewController
     # Set the appropriate accessibility labels.
     @image_view.setIsAccessibilityElement true
     @image_view.setAccessibilityLabel self.title
-    @slider.setAccessibilityLabel "DurationSlider".localized
+    @slider.setAccessibilityLabel 'DurationSlider'.localized
   end
   
   # slown down or speed up the slide show as the slider is moved

@@ -21,7 +21,7 @@ class RcSegmentViewController < UIViewController
 
   # user tapped one of the segmented controls
   def segment_action(sender)
-  	# puts "segmentAction: selected segment = #{sender.class.name} #{sender.selectedSegmentIndex}"
+  	#puts "segmentAction: selected segment = #{sender.class.name} #{sender.selectedSegmentIndex}"
   end
 
 

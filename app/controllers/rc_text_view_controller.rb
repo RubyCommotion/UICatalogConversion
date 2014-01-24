@@ -85,7 +85,7 @@ class RcTextViewController < UIViewController
     # finish typing text/dismiss the keyboard by removing it as the first responder
     #
     @text_view.resignFirstResponder
-    self.navigationItem.rightBarButtonItem = nil # this will remove the "save" button
+    self.navigationItem.rightBarButtonItem = nil # this will remove the 'save' button
   end
 
   def textViewDidBeginEditing(textView)

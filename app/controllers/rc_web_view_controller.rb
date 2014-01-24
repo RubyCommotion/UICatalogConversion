@@ -14,7 +14,7 @@ class RcWebViewController < UIViewController
   def viewDidLoad
     super
     
-    self.title = "Web"
+    self.title = 'Web'
     self.navigationController.navigationBar.translucent = false
 
     # create the URL input field
@@ -23,8 +23,8 @@ class RcWebViewController < UIViewController
     urlField.borderStyle = UITextBorderStyleBezel
     urlField.textColor = UIColor.blackColor
     urlField.delegate = self
-    urlField.placeholder = "<enter a full URL>"
-    urlField.text = "http://www.apple.com"
+    urlField.placeholder = '<enter a full URL>'
+    urlField.text = 'http://www.apple.com'
     urlField.backgroundColor = UIColor.whiteColor
     urlField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin
     urlField.returnKeyType = UIReturnKeyGo
@@ -32,7 +32,7 @@ class RcWebViewController < UIViewController
     urlField.autocapitalizationType = UITextAutocapitalizationTypeNone    # don't capitalize
     urlField.autocorrectionType = UITextAutocorrectionTypeNo    # we don't like autocompletion while typing
     urlField.clearButtonMode = UITextFieldViewModeAlways
-    urlField.setAccessibilityLabel("URL entry")
+    urlField.setAccessibilityLabel('URL entry')
     self.view.addSubview(urlField)
       
     # create the UIWebView
@@ -47,7 +47,7 @@ class RcWebViewController < UIViewController
     self.myWebView.delegate = self
     self.view.addSubview(self.myWebView)
     
-    self.myWebView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString("http://www.apple.com/")))
+    self.myWebView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString('http://www.apple.com/')))
   end
 
 
@@ -67,7 +67,7 @@ class RcWebViewController < UIViewController
     UIApplication.sharedApplication.networkActivityIndicatorVisible = false
   end
 
-  # this helps dismiss the keyboard when the "Done" button is clicked
+  # this helps dismiss the keyboard when the 'Done' button is clicked
   def textFieldShouldReturn(textField)
     textField.resignFirstResponder
     self.myWebView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(textField.text)))

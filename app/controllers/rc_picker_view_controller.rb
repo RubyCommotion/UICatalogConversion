@@ -26,7 +26,7 @@ class RcPickerViewController < UIViewController
   #pragma mark - UIPickerView
 
   def create_picker
-    @picker_view_array = ["John Appleseed", "Chris Armstrong", "Serena Auroux", "Susan Bean", "Luis Becerra", "Kate Bell", "Alain Briere"]
+    @picker_view_array = ['John Appleseed', 'Chris Armstrong', 'Serena Auroux', 'Susan Bean', 'Luis Becerra', 'Kate Bell', 'Alain Briere']
 
     # note we are using CGRectZero for the dimensions of our picker view,
     # this is because picker views have a built in optimum size,
@@ -106,7 +106,7 @@ class RcPickerViewController < UIViewController
     # hide the current picker and show the new one
     if @current_picker
       @current_picker.hidden = true
-      @label.text = ""
+      @label.text = ''
     end
     picker.hidden = false
 
@@ -118,16 +118,16 @@ class RcPickerViewController < UIViewController
     case (sender.selectedSegmentIndex)
     when 0 # Time
       @date_picker_view.datePickerMode = UIDatePickerModeTime
-      @segment_label.text = "UIDatePickerModeTime"
+      @segment_label.text = 'UIDatePickerModeTime'
     when 1 # Date
       @date_picker_view.datePickerMode = UIDatePickerModeDate
-      @segment_label.text = "UIDatePickerModeDate"
+      @segment_label.text = 'UIDatePickerModeDate'
     when 2 # Date & Time
       @date_picker_view.datePickerMode = UIDatePickerModeDateAndTime
-      @segment_label.text = "UIDatePickerModeDateAndTime"
+      @segment_label.text = 'UIDatePickerModeDateAndTime'
     when 3 # Counter
       @date_picker_view.datePickerMode = UIDatePickerModeCountDownTimer
-      @segment_label.text = "UIDatePickerModeCountDownTimer"
+      @segment_label.text = 'UIDatePickerModeCountDownTimer'
     end
 
     # in case we previously chose the Counter style picker, make sure
@@ -164,7 +164,7 @@ class RcPickerViewController < UIViewController
   def viewDidLoad
     super
 
-    self.title = "PickerTitle".localized
+    self.title = 'PickerTitle'.localized
 
     self.view.backgroundColor = UIColor.lightGrayColor
     
@@ -175,7 +175,7 @@ class RcPickerViewController < UIViewController
     @toolbar.frame = frame
     @toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth
     
-    @button_bar_segmented_control = UISegmentedControl.alloc.initWithItems(["UIPicker", "UIDatePicker", "Custom"])
+    @button_bar_segmented_control = UISegmentedControl.alloc.initWithItems(['UIPicker', 'UIDatePicker', 'Custom'])
     @button_bar_segmented_control.frame = [[0, 0], [299, 30]]
     @button_bar_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     @button_bar_segmented_control.tintColor = UIColor.darkGrayColor
@@ -197,7 +197,7 @@ class RcPickerViewController < UIViewController
     # otherwise, automaticallyAdjustsScrollViewInsets is uneffective
     self.view.addSubview @toolbar
 
-    @picker_style_segmented_control = UISegmentedControl.alloc.initWithItems(["1", "2", "3", "4"])
+    @picker_style_segmented_control = UISegmentedControl.alloc.initWithItems(['1', '2', '3', '4'])
     @picker_style_segmented_control.frame = [[57, 266], [207, 30]]
     @picker_style_segmented_control.tintColor = UIColor.darkGrayColor
     @picker_style_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
@@ -268,7 +268,7 @@ class RcPickerViewController < UIViewController
   end
 
   def pickerView(picker_view, titleForRow: row, forComponent: component)
-    string = ""
+    string = ''
 
     # note: for the custom picker we use custom views instead of titles
     if picker_view == @my_picker_view
