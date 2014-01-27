@@ -1,4 +1,4 @@
-describe 'Application 'UICatalogConversion'' do
+describe 'Application UICatalogConversion' do
   before do
     @app = UIApplication.sharedApplication
   end

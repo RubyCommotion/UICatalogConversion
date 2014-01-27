@@ -3,6 +3,7 @@ class RcAlertsViewController < UITableViewController
   ALERT_CELL_ID = 'AlertCellID'
   SOURCE_CELL_ID = 'SourceCellID'
 
+  #Ruby does not implement typedef enum - thus following work around
   UIACTION_SIMPLE_SECTION = 0
   UIACTION_OKCANCEL_SECTION = 1
   UIACTION_CUSTOM_SECTION = 2
@@ -11,111 +12,129 @@ class RcAlertsViewController < UITableViewController
   UIALERT_CUSTOM_SECTION = 5
   UIALERT_SECURETEXT_SECTION = 6
 
+
   def viewDidLoad
     super
     self.title = 'Alerts'
  
     @data_source_array = [
-      { title: 'UIActionSheet', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - dialogSimpleAction' },
-      { title: 'UIActionSheet', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - dialogOKCancelAction' },
-      { title: 'UIActionSheet', label: 'Show Customized', source: 'rc_alerts_view_controller.rb - dialogOtherAction' },
-      { title: 'UIAlertView', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - alertSimpleAction' },
-      { title: 'UIAlertView', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - alertOKCancelAction' },
-      { title: 'UIAlertView', label: 'Show Custom', source: 'rc_alerts_view_controller.rb - alertOtherAction' },
-      { title: 'UIAlertView', label: 'Show Secure Text Input', source: 'rc_alerts_view_controller.rb - alertSecureTextAction' }
+      { title: 'UIActionSheet Class', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - dialog_simple_action' },
+      { title: 'UIActionSheet Class', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - dialog_ok_cancel_action' },
+      { title: 'UIActionSheet Class', label: 'Show Customized', source: 'rc_alerts_view_controller.rb - dialog_other_action' },
+      { title: 'UIAlertView Class', label: 'Show Simple', source: 'rc_alerts_view_controller.rb - alert_simple_action' },
+      { title: 'UIAlertView Class', label: 'Show OK-Cancel', source: 'rc_alerts_view_controller.rb - alert_ok_cancel_action' },
+      { title: 'UIAlertView Class', label: 'Show Custom', source: 'rc_alerts_view_controller.rb - alert_other_action' },
+      { title: 'UIAlertView Class', label: 'Show Secure Text Input', source: 'rc_alerts_view_controller.rb - alert_secure_text_action' }
     ]
+    # register our cell IDs for later when we are asked for UITableViewCells
+    self.tableView.registerClass(UITableViewCell, forCellReuseIdentifier: ALERT_CELL_ID)
+    self.tableView.registerClass(UITableViewCell, forCellReuseIdentifier: SOURCE_CELL_ID)
   end
 
 
-  def dialogSimpleAction
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
+ # UIActionSheet
+
+  #open a dialog with just an OK button
+  def dialog_simple_action
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
       delegate:self,
       cancelButtonTitle: nil,
-      destructiveButtonTitle: 'OKButtonTitle',
+      destructiveButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
     action_sheet.showInView(self.view)
   end
  
-  def dialogOKCancelAction
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
+  # open a dialog with an OK and cancel button
+  def dialog_ok_cancel_action
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
       delegate:self,
-      cancelButtonTitle: 'CancelButtonTitle',
-      destructiveButtonTitle: 'OKButtonTitle',
+      cancelButtonTitle: 'CancelButtonTitle'.localized,
+      destructiveButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
     action_sheet.showInView(self.view)
   end
  
-  def dialogOtherAction
-    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle',
+  # open a dialog with two custom buttons
+  def dialog_other_action
+    action_sheet = UIActionSheet.alloc.initWithTitle('UIActionSheetTitle'.localized,
       delegate:self,
       cancelButtonTitle: nil,
       destructiveButtonTitle: nil,
-      otherButtonTitles: 'ButtonTitle1', 'ButtonTitle2', nil
+      otherButtonTitles: 'ButtonTitle1'.localized, 'ButtonTitle2'.localized, nil
     )
     action_sheet.actionSheetStyle = UIActionSheetStyleDefault
     action_sheet.destructiveButtonIndex = 1
     action_sheet.showInView(self.view)
   end
  
- 
-  def alertSimpleAction
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
-      message: 'UIAlertViewMessageGeneric',
+  # UIAlertView
+
+  # open an alert with just an OK button
+  def alert_simple_action
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+      message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
-      cancelButtonTitle: 'OKButtonTitle',
+      cancelButtonTitle: 'OKButtonTitle'.localized,
       otherButtonTitles: nil
     )
     alert.show
   end
  
-  def alertOKCancelAction
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
-      message: 'UIAlertViewMessageGeneric',
+  # open a alert with an OK and cancel button
+  def alert_ok_cancel_action
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+      message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
-      cancelButtonTitle: 'CancelButtonTitle',
-      otherButtonTitles: 'OKButtonTitle', nil
+      cancelButtonTitle: 'CancelButtonTitle'.localized,
+      otherButtonTitles: 'OKButtonTitle'.localized, nil
     )
     alert.show
   end
 
-  def alertOtherAction
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
-      message: 'UIAlertViewMessageGeneric',
+  # open an alert with two custom buttons
+  def alert_other_action
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
+      message: 'UIAlertViewMessageGeneric'.localized,
       delegate: self,
-      cancelButtonTitle: 'CancelButtonTitle',
-      otherButtonTitles: 'ButtonTitle1', 'ButtonTitle2', nil
+      cancelButtonTitle: 'CancelButtonTitle'.localized,
+      otherButtonTitles: 'ButtonTitle1'.localized, 'ButtonTitle2'.localized, nil
     )
     alert.show
   end
 
-  def alertSecureTextAction
-    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle',
+  # open an alert with two custom buttons plus a secure text input field
+  def alert_secure_text_action
+    alert = UIAlertView.alloc.initWithTitle('UIAlertViewTitle'.localized,
       message: 'Secure Text Input',
       delegate: self,
-      cancelButtonTitle: 'CancelButtonTitle',
-      otherButtonTitles: 'OKButtonTitle', nil
+      cancelButtonTitle: 'CancelButtonTitle'.localized,
+      otherButtonTitles: 'OKButtonTitle'.localized, nil
     )
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput
     alert.show
   end
 
+  # UIActionSheetDelegate
   def actionSheet(action_sheet, clickedButtonAtIndex: button_index)
+    # use 'buttonIndex' to decide your action
     if button_index == 0
-      NSLog('ok')
+      #puts 'ok'
     else
-      NSLog('cancel')
+      #puts 'cancel'
     end
   end
  
+  # UIAlertViewDelegate
   def alertView(action_sheet, clickedButtonAtIndex: button_index)
-    NSLog("Clicked alert view at index: #{button_index}")
     # use 'buttonIndex' to decide your action
+    #puts "Clicked alert view at index: #{button_index}"
   end
  
+  # UITableView delegates
   def numberOfSectionsInTableView(table_view)
     @data_source_array.count
   end
@@ -127,47 +146,50 @@ class RcAlertsViewController < UITableViewController
   def tableView(table_view, numberOfRowsInSection: section)
     2
   end
- 
+
+  # to determine specific row height for each cell, override this.
+  # In this example, each row is determined by its subviews that are embedded.
+  #
   def tableView(table_view, heightForRowAtIndexPath: index_path)
     return index_path.row == 0 ? 50.0 : 22.0
   end
 
+  # the table's selection has changed, show the alert or action sheet
   def tableView(table_view, didSelectRowAtIndexPath: index_path)
-    tableView.deselectRowAtIndexPath(table_view.indexPathForSelectedRow, animated: true)
+
+    # deselect the current row (don't keep the table selection persistent)
+    table_view.deselectRowAtIndexPath(table_view.indexPathForSelectedRow, animated: true)
 
     if index_path.row == 0
       case index_path.section
       when UIACTION_SIMPLE_SECTION
-        dialogSimpleAction
+        dialog_simple_action
       when UIACTION_OKCANCEL_SECTION
-        dialogOKCancelAction
+        dialog_ok_cancel_action
       when UIACTION_CUSTOM_SECTION
-        dialogOtherAction
+        dialog_other_action
       when UIALERT_SIMPLE_SECTION
-        alertSimpleAction
+        alert_simple_action
       when UIALERT_OKCANCEL_SECTION
-        alertOKCancelAction
+        alert_ok_cancel_action
       when UIALERT_CUSTOM_SECTION
-        alertOtherAction
+        alert_other_action
       when UIALERT_SECURETEXT_SECTION
-        alertSecureTextAction
+        alert_secure_text_action
       end
     end
   end
 
+  # to determine which UITableViewCell to be used on a given row.
+  #
   def tableView(table_view, cellForRowAtIndexPath: index_path)
     cell = nil
 
     if index_path.row == 0
-      cell = tableView.dequeueReusableCellWithIdentifier(ALERT_CELL_ID) || begin
-        UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: ALERT_CELL_ID)
-      end
+      cell = tableView.dequeueReusableCellWithIdentifier( ALERT_CELL_ID, forIndexPath: index_path )
       cell.textLabel.text = @data_source_array[index_path.section][:label]
     else
-
-      cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID) || begin
-        UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier: SOURCE_CELL_ID)
-      end
+      cell = tableView.dequeueReusableCellWithIdentifier( SOURCE_CELL_ID, forIndexPath: index_path )
       cell.selectionStyle = UITableViewCellSelectionStyleNone
         
       cell.textLabel.opaque = false

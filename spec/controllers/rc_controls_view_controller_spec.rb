@@ -15,6 +15,6 @@ describe 'RcControlsViewController' do
   end
 
   it 'should have 1 section' do
-    @controls_view_controller.instance_variable_get('@data_source_array').count.should == 1
+    @controls_view_controller.instance_variable_get('@data_source_array').count.should == 7
   end
 end

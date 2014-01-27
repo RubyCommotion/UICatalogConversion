@@ -59,7 +59,7 @@
 "UIAlertViewMessage" = "Enter a password:";
 "UIAlertViewMessageGeneric" = "<Alert message>";
 
-"UIActionSheetTitle" = "UIActionSheet <title>";
+"UIActionSheetTitle" = "UIActionSheet <Title of pending action>";
 
 "CancelButtonTitle" = "Cancel";
 "OKButtonTitle" = "OK";

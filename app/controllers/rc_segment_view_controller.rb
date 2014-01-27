@@ -35,7 +35,7 @@ class RcSegmentViewController < UIViewController
     @scroll_view.addSubview(label_with_frame(frame, title:'UISegmentedControl:'))
 
     # UISegmentedControl
-    segmented_control = UISegmentedControl.alloc.initWithItems([UIImage.imageNamed('/images/segment_check.png'),
+    segmented_control = UISegmentedControl.alloc.initWithItems([UIImage.imageNamed('/images/segment_check-24.png'),
                         UIImage.imageNamed('/images/segment_search.png'), UIImage.imageNamed('/images/segment_tools.png') ])
     y_placement += TWEEN_MARGIN + LABEL_HEIGHT
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0),SEGMENTCONTROL_HEIGHT)
@@ -138,7 +138,6 @@ class RcSegmentViewController < UIViewController
     self.view.addSubview(@scroll_view)
 
     # set the content size of our scroll view to match the entire screen,  this will allow the content to scroll in landscape
-
     @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame),
                                            CGRectGetHeight(@scroll_view.frame) - CGRectGetHeight(self.navigationController.navigationBar.frame)))
     create_controls
