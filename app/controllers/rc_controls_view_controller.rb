@@ -20,37 +20,37 @@ class RcControlsViewController < UITableViewController
     @data_source_array = [
 			{
 				:title => 'UISwitch', :label => 'Standard Switch',
-				:source => 'rc_controls_view_controller.rb:\n switchControl',
+				:source => "rc_controls_view_controller.rb:\n switchControl",
 				:view => self.switchControl
 			},
 			{
 				:title => 'UISlider', :label => 'Standard Slider',
-				:source => 'rc_controls_view_controller.rb:\n sliderControl',
+				:source => "rc_controls_view_controller.rb:\n sliderControl",
 				:view => self.sliderControl
 			},
       {
         :title => 'UISlider', :label => 'Customized Slider',
-        :source => 'rc_controls_view_controller.rb:\n customSliderControl',
+        :source => "rc_controls_view_controller.rb:\n customSliderControl",
         :view => self.customSliderControl
       },
 			{
 				:title => 'UIPageControl', :label => 'Ten Pages',
-				:source => 'rc_controls_view_controller.rb:\n pageControl',
+				:source => "rc_controls_view_controller.rb:\n pageControl",
 				:view => self.pageControl
 			},
       {
         :title => 'UIActivityIndicatorView', :label => 'Style Gray',
-        :source => 'rc_controls_view_controller.rb:\n progressIndicator',
+        :source => "rc_controls_view_controller.rb:\n progressIndicator",
         :view => self.progressIndicator
       },
       {
         :title => 'UIProgressView', :label => 'Style Default',
-        :source => 'rc_controls_view_controller.rb:\n progressBar',
+        :source => "rc_controls_view_controller.rb:\n progressBar",
         :view => self.progressBar
       },
       {
         :title => 'UIStepper', :label => 'Stepper 1 to 10',
-        :source => 'rc_controls_view_controller.rb:\n stepper',
+        :source => "rc_controls_view_controller.rb:\n stepper",
         :view => self.stepper
       }
 		]
@@ -101,10 +101,10 @@ class RcControlsViewController < UITableViewController
       newFrame = control.frame;
       newFrame.origin.x = CGRectGetWidth(cell.contentView.frame) - CGRectGetWidth(newFrame) - 10.0
       control.frame = newFrame;
-      
+
       # if the cell is ever resized, keep the control over to the right
       control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-      
+
 			cell.contentView.addSubview(control)
 
       if (control == self.progressIndicator)

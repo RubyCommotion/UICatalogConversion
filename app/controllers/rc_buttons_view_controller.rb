@@ -43,49 +43,49 @@ class RcButtonsViewController < UITableViewController
       {
         :title => 'UIButton',
         :label => 'Background Image'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef grayButton',
+        :source => "rc_buttons_view_controller.rb:\rdef grayButton",
         :view  => self.grayButton
       },
       {
         :title => 'UIButton',
         :label => 'Button with Image'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef imageButton',
+        :source => "rc_buttons_view_controller.rb:\rdef imageButton",
         :view => self.imageButton
       },
       {
         :title => 'UIButtonTypeRoundedRect',
         :label => 'Rounded Button'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef roundedButtonType',
+        :source => "rc_buttons_view_controller.rb:\rdef roundedButtonType",
         :view => self.roundedButtonType
       },
       {
         :title => 'UIButtonTypeRoundedRect',
         :label => 'Attributed Text'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef attrTextButton',
+        :source => "rc_buttons_view_controller.rb:\rdef attrTextButton",
         :view => self.attrTextButton
       },
       {
         :title => 'UIButtonTypeDetailDisclosure',
         :label => 'Detail Disclosure'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef detailDisclosureButton',
+        :source => "rc_buttons_view_controller.rb:\rdef detailDisclosureButton",
         :view => self.detailDisclosureButton
       },
       {
         :title => 'UIButtonTypeInfoLight',
         :label => 'Info Light'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef infoLightButtonType',
+        :source => "rc_buttons_view_controller.rb:\rdef infoLightButtonType",
         :view => self.infoLightButtonType
       },
       {
         :title => 'UIButtonTypeInfoDark',
         :label => 'Info Dark'.localized,
-        :source => 'rc_buttons_view_controller.rb:\rdef infoDarkButtonType',
+        :source => "rc_buttons_view_controller.rb:\rdef infoDarkButtonType",
         :view => self.infoDarkButtonType
       },
       {
         :title => 'UIButtonTypeContactAdd',
         :label => 'Contact Add',
-        :source => 'rc_buttons_view_controller.rb:\rdef contactAddButtonType',
+        :source => "rc_buttons_view_controller.rb:\rdef contactAddButtonType",
         :view => self.contactAddButtonType
       }
     ]

@@ -14,7 +14,10 @@ class RcSearchBarController < UIViewController
   	super
   	self.title = 'SearchBar'.localized
 
-  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X, SEARCHBAR_Y, CGRectGetWidth(self.view.bounds), SEARCHBAR_HEIGHT))
+  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X,
+                                                                    SEARCHBAR_Y,
+                                                                    CGRectGetWidth(self.view.bounds),
+                                                                    SEARCHBAR_HEIGHT))
   	self.my_search_bar.delegate = self
   	self.my_search_bar.showsCancelButton = true
     self.my_search_bar.showsBookmarkButton = true
@@ -22,12 +25,18 @@ class RcSearchBarController < UIViewController
     self.my_search_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
 
     # implement the Obj-C XIB as code
-    my_frame = CGRectMake(SEGMENTED_BUTTONS_X, SEGMENTED_BUTTONS_Y, SEGMENTED_BUTTONS_WIDTH, SEGMENTED_BUTTONS_HEIGHT)
+    my_frame = CGRectMake(SEGMENTED_BUTTONS_X,
+                          SEGMENTED_BUTTONS_Y,
+                          SEGMENTED_BUTTONS_WIDTH,
+                          SEGMENTED_BUTTONS_HEIGHT)
+
     my_segments = ['Tint'.localized, 'Background Images'.localized]
     my_segmented_control = UISegmentedControl.alloc.initWithItems(my_segments)
     my_segmented_control.frame = my_frame
     my_segmented_control.setSelectedSegmentIndex(0)
-    my_segmented_control.addTarget(self, action: 'content_choice:' , forControlEvents:UIControlEventValueChanged)
+    my_segmented_control.addTarget(self,
+                                   action: 'content_choice:' ,
+                                   forControlEvents:UIControlEventValueChanged)
 
     self.view.addSubview(my_segmented_control)
   end
@@ -35,7 +44,10 @@ class RcSearchBarController < UIViewController
   def content_choice(sender)
     self.my_search_bar.tintColor = nil
     self.my_search_bar.backgroundImage = nil
-    self.my_search_bar.setImage(nil, forSearchBarIcon: UISearchBarIconBookmark, state:UIControlStateNormal)
+    self.my_search_bar.setImage(nil,
+                                forSearchBarIcon: UISearchBarIconBookmark,
+                                state:UIControlStateNormal
+                                )
 
     case sender.selectedSegmentIndex
       #tinted background
@@ -44,8 +56,14 @@ class RcSearchBarController < UIViewController
       when 1
       # image background
         self.my_search_bar.backgroundImage = UIImage.imageNamed('/images/searchBarBackground')
-        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImage'), forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateNormal)
-        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImageHighlighted'), forSearchBarIcon: UISearchBarIconBookmark, state: UIControlStateHighlighted)
+        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImage'),
+                                    forSearchBarIcon: UISearchBarIconBookmark,
+                                    state: UIControlStateNormal
+                                   )
+        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImageHighlighted'),
+                                    forSearchBarIcon: UISearchBarIconBookmark,
+                                    state: UIControlStateHighlighted
+                                   )
     end
   end
 
