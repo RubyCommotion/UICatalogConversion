@@ -1,6 +1,6 @@
 class RcControlsViewController < UITableViewController
 
-	DISPLAY_CELL_ID = 'DisplayCellID'
+        DISPLAY_CELL_ID = 'DisplayCellID'
   SOURCE_CELL_ID = 'SourceCellID'
 
   PROGRESS_INDICATOR_SIZE = 40.0
@@ -12,32 +12,32 @@ class RcControlsViewController < UITableViewController
 
   attr_accessor :progressIndSavedColor
 
-	def viewDidLoad
+        def viewDidLoad
     super
 
     self.title = 'Controls'
 
     @data_source_array = [
-			{
-				:title => 'UISwitch', :label => 'Standard Switch',
-				:source => "rc_controls_view_controller.rb:\n switchControl",
-				:view => self.switchControl
-			},
-			{
-				:title => 'UISlider', :label => 'Standard Slider',
-				:source => "rc_controls_view_controller.rb:\n sliderControl",
-				:view => self.sliderControl
-			},
+                        {
+                                :title => 'UISwitch', :label => 'Standard Switch',
+                                :source => "rc_controls_view_controller.rb:\n switchControl",
+                                :view => self.switchControl
+                        },
+                        {
+                                :title => 'UISlider', :label => 'Standard Slider',
+                                :source => "rc_controls_view_controller.rb:\n sliderControl",
+                                :view => self.sliderControl
+                        },
       {
         :title => 'UISlider', :label => 'Customized Slider',
         :source => "rc_controls_view_controller.rb:\n customSliderControl",
         :view => self.customSliderControl
       },
-			{
-				:title => 'UIPageControl', :label => 'Ten Pages',
-				:source => "rc_controls_view_controller.rb:\n pageControl",
-				:view => self.pageControl
-			},
+                        {
+                                :title => 'UIPageControl', :label => 'Ten Pages',
+                                :source => "rc_controls_view_controller.rb:\n pageControl",
+                                :view => self.pageControl
+                        },
       {
         :title => 'UIActivityIndicatorView', :label => 'Style Gray',
         :source => "rc_controls_view_controller.rb:\n progressIndicator",
@@ -53,7 +53,7 @@ class RcControlsViewController < UITableViewController
         :source => "rc_controls_view_controller.rb:\n stepper",
         :view => self.stepper
       }
-		]
+                ]
 
     tintButton = UIBarButtonItem.alloc.initWithTitle('Tinted', style: UIBarButtonItemStyleBordered, target: self, action: 'tintAction:')
     self.navigationItem.rightBarButtonItem = tintButton
@@ -83,19 +83,19 @@ class RcControlsViewController < UITableViewController
   end
 
   def tableView(tableView, cellForRowAtIndexPath: index_path)
-		cell = nil
+                cell = nil
 
-		if (index_path.row == 0)
-			cell = tableView.dequeueReusableCellWithIdentifier(DISPLAY_CELL_ID, forIndexPath: index_path)
+                if (index_path.row == 0)
+                        cell = tableView.dequeueReusableCellWithIdentifier(DISPLAY_CELL_ID, forIndexPath: index_path)
       cell.selectionStyle = UITableViewCellSelectionStyleNone
 
       if viewToRemove = cell.contentView.viewWithTag(VIEW_TAG)
-      	viewToRemove.removeFromSuperview
+              viewToRemove.removeFromSuperview
       end
 
-			cell.textLabel.text = @data_source_array[index_path.section][:label]
+                        cell.textLabel.text = @data_source_array[index_path.section][:label]
 
-			control = @data_source_array[index_path.section][:view]
+                        control = @data_source_array[index_path.section][:view]
 
       # make sure this control is right-justified to the right side of the cell
       newFrame = control.frame;
@@ -105,13 +105,13 @@ class RcControlsViewController < UITableViewController
       # if the cell is ever resized, keep the control over to the right
       control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
 
-			cell.contentView.addSubview(control)
+                        cell.contentView.addSubview(control)
 
       if (control == self.progressIndicator)
         self.progressIndicator.startAnimating  # UIActivityIndicatorView needs to re-animate
       end
-		else
-			cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID, forIndexPath: index_path)
+                else
+                        cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID, forIndexPath: index_path)
       cell.selectionStyle = UITableViewCellSelectionStyleNone
       cell.textLabel.opaque = false
       cell.textLabel.textAlignment = NSTextAlignmentCenter
@@ -119,11 +119,11 @@ class RcControlsViewController < UITableViewController
       cell.textLabel.numberOfLines = 2
       cell.textLabel.highlightedTextColor = UIColor.blackColor
       cell.textLabel.font = UIFont.systemFontOfSize(12.0)
-			
-			cell.textLabel.text = @data_source_array[index_path.section][:source]
-		end
+                        
+                        cell.textLabel.text = @data_source_array[index_path.section][:source]
+                end
 
-		cell
+                cell
   end
 
   protected
@@ -133,29 +133,29 @@ class RcControlsViewController < UITableViewController
   # -----------------------------
 
   def switchControl
-  	@switchControl ||= begin
-	    UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0)).tap do |control|
-	    	control.addTarget(self, action: 'switchAction:', forControlEvents: UIControlEventValueChanged)
-	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
-				control.setAccessibilityLabel('Standard Switch')
-				control.tag = VIEW_TAG	# tag this view for later so we can remove it from recycled table cells
-			end
+          @switchControl ||= begin
+            UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0)).tap do |control|
+                    control.addTarget(self, action: 'switchAction:', forControlEvents: UIControlEventValueChanged)
+                    control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+                                control.setAccessibilityLabel('Standard Switch')
+                                control.tag = VIEW_TAG        # tag this view for later so we can remove it from recycled table cells
+                        end
     end
   end
 
   def sliderControl
-  	@sliderControl ||= begin
-  		UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
-      	control.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
-	    	control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
-				control.setAccessibilityLabel('Standard Slider')
-      	control.minimumValue = 0.0
-      	control.maximumValue = 100.0
-      	control.continuous = true
-      	control.value = 50.0
-				control.tag = VIEW_TAG
-			end
-  	end
+          @sliderControl ||= begin
+                  UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
+              control.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
+                    control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+                                control.setAccessibilityLabel('Standard Slider')
+              control.minimumValue = 0.0
+              control.maximumValue = 100.0
+              control.continuous = true
+              control.value = 50.0
+                                control.tag = VIEW_TAG
+                        end
+          end
   end
 
   def customSliderControl
@@ -181,14 +181,14 @@ class RcControlsViewController < UITableViewController
   end
 
   def pageControl
-  	@pageControl ||= begin
-  		UIPageControl.alloc.initWithFrame(CGRectMake(0.0, 14.0, 178.0, 20.0)).tap do |control|
-      	control.addTarget(self, action: 'pageAction:', forControlEvents: UIControlEventTouchUpInside)
-	    	control.backgroundColor = UIColor.grayColor
-      	control.numberOfPages = 10
-				control.tag = VIEW_TAG
-			end
-  	end
+          @pageControl ||= begin
+                  UIPageControl.alloc.initWithFrame(CGRectMake(0.0, 14.0, 178.0, 20.0)).tap do |control|
+              control.addTarget(self, action: 'pageAction:', forControlEvents: UIControlEventTouchUpInside)
+                    control.backgroundColor = UIColor.grayColor
+              control.numberOfPages = 10
+                                control.tag = VIEW_TAG
+                        end
+          end
   end
 
   def progressIndicator

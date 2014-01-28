@@ -43,50 +43,50 @@ class RcButtonsViewController < UITableViewController
       {
         :title => 'UIButton',
         :label => 'Background Image'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef gray_button",
-        :view  => self.gray_button
+        :source => "rc_buttons_view_controller.rb:\rdef grayButton",
+        :view  => self.grayButton
       },
       {
         :title => 'UIButton',
         :label => 'Button with Image'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef image_button",
-        :view => self.image_button
+        :source => "rc_buttons_view_controller.rb:\rdef imageButton",
+        :view => self.imageButton
       },
       {
         :title => 'UIButtonTypeRoundedRect',
         :label => 'Rounded Button'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef rounded_button_type",
-        :view => self.rounded_button_type
+        :source => "rc_buttons_view_controller.rb:\rdef roundedButtonType",
+        :view => self.roundedButtonType
       },
       {
         :title => 'UIButtonTypeRoundedRect',
         :label => 'Attributed Text'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef attr_text_button",
-        :view => self.attr_text_button
+        :source => "rc_buttons_view_controller.rb:\rdef attrTextButton",
+        :view => self.attrTextButton
       },
       {
         :title => 'UIButtonTypeDetailDisclosure',
         :label => 'Detail Disclosure'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef detail_disclosure_button",
-        :view => self.detail_disclosure_button
+        :source => "rc_buttons_view_controller.rb:\rdef detailDisclosureButton",
+        :view => self.detailDisclosureButton
       },
       {
         :title => 'UIButtonTypeInfoLight',
         :label => 'Info Light'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef info_light_button_type",
-        :view => self.info_light_button_type
+        :source => "rc_buttons_view_controller.rb:\rdef infoLightButtonType",
+        :view => self.infoLightButtonType
       },
       {
         :title => 'UIButtonTypeInfoDark',
         :label => 'Info Dark'.localized,
-        :source => "rc_buttons_view_controller.rb:\rdef info_dark_button_type",
-        :view => self.info_dark_button_type
+        :source => "rc_buttons_view_controller.rb:\rdef infoDarkButtonType",
+        :view => self.infoDarkButtonType
       },
       {
         :title => 'UIButtonTypeContactAdd',
         :label => 'Contact Add',
-        :source => "rc_buttons_view_controller.rb:\rdef contact_add_button_type",
-        :view => self.contact_add_button_type
+        :source => "rc_buttons_view_controller.rb:\rdef contactAddButtonType",
+        :view => self.contactAddButtonType
       }
     ]
 
@@ -155,38 +155,38 @@ class RcButtonsViewController < UITableViewController
   end
 
   def action( sender )
-    #puts 'UIButton was clicked'
+    puts 'UIButton was clicked'
   end
 
   #pragma mark - Lazy creation of buttons
 
-  def gray_button
+  def grayButton
     # create a UIButton with various background images
-    gray_button ||= begin
+    grayButton ||= begin
       button_background = UIImage.imageNamed( '/images/whiteButton.png' )
       button_background_pressed = UIImage.imageNamed( '/images/blueButton.png' )
       frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
 
-      gray_button = RcButtonsViewController.newButtonWithTitle( 'Gray',
+      @grayButton = RcButtonsViewController.newButtonWithTitle( 'Gray',
                                                   target: self, 
                                                   selector: 'action:',
                                                   frame: frame, 
                                                   image: button_background, 
                                                   imagePressed: button_background_pressed, 
                                                   darkTextColor: true )
-      gray_button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
-      gray_button
+      @grayButton.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
+      @grayButton
     end
   end
 
-  def image_button
+  def imageButton
     # create a UIButton with just an image instead of a title
-    image_button ||= begin
+    @imageButton ||= begin
       button_background = UIImage.imageNamed( '/images/whiteButton.png' )
       button_background_pressed = UIImage.imageNamed( '/images/blueButton.png' )
       frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
 
-      image_button = RcButtonsViewController.newButtonWithTitle( '',
+      @imageButton = RcButtonsViewController.newButtonWithTitle( '',
                                                   target: self, 
                                                   selector: 'action:',
                                                   frame: frame, 
@@ -199,31 +199,30 @@ class RcButtonsViewController < UITableViewController
 
         button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
       end
-      image_button
+      @imageButton
     end
   end
 
-  def rounded_button_type
+  def roundedButtonType
     # create a UIButton (UIButtonTypeRoundedRect)
-    rounded_button_type ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
+    @roundedButtonType ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
       button.frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
       button.setTitle( 'Rounded', forState: UIControlStateNormal )
       button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    rounded_button_type
   end
 
-  def attr_text_button
+  def attrTextButton
     # create a UIButton with attributed text for its title
-    attr_text_button ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
+    @attrTextButton ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
       button.frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
       button.setTitle( 'Rounded', forState: UIControlStateNormal )
       button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
 
       # add an accessibility label
-      button.setAccessibilityLabel( 'attr_text_button'.localized )
+      button.setAccessibilityLabel( 'AttrTextButton'.localized )
 
       # apply red text for normal state
       normal_attr_string = NSMutableAttributedString.alloc.initWithString( 'Rounded' ).tap do |attr_string|
@@ -239,12 +238,11 @@ class RcButtonsViewController < UITableViewController
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    attr_text_button
   end
 
-  def detail_disclosure_button
+  def detailDisclosureButton
     # create a UIButton (UIButtonTypeDetailDisclosure)
-    detail_disclosure_buttonType ||= UIButton.buttonWithType( UIButtonTypeDetailDisclosure ).tap do |button|
+    @detailDisclosureButtonType ||= UIButton.buttonWithType( UIButtonTypeDetailDisclosure ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
       button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
@@ -255,12 +253,11 @@ class RcButtonsViewController < UITableViewController
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    detail_disclosure_buttonType
   end
 
-  def info_light_button_type
+  def infoLightButtonType
     # create a UIButton (UIButtonTypeInfoLight)
-    info_light_button_type ||= UIButton.buttonWithType( UIButtonTypeInfoLight ).tap do |button|
+    @infoLightButtonType ||= UIButton.buttonWithType( UIButtonTypeInfoLight ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
       button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
       button.backgroundColor = UIColor.grayColor
@@ -271,12 +268,11 @@ class RcButtonsViewController < UITableViewController
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    info_light_button_type
   end
 
-  def info_dark_button_type
+  def infoDarkButtonType
     # create a UIButton (UIButtonTypeInfoDark)
-    info_dark_button_type ||= UIButton.buttonWithType( UIButtonTypeInfoDark ).tap do |button|
+    @infoDarkButtonType ||= UIButton.buttonWithType( UIButtonTypeInfoDark ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
       button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
@@ -287,12 +283,11 @@ class RcButtonsViewController < UITableViewController
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    info_dark_button_type
   end
 
-  def contact_add_button_type
+  def contactAddButtonType
     # create a UIButton (UIButtonTypeContactAdd)
-    contact_add_button_type ||= UIButton.buttonWithType( UIButtonTypeContactAdd ).tap do |button|
+    @cantactAddButtonType ||= UIButton.buttonWithType( UIButtonTypeContactAdd ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
       button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
@@ -303,6 +298,5 @@ class RcButtonsViewController < UITableViewController
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
-    contact_add_button_type
   end
 end
