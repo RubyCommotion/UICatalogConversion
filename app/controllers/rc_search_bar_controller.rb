@@ -8,21 +8,19 @@ class RcSearchBarController < UIViewController
   SEGMENTED_BUTTONS_WIDTH = 252.0
   SEGMENTED_BUTTONS_HEIGHT = 30.0
 
-  attr_accessor :my_search_bar
-
   def viewDidLoad
   	super
   	self.title = 'SearchBar'.localized
 
-  	self.my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X,
+  	@my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X,
                                                                     SEARCHBAR_Y,
                                                                     CGRectGetWidth(self.view.bounds),
                                                                     SEARCHBAR_HEIGHT))
-  	self.my_search_bar.delegate = self
-  	self.my_search_bar.showsCancelButton = true
-    self.my_search_bar.showsBookmarkButton = true
-  	self.view.addSubview(self.my_search_bar)
-    self.my_search_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
+  	@my_search_bar.delegate = self
+  	@my_search_bar.showsCancelButton = true
+    @my_search_bar.showsBookmarkButton = true
+  	self.view.addSubview(@my_search_bar)
+    @my_search_bar.autoresizingMask = UIViewAutoresizingFlexibleWidth
 
     # implement the Obj-C XIB as code
     my_frame = CGRectMake(SEGMENTED_BUTTONS_X,
@@ -42,9 +40,9 @@ class RcSearchBarController < UIViewController
   end
 
   def content_choice(sender)
-    self.my_search_bar.tintColor = nil
-    self.my_search_bar.backgroundImage = nil
-    self.my_search_bar.setImage(nil,
+    @my_search_bar.tintColor = nil
+    @my_search_bar.backgroundImage = nil
+    @my_search_bar.setImage(nil,
                                 forSearchBarIcon: UISearchBarIconBookmark,
                                 state:UIControlStateNormal
                                 )
@@ -52,15 +50,15 @@ class RcSearchBarController < UIViewController
     case sender.selectedSegmentIndex
       #tinted background
       when 0
-        self.my_search_bar.tintColor = UIColor.blueColor
+        @my_search_bar.tintColor = UIColor.blueColor
       when 1
       # image background
-        self.my_search_bar.backgroundImage = UIImage.imageNamed('/images/searchBarBackground')
-        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImage'),
+        @my_search_bar.backgroundImage = UIImage.imageNamed('/images/searchBarBackground')
+        @my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImage'),
                                     forSearchBarIcon: UISearchBarIconBookmark,
                                     state: UIControlStateNormal
                                    )
-        self.my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImageHighlighted'),
+        @my_search_bar.setImage(UIImage.imageNamed('/images/bookmarkImageHighlighted'),
                                     forSearchBarIcon: UISearchBarIconBookmark,
                                     state: UIControlStateHighlighted
                                    )
@@ -76,11 +74,11 @@ class RcSearchBarController < UIViewController
 
   # called when keyboard search button pressed
   def searchBarSearchButtonClicked(searchBar)
-    self.my_search_bar.resignFirstResponder
+    @my_search_bar.resignFirstResponder
   end
 
   # called when cancel button pressed
   def searchBarCancelButtonClicked(searchBar)
-  	self.my_search_bar.resignFirstResponder
+  	@my_search_bar.resignFirstResponder
   end
 end
