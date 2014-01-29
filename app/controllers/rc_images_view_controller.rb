@@ -46,7 +46,7 @@ class RcImagesViewController < UIViewController
     @image_view.stopAnimating
     
     # set actions
-    @slider.addTarget(self, action: 'sliderAction:', forControlEvents: UIControlEventValueChanged)
+    @slider.addTarget(self, action: 'slider_action:', forControlEvents: UIControlEventValueChanged)
     
     # Set the appropriate accessibility labels.
     @image_view.setIsAccessibilityElement true
@@ -55,7 +55,7 @@ class RcImagesViewController < UIViewController
   end
   
   # slown down or speed up the slide show as the slider is moved
-  def sliderAction(sender)
+  def slider_action(sender)
     durationSlider = sender
     @image_view.animationDuration = durationSlider.value
     

@@ -57,26 +57,25 @@ class RcMainViewController < UITableViewController
   # UITableViewDelegate 
   # the table's selection has changed, switch to that item's UIViewController
 
-  def tableView(tableView, didSelectRowAtIndexPath:indexPath)
-    #target_viewcontroller = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:view_controller)
-    target_viewcontroller = self.menu_list[indexPath.row][:view_controller]
+  def tableView(table_view, didSelectRowAtIndexPath:index_path)
+    target_viewcontroller = self.menu_list[index_path.row][:view_controller]
     self.navigationController.pushViewController(target_viewcontroller, animated:true)
   end
 
   # UITableViewDataSource
   # tell our table how many rows it will have, in our case the size of our menuList
 
-  def tableView(tableView, numberOfRowsInSection:section)
+  def tableView(table_view, numberOfRowsInSection:section)
     self.menu_list.count
   end
   
   # tell our table what kind of cell to use and its title for the given row
 
-  def tableView(tableView, cellForRowAtIndexPath: indexPath)
-    cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER)
+  def tableView(table_view, cellForRowAtIndexPath: index_path)
+    cell = table_view.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER)
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
-    cell.textLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:title)
-    cell.detailTextLabel.text = self.menu_list.objectAtIndex(indexPath.row).objectForKey(:explain)
+    cell.textLabel.text = self.menu_list.objectAtIndex(index_path.row).objectForKey(:title)
+    cell.detailTextLabel.text = self.menu_list.objectAtIndex(index_path.row).objectForKey(:explain)
     cell
   end
 
