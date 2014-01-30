@@ -119,10 +119,10 @@ class RcSegmentViewController < UIViewController
     segmented_control.setDividerImage(UIImage.imageNamed('/images/divider.png'), forLeftSegmentState:UIControlStateNormal,
                                       rightSegmentState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
 
-    textAttributes = {UITextAttributeTextColor => UIColor.blueColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
-    segmented_control.setTitleTextAttributes(textAttributes, forState:UIControlStateNormal)
-    textAttributes = {UITextAttributeTextColor => UIColor.redColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
-    segmented_control.setTitleTextAttributes(textAttributes, forState:UIControlStateNormal)
+    text_attributes = {UITextAttributeTextColor => UIColor.blueColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
+    segmented_control.setTitleTextAttributes(text_attributes, forState:UIControlStateNormal)
+    text_attributes = {UITextAttributeTextColor => UIColor.redColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
+    segmented_control.setTitleTextAttributes(text_attributes, forState:UIControlStateNormal)
 
     @scroll_view.addSubview(segmented_control)
 
@@ -139,7 +139,7 @@ class RcSegmentViewController < UIViewController
 
     # set the content size of our scroll view to match the entire screen,  this will allow the content to scroll in landscape
     @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame),
-                                           CGRectGetHeight(@scroll_view.frame) - CGRectGetHeight(self.navigationController.navigationBar.frame)))
+                                CGRectGetHeight(@scroll_view.frame) - CGRectGetHeight(self.navigationController.navigationBar.frame)))
     create_controls
   end
 

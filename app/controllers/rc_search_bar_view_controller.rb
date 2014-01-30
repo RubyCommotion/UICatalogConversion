@@ -13,9 +13,9 @@ class RcSearchBarController < UIViewController
   	self.title = 'SearchBar'.localized
 
   	@my_search_bar = UISearchBar.alloc.initWithFrame(CGRectMake(SEARCHBAR_X,
-                                                                    SEARCHBAR_Y,
-                                                                    CGRectGetWidth(self.view.bounds),
-                                                                    SEARCHBAR_HEIGHT))
+                                                     SEARCHBAR_Y,
+                                                     CGRectGetWidth(self.view.bounds),
+                                                     SEARCHBAR_HEIGHT))
   	@my_search_bar.delegate = self
   	@my_search_bar.showsCancelButton = true
     @my_search_bar.showsBookmarkButton = true
@@ -43,9 +43,9 @@ class RcSearchBarController < UIViewController
     @my_search_bar.tintColor = nil
     @my_search_bar.backgroundImage = nil
     @my_search_bar.setImage(nil,
-                                forSearchBarIcon: UISearchBarIconBookmark,
-                                state:UIControlStateNormal
-                                )
+                            forSearchBarIcon: UISearchBarIconBookmark,
+                            state:UIControlStateNormal
+                            )
 
     case sender.selectedSegmentIndex
       #tinted background
@@ -69,16 +69,16 @@ class RcSearchBarController < UIViewController
   # UISearchBarDelegate methods
 
   # called when the bookmark button inside the search bar is tapped
-  def searchBarBookmarkButtonClicked(searchBar)
+  def searchBarBookmarkButtonClicked(search_bar)
   end
 
   # called when keyboard search button pressed
-  def searchBarSearchButtonClicked(searchBar)
+  def searchBarSearchButtonClicked(search_bar)
     @my_search_bar.resignFirstResponder
   end
 
   # called when cancel button pressed
-  def searchBarCancelButtonClicked(searchBar)
+  def searchBarCancelButtonClicked(search_bar)
   	@my_search_bar.resignFirstResponder
   end
 end

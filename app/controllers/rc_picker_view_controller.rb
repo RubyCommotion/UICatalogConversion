@@ -18,9 +18,7 @@ class RcPickerViewController < UIViewController
       width = OPTIMUM_PICKER_WIDTH
     end
 
-    resultFrame = CGRectMake(0.0, -1.0, width, height)
-
-    return resultFrame
+    result_frame = CGRectMake(0.0, -1.0, width, height)
   end
 
   #pragma mark - UIPickerView
@@ -36,7 +34,6 @@ class RcPickerViewController < UIViewController
 
     @my_picker_view.sizeToFit
     @my_picker_view.frame = self.picker_frame_with_size(@my_picker_view.frame.size)
-
     @my_picker_view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
 
     @my_picker_view.showsSelectionIndicator = true # note this is defaulted to NO
@@ -182,9 +179,9 @@ class RcPickerViewController < UIViewController
     # @button_bar_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     @button_bar_segmented_control.addTarget(self, action: 'toggle_pickers:', forControlEvents: UIControlEventValueChanged)
 
-    flexibleSpace = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil)
+    flexible_space = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil)
     bar_button_item = UIBarButtonItem.alloc.initWithCustomView(@button_bar_segmented_control)
-    @toolbar.setItems([flexibleSpace, bar_button_item, flexibleSpace], animated: false)
+    @toolbar.setItems([flexible_space, bar_button_item, flexible_space], animated: false)
 
     @scroll_view = UIScrollView.alloc.init
     frame = self.view.frame
