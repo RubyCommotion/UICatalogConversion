@@ -6,8 +6,8 @@ class RcToolbarViewController < UIViewController
   #  CGRectMake(0.0,CGRectGetHeight(screenRect) - 84.0 - size.height, size.width, size.height)
   #end
 
-  def toolbar_clicked(id)
-    puts "UIBarButtonItem clicked"
+  def toolbar_clicked(sender)
+    puts 'UIBarButtonItem clicked'
   end
 
   def createToolbarItems
@@ -17,38 +17,60 @@ class RcToolbarViewController < UIViewController
     style = @buttonItemStyleSegControl.selectedSegmentIndex #UIBarButtonItemStyle
 
     #create the system-defined "OK or Done" button
-    @currentSystemItem = UIBarButtonSystemItemDone
-    systemItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone,target:self,action:toolbar_clicked(self))
+    @current_system_item = UIBarButtonSystemItemDone
+    systemItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone,
+                                                                   target:self,
+                                                                   action:toolbar_clicked(self))
     systemItem.style = style
 
     # flex item used to separate the left groups items and right grouped items
-    flexItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace,target:nil,action:nil)
+    flexItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace,
+                                                                 target:nil,
+                                                                 action:nil)
 
     # create a special tab bar item with a custom image and title
     style = UIBarButtonItemStyleDone
-    segment_tools_image = UIImage.imageNamed("/images/segment_tools.png")
-    infoItem = UIBarButtonItem.alloc.initWithImage(segment_tools_image,style:style,target:self,action:toolbar_clicked(self))
+    segment_tools_image = UIImage.imageNamed('/images/segment_tools.png')
+    infoItem = UIBarButtonItem.alloc.initWithImage(segment_tools_image,
+                                                   style:style,
+                                                   target:self,
+                                                   action:toolbar_clicked(self))
 
     # Set the accessibility label for an image bar item.
     infoItem.setAccessibilityLabel("ToolsIcon")
 
     # create a custom button with a background image with black text for its title:
-    customItem1 = UIBarButtonItem.alloc.initWithTitle("Item1",style:UIBarButtonItemStyleBordered,target:self,action:toolbar_clicked(self))
+    customItem1 = UIBarButtonItem.alloc.initWithTitle('Item1',
+                                                      style:UIBarButtonItemStyleBordered,
+                                                      target:self,
+                                                      action:toolbar_clicked(self))
 
-    baseImage = UIImage.imageNamed("/images/whiteButton.png")
-    backroundImage = baseImage.stretchableImageWithLeftCapWidth(12.0,topCapHeight:0.0)
+    baseImage = UIImage.imageNamed('/images/whiteButton.png')
+    backroundImage = baseImage.stretchableImageWithLeftCapWidth(12.0,
+                                                                topCapHeight:0.0)
 
-    customItem1.setBackgroundImage(backroundImage, forState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
+    customItem1.setBackgroundImage(backroundImage,
+                                   forState:UIControlStateNormal,
+                                   barMetrics:UIBarMetricsDefault)
 
      textAttributes = { UITextAttributeTextColor=>UIColor.blackColor } # NSDictionary*
 
-     customItem1.setTitleTextAttributes(textAttributes, forState:UIControlStateNormal)
+     customItem1.setTitleTextAttributes(textAttributes,
+                                        forState:UIControlStateNormal)
 
     # create a bordered style button with custom title
-    customItem2 = UIBarButtonItem.alloc.initWithTitle("Item2",style:style,target:self,action:toolbar_clicked(self))
+    customItem2 = UIBarButtonItem.alloc.initWithTitle('Item2',
+                                                      style:style,
+                                                      target:self,
+                                                      action:toolbar_clicked(self))
 
     # apply the bar button items to the toolbar
-    @toolbar.setItems([ systemItem, flexItem, customItem1, customItem2, infoItem ], animated:false)
+    @toolbar.setItems([ systemItem,
+                        flexItem,
+                        customItem1,
+                        customItem2,
+                        infoItem ],
+                        animated:false)
   end
 
   def adjustToolbarSize
@@ -74,6 +96,17 @@ class RcToolbarViewController < UIViewController
 
   def viewDidLoad
     super
+    # programmatic build out of the Obj-C IB with removal of any deprecated iOS6 code
+
+    self.view.addSubview(bottom_toolbar)
+    self.view.addSubview(scroll_view)
+
+    container_view = UIView.alloc.initWithFrame(CGRectMake(0,0,343,134))
+    container_view.backgroundColor = UIColor.lightGrayColor
+    container_view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+    @scroll_view.addSubview(container_view)
+
+
 
     # this list appears in the UIPickerView to pick the system's UIBarButtonItem
     @picker_view_array = %W(Done Cancel Edit Save Add FlexibleSpace FixedSpace Compose Reply Action
@@ -83,43 +116,41 @@ class RcToolbarViewController < UIViewController
 
     self.title = 'ToolbarTitle'.localized
 
-    # create the UIToolbar at the bottom of the view controller
-    @toolbar = UIToolbar.alloc.initWithFrame(CGRectZero)
-    @toolbar.barStyle = UIBarStyleDefault
-    #@toolbar.setAccessibilityLabel('toolbar')
-
-
-    # size up the toolbar and set its frame
-    self.adjustToolbarSize
-
-    @toolbar.setFrame(CGRectMake(CGRectGetMinX(self.view.bounds),
-                                         CGRectGetMinY(self.view.bounds) + CGRectGetHeight(self.view.bounds) - CGRectGetHeight(@toolbar.frame),
-                                         CGRectGetWidth(self.view.bounds),
-                                         CGRectGetHeight(@toolbar.frame)))
-
-    # make so the toolbar stays to the bottom and keep the width matching the device's screen width
-    @toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin
-
-    self.view.addSubview(@toolbar)
-
-    createToolbarItems()
+    self.createToolbarItems
 
     # set the accessibility label for the tint and image switches so that its context can be determined
-    @tintSwitch.setAccessibilityLabel('TintSwitch')
-    @imageSwitch.setAccessibilityLabel('ImageSwitch')
+    @tintSwitch.setAccessibilityLabel('TintSwitch'.localized)
+    @imageSwitch.setAccessibilityLabel('ImageSwitch'.localized)
 
-    # remember our scroll view's content height (a fixed size) later when we set its content size in viewWillAppear
-    # @savedContentHightSize = @scroll_view.frame.size.height - CGRectGetHeight(self.navigationController.navigationBar.frame) -  @toolbar.frame.size.height
 
-    @currentSystemItem = UIBarButtonSystemItemDone
+    ui_bar_button_item_style = UILabel.alloc.initWithFrame(CGRectMake(20, 86, 280, 21))
+    ui_bar_button_item_style.text =  'UIBarButtonItemStyle'
+    ui_bar_button_item_style.clipsToBounds = true
+    ui_bar_button_item_style.opaque = false
+    ui_bar_button_item_style.minimumFontSize = 10
+    ui_bar_button_item_style.userInteractionEnabled = false
+    ui_bar_button_item_style.contentMode = UIViewContentModeScaleToFill
+    ui_bar_button_item_style.textColor = UIColor.darkTextColor
+    ui_bar_button_item_style.font = UIFont.fontWithName('Helvetica', size:12)
+    container_view.addSubview(ui_bar_button_item_style)
 
-    @scroll_view = UIScrollView.alloc.init
-    @barStyleSegControl = UISegmentedControl.alloc.init
-    @tintSwitch = UISwitch.alloc.init
-    @imageSwitch = UISwitch.alloc.init
-    @imageSwitchLabel = UILabel.alloc.init
-    @buttonItemStyleSegControl = UISegmentedControl.alloc.init
-    @systemButtonPicker = UIPickerView.alloc.init
+    segment_names = %w(Default Black Translucent)
+    segmented_control_bar = UISegmentedControl.alloc.initWithItems(segment_names)
+    segmented_control_bar.frame = CGRectMake(20, 123, 280, 30)
+    segmented_control_bar.clearsContextBeforeDrawing = false
+    segmented_control_bar.contentMode = UIViewContentModeScaleToFill
+    segmented_control_bar.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft
+    segmented_control_bar.contentVerticalAlignment = UIControlContentVerticalAlignmentTop
+    segmented_control_bar.tintColor = UIColor.blueColor
+    container_view.addSubview(segmented_control_bar)
+
+    @current_system_item = UIBarButtonSystemItemDone
+
+    #@tintSwitch = UISwitch.alloc.init
+    #@imageSwitch = UISwitch.alloc.init
+    #@imageSwitchLabel = UILabel.alloc.init
+    #@buttonItemStyleSegControl = UISegmentedControl.alloc.init
+    #@systemButtonPicker = UIPickerView.alloc.init
 
 
   end
@@ -128,7 +159,6 @@ class RcToolbarViewController < UIViewController
     super
 
     # self.adjustToolbarSize
-
     # adjust the scroll view's height since the toolbar may have been resized
     adjustedHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(@toolbar.frame)
     newFrame = @scroll_view.frame
@@ -136,7 +166,7 @@ class RcToolbarViewController < UIViewController
     @scroll_view.frame = newFrame
 
     # finally set the content size so that it scrolls in landscape but not in portrait
-    # @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame), @savedContentHightSize))
+    # @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame), @saved_content_height_size))
   end
 
   def toggleStyle(sender)  #IBAction
@@ -215,7 +245,7 @@ class RcToolbarViewController < UIViewController
   def pickerView(pickerView, didSelectRow:row, inComponent:component)
 
     # change the left most bar item to what's in the picker
-    @currentSystemItem = pickerView.selectedRowInComponent(0)
+    @current_system_item = pickerView.selectedRowInComponent(0)
     self.createToolbarItems  # this will re-create all the items
   end
 
@@ -238,4 +268,42 @@ class RcToolbarViewController < UIViewController
   def numberOfComponentsInPickerView(pickerView)
     1
   end
+
+  private
+
+  def bottom_toolbar
+    # create the UIToolbar at the bottom of the view controller
+    @toolbar ||= UIToolbar.alloc.initWithFrame(CGRectZero).tap do |bar|
+      bar.barStyle = UIBarStyleDefault
+      bar.setAccessibilityLabel('toolbar')
+      # make so the toolbar stays to the bottom and keep the width matching the device's screen width
+      bar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin
+    end
+
+    self.adjustToolbarSize
+    # size up the toolbar and set its frame
+    @toolbar.setFrame(
+            CGRectMake(CGRectGetMinX(self.view.bounds),
+            CGRectGetMinY(self.view.bounds) + CGRectGetHeight(self.view.bounds) - CGRectGetHeight(@toolbar.frame),
+            CGRectGetWidth(self.view.bounds),
+            CGRectGetHeight(@toolbar.frame)))
+  end
+
+  def scroll_view
+    @scroll_view ||= UIScrollView.alloc.initWithFrame(CGRectMake(0,0,320,460)).tap do |sv|
+      sv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      sv.backgroundColor = UIColor.redColor
+    end
+    # remember our scroll view's content height (a fixed size) later when we set its content size in viewWillAppear
+    @saved_content_height_size = @scroll_view.frame.size.height -
+                                    CGRectGetHeight(self.navigationController.navigationBar.frame) -
+                                    @toolbar.frame.size.height
+  @scroll_view
+  end
+
+  def container_view
+
+  end
+
 end
+
