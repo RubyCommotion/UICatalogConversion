@@ -22,7 +22,7 @@ class RcMainViewController < UITableViewController
     images_view_controller = RcImagesViewController.alloc.init
     web_view_controller = RcWebViewController.alloc.init
     segment_view_controller = RcSegmentViewController.alloc.init
-    #toolbar_view_controller = RcToolbarViewController.alloc.init
+    toolbar_view_controller = RcToolbarViewController.alloc.init
     alerts_view_controller = RcAlertsViewController.alloc.initWithStyle(UITableViewStylePlain)
     transition_view_controller = RcTransitionViewController.alloc.init
 
@@ -36,7 +36,7 @@ class RcMainViewController < UITableViewController
     self.menu_list << {:title => 'ImagesTitle'.localized, :explain => 'ImagesExplain'.localized, :view_controller => images_view_controller}
     self.menu_list << {:title => 'WebTitle'.localized, :explain => 'WebExplain'.localized, :view_controller => web_view_controller}
     self.menu_list << {:title => 'SegmentTitle'.localized, :explain => 'SegmentExplain'.localized, :view_controller =>  segment_view_controller}
-    #self.menu_list << {:title => 'ToolbarTitle'.localized, :explain => 'ToolbarExplain'.localized, :view_controller => toolbar_view_controller}
+    self.menu_list << {:title => 'ToolbarTitle'.localized, :explain => 'ToolbarExplain'.localized, :view_controller => toolbar_view_controller}
     self.menu_list << {:title => 'AlertTitle'.localized, :explain => 'AlertExplain'.localized, :view_controller => alerts_view_controller}
     self.menu_list << {:title => 'TransitionsTitle'.localized, :explain => 'TransitionsExplain'.localized, :view_controller => transition_view_controller}
 

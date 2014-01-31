@@ -1,77 +1,76 @@
 class RcToolbarViewController < UIViewController
 
-  # Seems to be extraneous code left in the Obj-C source code
-  #def pickerFrameWithSize(size)
-  #  screenRect = mainScreen.applicationFrame
-  #  CGRectMake(0.0,CGRectGetHeight(screenRect) - 84.0 - size.height, size.width, size.height)
-  #end
+  # TODO Seems to be extraneous code left in the Obj-C source code
+  def pickerFrameWithSize(size)
+    screenRect = mainScreen.applicationFrame
+    CGRectMake(0.0,CGRectGetHeight(screenRect) - 84.0 - size.height, size.width, size.height)
+  end
 
-  def toolbar_clicked(sender)
+  def action(sender=nil)
+    puts "sender: #{sender.inspect}"
     puts 'UIBarButtonItem clicked'
   end
 
-  def createToolbarItems
+  def create_toolbar_items
 
     # match each of the toolbar item's style match the selection in the "UIBarButtonItemStyle" segmented control
-    @buttonItemStyleSegControl = UISegmentedControl.alloc.init
-    style = @buttonItemStyleSegControl.selectedSegmentIndex #UIBarButtonItemStyle
+   	style = @segmented_control_bar_1.selectedSegmentIndex
 
-    #create the system-defined "OK or Done" button
-    @current_system_item = UIBarButtonSystemItemDone
-    systemItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone,
-                                                                   target:self,
-                                                                   action:toolbar_clicked(self))
+
+    # create the system-defined "OK or Done" button
+    puts "@currentSystemItem: #{@currentSystemItem}"
+
+    systemItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(@current_system_item,
+                                                                      target:self,
+                                                                      action: action)
     systemItem.style = style
 
-    # flex item used to separate the left groups items and right grouped items
-    flexItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace,
-                                                                 target:nil,
-                                                                 action:nil)
+   	# flex item used to separate the left groups items and right grouped items
+   	flexItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace,
+   																			                         target:nil,
+   																			                         action:nil)
 
-    # create a special tab bar item with a custom image and title
-    style = UIBarButtonItemStyleDone
-    segment_tools_image = UIImage.imageNamed('/images/segment_tools.png')
-    infoItem = UIBarButtonItem.alloc.initWithImage(segment_tools_image,
-                                                   style:style,
-                                                   target:self,
-                                                   action:toolbar_clicked(self))
+   	# create a special tab bar item with a custom image and title
+   	infoItem = UIBarButtonItem.alloc.initWithImage(UIImage.imageNamed('/images/segment_tools'),
+   																                 style: style,
+   																                 target:self,
+   																                 action: action)
 
-    # Set the accessibility label for an image bar item.
-    infoItem.setAccessibilityLabel("ToolsIcon")
+   	# Set the accessibility label for an image bar item.
+   	infoItem.setAccessibilityLabel('ToolsIcon'.localized)
 
     # create a custom button with a background image with black text for its title:
     customItem1 = UIBarButtonItem.alloc.initWithTitle('Item1',
-                                                      style:UIBarButtonItemStyleBordered,
-                                                      target:self,
-                                                      action:toolbar_clicked(self))
+                                                      style: UIBarButtonItemStyleBordered,
+                                                      target: self,
+                                                      action: action)
 
-    baseImage = UIImage.imageNamed('/images/whiteButton.png')
-    backroundImage = baseImage.stretchableImageWithLeftCapWidth(12.0,
-                                                                topCapHeight:0.0)
-
+    baseImage = UIImage.imageNamed('/images/whiteButton')
+    backroundImage = baseImage.stretchableImageWithLeftCapWidth(12.0, topCapHeight: 0.0)
     customItem1.setBackgroundImage(backroundImage,
-                                   forState:UIControlStateNormal,
-                                   barMetrics:UIBarMetricsDefault)
+                                   forState: UIControlStateNormal,
+                                   barMetrics: UIBarMetricsDefault)
 
-     textAttributes = { UITextAttributeTextColor=>UIColor.blackColor } # NSDictionary*
+    # NSDictionary conversion
+    textAttributes = { UITextAttributeTextColor => UIColor.blackColor }
 
-     customItem1.setTitleTextAttributes(textAttributes,
-                                        forState:UIControlStateNormal)
+    customItem1.setTitleTextAttributes(textAttributes,
+                                       forState: UIControlStateNormal)
 
     # create a bordered style button with custom title
-    customItem2 = UIBarButtonItem.alloc.initWithTitle('Item2',
-                                                      style:style,
-                                                      target:self,
-                                                      action:toolbar_clicked(self))
+   	customItem2 = UIBarButtonItem.alloc.initWithTitle( 'Item2',
+   																	                   # note you can use "UIBarButtonItemStyleDone" to make it blue
+   																	                   style: style,
+   																                     target: self,
+   																                     action: action)
 
-    # apply the bar button items to the toolbar
-    @toolbar.setItems([ systemItem,
-                        flexItem,
-                        customItem1,
-                        customItem2,
-                        infoItem ],
-                        animated:false)
+   	# apply the bar button items to the toolbar
+    @toolbar.setItems([systemItem, flexItem, customItem1, customItem2, infoItem],
+                          animated: false)
+
+
   end
+
 
   def adjustToolbarSize
     # size up the toolbar and set its frame
@@ -100,13 +99,12 @@ class RcToolbarViewController < UIViewController
 
     self.view.addSubview(bottom_toolbar)
     self.view.addSubview(scroll_view)
-
-    container_view = UIView.alloc.initWithFrame(CGRectMake(0,0,343,134))
-    container_view.backgroundColor = UIColor.lightGrayColor
-    container_view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
     @scroll_view.addSubview(container_view)
-
-
+    @container_view.addSubview(ui_bar_button_item_style)
+    @container_view.addSubview(segmented_control_bar)
+    @container_view.addSubview(ui_bar_style)
+    @container_view.addSubview(image_switch_control)
+    @container_view.addSubview(tint_switch_control)
 
     # this list appears in the UIPickerView to pick the system's UIBarButtonItem
     @picker_view_array = %W(Done Cancel Edit Save Add FlexibleSpace FixedSpace Compose Reply Action
@@ -116,35 +114,18 @@ class RcToolbarViewController < UIViewController
 
     self.title = 'ToolbarTitle'.localized
 
-    self.createToolbarItems
+    # when Obj-C declares current_system_item as a property it is assigned integer 0
+    # in our case we have to move the @current_system_item assignment to be before the call create_too_bar_items
+    @current_system_item = UIBarButtonSystemItemDone
+    self.create_toolbar_items
 
     # set the accessibility label for the tint and image switches so that its context can be determined
     @tintSwitch.setAccessibilityLabel('TintSwitch'.localized)
     @imageSwitch.setAccessibilityLabel('ImageSwitch'.localized)
 
 
-    ui_bar_button_item_style = UILabel.alloc.initWithFrame(CGRectMake(20, 86, 280, 21))
-    ui_bar_button_item_style.text =  'UIBarButtonItemStyle'
-    ui_bar_button_item_style.clipsToBounds = true
-    ui_bar_button_item_style.opaque = false
-    ui_bar_button_item_style.minimumFontSize = 10
-    ui_bar_button_item_style.userInteractionEnabled = false
-    ui_bar_button_item_style.contentMode = UIViewContentModeScaleToFill
-    ui_bar_button_item_style.textColor = UIColor.darkTextColor
-    ui_bar_button_item_style.font = UIFont.fontWithName('Helvetica', size:12)
-    container_view.addSubview(ui_bar_button_item_style)
 
-    segment_names = %w(Default Black Translucent)
-    segmented_control_bar = UISegmentedControl.alloc.initWithItems(segment_names)
-    segmented_control_bar.frame = CGRectMake(20, 123, 280, 30)
-    segmented_control_bar.clearsContextBeforeDrawing = false
-    segmented_control_bar.contentMode = UIViewContentModeScaleToFill
-    segmented_control_bar.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft
-    segmented_control_bar.contentVerticalAlignment = UIControlContentVerticalAlignmentTop
-    segmented_control_bar.tintColor = UIColor.blueColor
-    container_view.addSubview(segmented_control_bar)
 
-    @current_system_item = UIBarButtonSystemItemDone
 
     #@tintSwitch = UISwitch.alloc.init
     #@imageSwitch = UISwitch.alloc.init
@@ -191,18 +172,20 @@ class RcToolbarViewController < UIViewController
     end
   end
 
-  def toggleBarStyle(sender)
+  def toggle_bar_style(sender)
     case sender.selectedSegmentIndex
     when 0
       @toolbar.barStyle = UIBarStyleDefault
     when 1
       @toolbar.barStyle = UIBarStyleBlackOpaque
     when 2
-      @toolbar.barStyle = UIBarStyleBlackTranslucent
+      @toolbar.barStyle = UIBarStyleBlack
+      @toolbar.tintColor = UIColor.grayColor
+      @toolbar.translucent = true
     end
   end
 
-  def toggleTintColor(sender)
+  def toggle_tint_color(sender)
     switchCtl = sender
     if switchCtl.on
       @toolbar.tintColor = UIColor.redColor
@@ -219,7 +202,7 @@ class RcToolbarViewController < UIViewController
     end
   end
 
-  def toggleImage(sender)
+  def toggle_image(sender)
 
     switchCtl = sender
     if switchCtl.on
@@ -246,7 +229,7 @@ class RcToolbarViewController < UIViewController
 
     # change the left most bar item to what's in the picker
     @current_system_item = pickerView.selectedRowInComponent(0)
-    self.createToolbarItems  # this will re-create all the items
+    self.create_toolbar_items  # this will re-create all the items
   end
 
   def pickerView(pickerView, titleForRow:row, forComponent:component)
@@ -282,6 +265,7 @@ class RcToolbarViewController < UIViewController
 
     self.adjustToolbarSize
     # size up the toolbar and set its frame
+
     @toolbar.setFrame(
             CGRectMake(CGRectGetMinX(self.view.bounds),
             CGRectGetMinY(self.view.bounds) + CGRectGetHeight(self.view.bounds) - CGRectGetHeight(@toolbar.frame),
@@ -290,7 +274,7 @@ class RcToolbarViewController < UIViewController
   end
 
   def scroll_view
-    @scroll_view ||= UIScrollView.alloc.initWithFrame(CGRectMake(0,0,320,460)).tap do |sv|
+    @scroll_view ||= UIScrollView.alloc.initWithFrame(CGRectMake(0.0, 0.0, 320.0, 460.0)).tap do |sv|
       sv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
       sv.backgroundColor = UIColor.redColor
     end
@@ -302,8 +286,75 @@ class RcToolbarViewController < UIViewController
   end
 
   def container_view
+    @container_view ||= UIView.alloc.initWithFrame(CGRectMake(0.0, 0.0, 343.0, 134.0)).tap do |cv|
+      cv.backgroundColor = UIColor.lightGrayColor
+      cv.autoresizingMask = UIViewAutoresizingFlexibleWidth
+    end
+  end
 
+  def ui_bar_button_item_style
+    @ui_bar_button_item_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 86.0, 280.0, 21.0)).tap do |bbis|
+      bbis.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      bbis.text =  'UIBarButtonItemStyle'
+      bbis.clipsToBounds = true
+      bbis.opaque = false
+      bbis.minimumFontSize = 10
+      bbis.userInteractionEnabled = false
+      bbis.contentMode = UIViewContentModeScaleToFill
+      bbis.textColor = UIColor.darkTextColor
+      bbis.font = UIFont.fontWithName('Helvetica', size:12)
+    end
+  end
+
+  def segmented_control_bar
+    segment_names = %w(Default Black Translucent)
+    @segmented_control_bar_1 ||= UISegmentedControl.alloc.initWithItems(segment_names).tap do |scb|
+        scb.frame = CGRectMake(20.0, 123.0, 280.0, 30.0)
+        scb.clearsContextBeforeDrawing = false
+        scb.contentMode = UIViewContentModeScaleToFill
+        scb.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft
+        scb.contentVerticalAlignment = UIControlContentVerticalAlignmentTop
+        scb.tintColor = UIColor.blueColor
+        scb.addTarget(self,
+                      action: 'toggle_bar_style:',
+                      forControlEvents:UIControlEventValueChanged
+                     )
+      end
+  end
+
+
+  def ui_bar_style
+    @ui_bar_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 65.0, 280.0, 21.0)).tap do |bs|
+      bs.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      bs.text =  'UIBarStyle'
+      bs.clipsToBounds = true
+      bs.opaque = false
+      bs.minimumFontSize = 10
+      bs.userInteractionEnabled = false
+      bs.contentMode = UIViewContentModeScaleToFill
+      bs.textColor = UIColor.darkTextColor
+      bs.font = UIFont.fontWithName('Helvetica', size:12)
+    end
+  end
+
+  def image_switch_control
+    @image_switch_control ||= begin
+      UISwitch.alloc.initWithFrame(CGRectMake(20.0, 200.0, 51.0, 31.0)).tap do |control|
+        control.addTarget(self, action: 'toggle_image:', forControlEvents: UIControlEventValueChanged)
+        control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+        control.setAccessibilityLabel('Standard Switch')
+      end
+    end
+  end
+
+  def tint_switch_control
+    @tint_switch_control ||= begin
+      UISwitch.alloc.initWithFrame(CGRectMake(80.0, 200.0, 51.0, 31.0)).tap do |control|
+        control.addTarget(self, action: 'toggle_tint_color:', forControlEvents: UIControlEventValueChanged)
+        control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
+        control.setAccessibilityLabel('Standard Switch')
+      end
+    end
   end
 
 end
-
