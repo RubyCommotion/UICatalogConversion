@@ -14,7 +14,7 @@ class RcToolbarViewController < UIViewController
   def create_toolbar_items
 
     # match each of the toolbar item's style match the selection in the "UIBarButtonItemStyle" segmented control
-   	style = @segmented_control_bar_1.selectedSegmentIndex
+   	style = @bar_style_segmented_control_bar.selectedSegmentIndex
 
 
     # create the system-defined "OK or Done" button
@@ -72,17 +72,17 @@ class RcToolbarViewController < UIViewController
   end
 
 
-  def adjustToolbarSize
+  def adjust_toolbar_size
     # size up the toolbar and set its frame
     @toolbar.sizeToFit
 
     # since the toolbar may have adjusted its height, it's origin will have to be adjusted too
-    mainViewBounds = self.view.bounds
+    main_view_bounds = self.view.bounds
     @toolbar.setFrame(
       CGRectMake(
-        CGRectGetMinX(mainViewBounds),
-        CGRectGetMinY(mainViewBounds) + CGRectGetHeight(mainViewBounds) - CGRectGetHeight(@toolbar.frame),
-        CGRectGetWidth(mainViewBounds),
+        CGRectGetMinX(main_view_bounds),
+        CGRectGetMinY(main_view_bounds) + CGRectGetHeight(main_view_bounds) - CGRectGetHeight(@toolbar.frame),
+        CGRectGetWidth(main_view_bounds),
         CGRectGetHeight(@toolbar.frame)
         )
       )
@@ -100,11 +100,14 @@ class RcToolbarViewController < UIViewController
     self.view.addSubview(bottom_toolbar)
     self.view.addSubview(scroll_view)
     @scroll_view.addSubview(container_view)
-    @container_view.addSubview(ui_bar_button_item_style)
-    @container_view.addSubview(segmented_control_bar)
-    @container_view.addSubview(ui_bar_style)
+    @container_view.addSubview(ui_bar_style_label)
+    @container_view.addSubview(bar_style_segmented_control_bar)
+    @container_view.addSubview(image_switch_control_label)
     @container_view.addSubview(image_switch_control)
+    @container_view.addSubview(tint_switch_control_label)
     @container_view.addSubview(tint_switch_control)
+    @container_view.addSubview(ui_bar_button_item_style_label)
+    @container_view.addSubview(button_style_segmented_control_bar)
 
     # this list appears in the UIPickerView to pick the system's UIBarButtonItem
     @picker_view_array = %W(Done Cancel Edit Save Add FlexibleSpace FixedSpace Compose Reply Action
@@ -120,14 +123,14 @@ class RcToolbarViewController < UIViewController
     self.create_toolbar_items
 
     # set the accessibility label for the tint and image switches so that its context can be determined
-    @tintSwitch.setAccessibilityLabel('TintSwitch'.localized)
+    @tint_switch_control.setAccessibilityLabel('TintSwitch'.localized)
     @imageSwitch.setAccessibilityLabel('ImageSwitch'.localized)
 
 
 
 
 
-    #@tintSwitch = UISwitch.alloc.init
+    #@tint_switch_control = UISwitch.alloc.init
     #@imageSwitch = UISwitch.alloc.init
     #@imageSwitchLabel = UILabel.alloc.init
     #@buttonItemStyleSegControl = UISegmentedControl.alloc.init
@@ -139,7 +142,7 @@ class RcToolbarViewController < UIViewController
   def viewWillAppear(animated)
     super
 
-    # self.adjustToolbarSize
+    self.adjust_toolbar_size
     # adjust the scroll view's height since the toolbar may have been resized
     adjustedHeight = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(@toolbar.frame)
     newFrame = @scroll_view.frame
@@ -147,11 +150,11 @@ class RcToolbarViewController < UIViewController
     @scroll_view.frame = newFrame
 
     # finally set the content size so that it scrolls in landscape but not in portrait
-    # @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame), @saved_content_height_size))
+    @scroll_view.setContentSize(CGSizeMake(CGRectGetWidth(@scroll_view.frame), @saved_content_height_size))
   end
 
-  def toggleStyle(sender)  #IBAction
-    UIBarButtonItemStyle style = UIBarButtonItemStylePlain
+  def toggle_button_style(sender)  #IBAction
+    style = UIBarButtonItemStylePlain
 
     case sender.selectedSegmentIndex
 
@@ -186,41 +189,39 @@ class RcToolbarViewController < UIViewController
   end
 
   def toggle_tint_color(sender)
-    switchCtl = sender
-    if switchCtl.on
+    switch_ctl = sender
+    if switch_ctl.on?
       @toolbar.tintColor = UIColor.redColor
-      @imageSwitch.enabled = @barStyleSegControl.enabled = false
-      @imageSwitch.alpha = @barStyleSegControl.alpha = 0.50
+      @image_switch_control.enabled = @button_style_segmented_control_bar.enabled = false
+      @image_switch_control.alpha = @button_style_segmented_control_bar.alpha = 0.50
     else
-      if @imageSwitch.on
-        @imageSwitch.enabled = @barStyleSegControl.enabled = false
+      if @image_switch_control.on?
+        @image_switch_control.enabled = @button_style_segmented_control_bar.enabled = false
       else
-        @imageSwitch.enabled = @barStyleSegControl.enabled = true
+        @image_switch_control.enabled = @button_style_segmented_control_bar.enabled = true
       end
       @toolbar.tintColor = nil
-      @imageSwitch.alpha = @barStyleSegControl.alpha = 1.0
+      @image_switch_control.alpha = @button_style_segmented_control_bar.alpha = 1.0
     end
   end
 
   def toggle_image(sender)
 
-    switchCtl = sender
-    if switchCtl.on
-      @toolbar.setBackgroundImage(imageNamed:'/images/toolbarBackground.png',
+    switch_ctl = sender
+    if switch_ctl.on?
+      @toolbar.setBackgroundImage(UIImage.imageNamed('/images/toolbarBackground.png'),
         forToolbarPosition:UIToolbarPositionBottom,
         barMetrics:UIBarMetricsDefault)
 
-      @tintSwitch.enabled = @barStyleSegControl.enabled = false
-      @tintSwitch.alpha = @barStyleSegControl.alpha = 0.50
-
+      @tint_switch_control.enabled = @bar_style_segmented_control_bar.enabled = false
+      @tint_switch_control.alpha = @bar_style_segmented_control_bar.alpha = 0.50
     else
-
-      toolbar.setBackgroundImage(nil,
+      @toolbar.setBackgroundImage(nil,
         forToolbarPosition:UIToolbarPositionBottom,
         barMetrics:UIBarMetricsDefault)
 
-      @tintSwitch.enabled = @barStyleSegControl.enabled = true
-      @tintSwitch.alpha = @barStyleSegControl.alpha = 1.0
+      @tint_switch_control.enabled = @bar_style_segmented_control_bar.enabled = true
+      @tint_switch_control.alpha = @bar_style_segmented_control_bar.alpha = 1.0
     end
   end
 
@@ -263,7 +264,7 @@ class RcToolbarViewController < UIViewController
       bar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin
     end
 
-    self.adjustToolbarSize
+    self.adjust_toolbar_size
     # size up the toolbar and set its frame
 
     @toolbar.setFrame(
@@ -274,42 +275,48 @@ class RcToolbarViewController < UIViewController
   end
 
   def scroll_view
+
     @scroll_view ||= UIScrollView.alloc.initWithFrame(CGRectMake(0.0, 0.0, 320.0, 460.0)).tap do |sv|
       sv.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
-      sv.backgroundColor = UIColor.redColor
+      sv.backgroundColor = UIColor.lightGrayColor
     end
     # remember our scroll view's content height (a fixed size) later when we set its content size in viewWillAppear
     @saved_content_height_size = @scroll_view.frame.size.height -
                                     CGRectGetHeight(self.navigationController.navigationBar.frame) -
                                     @toolbar.frame.size.height
+
+    puts "@saved_content_height_size #{@saved_content_height_size.inspect}"
+
   @scroll_view
   end
 
+
   def container_view
-    @container_view ||= UIView.alloc.initWithFrame(CGRectMake(0.0, 0.0, 343.0, 134.0)).tap do |cv|
+    @container_view ||= UIView.alloc.initWithFrame(CGRectMake(0.0, 64.0, 343.0, 134.0)).tap do |cv|
       cv.backgroundColor = UIColor.lightGrayColor
       cv.autoresizingMask = UIViewAutoresizingFlexibleWidth
     end
   end
 
-  def ui_bar_button_item_style
-    @ui_bar_button_item_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 86.0, 280.0, 21.0)).tap do |bbis|
-      bbis.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
-      bbis.text =  'UIBarButtonItemStyle'
-      bbis.clipsToBounds = true
-      bbis.opaque = false
-      bbis.minimumFontSize = 10
-      bbis.userInteractionEnabled = false
-      bbis.contentMode = UIViewContentModeScaleToFill
-      bbis.textColor = UIColor.darkTextColor
-      bbis.font = UIFont.fontWithName('Helvetica', size:12)
+
+  def ui_bar_style_label
+    @ui_bar_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 5.0, 280.0, 21.0)).tap do |bs|
+      bs.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      bs.text =  'UIBarStyle'
+      bs.clipsToBounds = true
+      bs.opaque = false
+      bs.minimumFontSize = 10
+      bs.userInteractionEnabled = false
+      bs.contentMode = UIViewContentModeScaleToFill
+      bs.textColor = UIColor.darkTextColor
+      bs.font = UIFont.fontWithName('Helvetica', size:12)
     end
   end
 
-  def segmented_control_bar
+  def bar_style_segmented_control_bar
     segment_names = %w(Default Black Translucent)
-    @segmented_control_bar_1 ||= UISegmentedControl.alloc.initWithItems(segment_names).tap do |scb|
-        scb.frame = CGRectMake(20.0, 123.0, 280.0, 30.0)
+    @bar_style_segmented_control_bar ||= UISegmentedControl.alloc.initWithItems(segment_names).tap do |scb|
+        scb.frame = CGRectMake(20.0, 23.0, 280.0, 30.0)
         scb.clearsContextBeforeDrawing = false
         scb.contentMode = UIViewContentModeScaleToFill
         scb.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft
@@ -323,10 +330,11 @@ class RcToolbarViewController < UIViewController
   end
 
 
-  def ui_bar_style
-    @ui_bar_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 65.0, 280.0, 21.0)).tap do |bs|
+
+  def image_switch_control_label
+    @image_switch_control_label ||= UILabel.alloc.initWithFrame(CGRectMake(30.0, 57.0, 48.0, 21.0)).tap do |bs|
       bs.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
-      bs.text =  'UIBarStyle'
+      bs.text =  'Image'
       bs.clipsToBounds = true
       bs.opaque = false
       bs.minimumFontSize = 10
@@ -337,9 +345,11 @@ class RcToolbarViewController < UIViewController
     end
   end
 
+
+
   def image_switch_control
     @image_switch_control ||= begin
-      UISwitch.alloc.initWithFrame(CGRectMake(20.0, 200.0, 51.0, 31.0)).tap do |control|
+      UISwitch.alloc.initWithFrame(CGRectMake(93.0, 56.0, 51.0, 31.0)).tap do |control|
         control.addTarget(self, action: 'toggle_image:', forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
         control.setAccessibilityLabel('Standard Switch')
@@ -347,14 +357,60 @@ class RcToolbarViewController < UIViewController
     end
   end
 
+  def tint_switch_control_label
+    @tint_switch_control_label ||= UILabel.alloc.initWithFrame(CGRectMake(173.0, 57.0, 48.0, 21.0)).tap do |bs|
+      bs.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      bs.text =  'Tinted'
+      bs.clipsToBounds = true
+      bs.opaque = false
+      bs.minimumFontSize = 10
+      bs.userInteractionEnabled = false
+      bs.contentMode = UIViewContentModeScaleToFill
+      bs.textColor = UIColor.darkTextColor
+      bs.font = UIFont.fontWithName('Helvetica', size:12)
+    end
+  end
+
+
   def tint_switch_control
     @tint_switch_control ||= begin
-      UISwitch.alloc.initWithFrame(CGRectMake(80.0, 200.0, 51.0, 31.0)).tap do |control|
+      UISwitch.alloc.initWithFrame(CGRectMake(229.0, 56.0, 51.0, 31.0)).tap do |control|
         control.addTarget(self, action: 'toggle_tint_color:', forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
         control.setAccessibilityLabel('Standard Switch')
       end
     end
+  end
+
+
+  def ui_bar_button_item_style_label
+    @ui_bar_button_item_style ||= UILabel.alloc.initWithFrame(CGRectMake(20.0, 86.0, 280.0, 21.0)).tap do |bbis|
+      bbis.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth
+      bbis.text =  'UIBarButtonItemStyle'
+      bbis.clipsToBounds = true
+      bbis.opaque = false
+      bbis.minimumFontSize = 10
+      bbis.userInteractionEnabled = false
+      bbis.contentMode = UIViewContentModeScaleToFill
+      bbis.textColor = UIColor.darkTextColor
+      bbis.font = UIFont.fontWithName('Helvetica', size:12)
+    end
+  end
+
+  def button_style_segmented_control_bar
+    segment_names = %w(Plain Bordered Done)
+    @button_style_segmented_control_bar ||= UISegmentedControl.alloc.initWithItems(segment_names).tap do |scb|
+        scb.frame = CGRectMake(20.0, 103.0, 280.0, 30.0)
+        scb.clearsContextBeforeDrawing = false
+        scb.contentMode = UIViewContentModeScaleToFill
+        scb.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft
+        scb.contentVerticalAlignment = UIControlContentVerticalAlignmentTop
+        scb.tintColor = UIColor.blueColor
+        scb.addTarget(self,
+                      action: 'toggle_button_style:',
+                      forControlEvents:UIControlEventValueChanged
+                     )
+      end
   end
 
 end
