@@ -13,15 +13,15 @@ class RcTextFieldViewController < UITableViewController
 
 
     @data_source_array = [
-      {  title: 'UITextField Normal',     source: 'rc_text_field_view_controller.rb: textFieldNormal',   view: textFieldNormal},
-      {  title: 'UITextField Rounded',    source: 'rc_text_field_view_controller.rb: textFieldRounded',  view: textFieldRounded},
-      {  title: 'UITextField Secure',     source: 'rc_text_field_view_controller.rb: textFieldSecure',   view: textFieldSecure},
-      {  title: 'UITextField Left View',  source: 'rc_text_field_view_controller.rb: textFieldLeftView', view: textFieldLeftView}
+      {  title: 'UITextField Normal',     source: 'rc_text_field_view_controller.rb: text_field_normal',   view: text_field_normal},
+      {  title: 'UITextField Rounded',    source: 'rc_text_field_view_controller.rb: text_field_rounded',  view: text_field_rounded},
+      {  title: 'UITextField Secure',     source: 'rc_text_field_view_controller.rb: text_field_secure',   view: text_field_secure},
+      {  title: 'UITextField Left View',  source: 'rc_text_field_view_controller.rb: text_field_left_view', view: text_field_left_view}
     ]
   end
 
   
-  def textFieldNormal
+  def text_field_normal
     if @text_field_normal_view.nil?     
       frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_normal_view = UITextField.alloc.initWithFrame(frame)
@@ -46,7 +46,7 @@ class RcTextFieldViewController < UITableViewController
     @text_field_normal_view
   end
 
-  def textFieldRounded
+  def text_field_rounded
     if @text_field_rounded_view.nil?
       frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_rounded_view = UITextField.alloc.initWithFrame(frame)
@@ -73,8 +73,8 @@ class RcTextFieldViewController < UITableViewController
     @text_field_rounded_view
   end
 
-  def textFieldSecure
-    if (@text_field_secure_view == nil)
+  def text_field_secure
+    if @text_field_secure_view == nil
       frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_secure_view = UITextField.alloc.initWithFrame(frame)
 
@@ -100,7 +100,7 @@ class RcTextFieldViewController < UITableViewController
     @text_field_secure_view
   end
 
-  def textFieldLeftView
+  def text_field_left_view
     if @text_field_left_view.nil?
       frame = CGRectMake(LEFT_MARGING, 8.0, TEXT_FIELD_WIDTH, TEXT_FIELD_HEIGHT)
       @text_field_left_view = UITextField.alloc.initWithFrame(frame)
@@ -138,41 +138,41 @@ class RcTextFieldViewController < UITableViewController
     @data_source_array.count
   end
 
-  def tableView(tableView, titleForHeaderInSection:section)
+  def tableView(table_view, titleForHeaderInSection:section)
     @data_source_array[section][:title]
   end
 
-  def tableView(tableView, numberOfRowsInSection:section)
+  def tableView(table_view, numberOfRowsInSection:section)
     2
   end
 
-  def tableView(tableView, heightForRowAtIndexPath:index_path)
+  def tableView(table_view, heightForRowAtIndexPath:index_path)
     height = index_path.row == 0 ? 50.0 : 22.0
     height
   end
 
-  def tableView(tableView, cellForRowAtIndexPath:index_path)
+  def tableView(table_view, cellForRowAtIndexPath:index_path)
 
     cell = nil
 
     if index_path.row == 0
-      cell = tableView.dequeueReusableCellWithIdentifier(TEXT_FIELD_CELL_ID) || begin
+      cell = table_view.dequeueReusableCellWithIdentifier(TEXT_FIELD_CELL_ID) || begin
        UITableViewCell.alloc.initWithStyle(UITableViewCellStyleDefault, reuseIdentifier:TEXT_FIELD_CELL_ID)
      end
 
      cell.selectionStyle = UITableViewCellSelectionStyleNone
 
-     if viewToRemove = cell.contentView.viewWithTag(VIEW_TAG)
-      viewToRemove.removeFromSuperview
+     if view_to_remove = cell.contentView.viewWithTag(VIEW_TAG)
+      view_to_remove.removeFromSuperview
     end
 
-    textField = @data_source_array[index_path.section][:view]
+    text_field = @data_source_array[index_path.section][:view]
 
-      newFrame = textField.frame # make sure this textfield's width matches the width of the cell
-      newFrame.size.width = CGRectGetWidth(cell.contentView.frame) - LEFT_MARGING*2
-      textField.frame = newFrame
-      textField.autoresizingMask = UIViewAutoresizingFlexibleWidth # if the cell is ever resized, keep the textfield's width to match the cell's width
-      cell.contentView.addSubview(textField)
+      new_frame = text_field.frame # make sure this textfield's width matches the width of the cell
+      new_frame.size.width = CGRectGetWidth(cell.contentView.frame) - LEFT_MARGING*2
+      text_field.frame = new_frame
+      text_field.autoresizingMask = UIViewAutoresizingFlexibleWidth # if the cell is ever resized, keep the textfield's width to match the cell's width
+      cell.contentView.addSubview(text_field)
 
     else
       cell = tableView.dequeueReusableCellWithIdentifier(SOURCE_CELL_ID)  || begin
@@ -191,8 +191,8 @@ class RcTextFieldViewController < UITableViewController
  end
 
 
- def textFieldShouldReturn(textField)
-    textField.resignFirstResponder # the user pressed the 'Done' button, so dismiss the keyboard
+ def textFieldShouldReturn(text_field)
+    text_field.resignFirstResponder # the user pressed the 'Done' button, so dismiss the keyboard
     true
   end
 
