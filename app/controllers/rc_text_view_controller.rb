@@ -1,7 +1,6 @@
 class RcTextViewController < UIViewController
-#textView
 
-  def setupTextView
+  def setup_text_view
     @text_view = UITextView.alloc.initWithFrame(self.view.frame).tap { |tv|
       tv.textColor = UIColor.blackColor
       tv.font = UIFont.fontWithName('Arial', size: 18.0)
@@ -9,18 +8,18 @@ class RcTextViewController < UIViewController
       tv.backgroundColor = UIColor.whiteColor
       tv.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight
     }
-    textToAdd = "Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.\r\rThis text view can also use attributed strings."
+    text_to_add = "Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.\r\rThis text view can also use attributed strings."
 
-    attrString = NSMutableAttributedString.alloc.initWithString(textToAdd)
+    attr_string = NSMutableAttributedString.alloc.initWithString(text_to_add)
 
     # make red text
-    attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor, range: NSMakeRange(attrString.length - 19, 19))
+    attr_string.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor, range: NSMakeRange(attr_string.length - 19, 19))
 
     # make blue text
-    attrString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor, range: NSMakeRange(attrString.length - 23, 3))
-    attrString.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber.numberWithInteger(1), range: NSMakeRange(attrString.length - 23, 3))
+    attr_string.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor, range: NSMakeRange(attr_string.length - 23, 3))
+    attr_string.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber.numberWithInteger(1), range: NSMakeRange(attr_string.length - 23, 3))
 
-    @text_view.setAttributedText(attrString)
+    @text_view.setAttributedText(attr_string)
 
     @text_view.returnKeyType = UIReturnKeyDefault
     @text_view.keyboardType = UIKeyboardTypeDefault # use the default type input method (entire keyboard)
@@ -35,7 +34,7 @@ class RcTextViewController < UIViewController
   def viewDidLoad
     super
     self.title = 'TextViewTitle'
-    self.setupTextView
+    self.setup_text_view
   end
 
   def viewWillAppear(animated)
@@ -48,15 +47,15 @@ class RcTextViewController < UIViewController
 
 #pragma mark - Notifications
 
-  def adjustViewForKeyboardReveal(showKeyboard, notificationInfo: notificationInfo)
+  def adjustViewForKeyboardReveal(show_keyboard, notificationInfo: notification_info)
 
     # the keyboard is showing so resize the table 's height
-    keyboardRect = notificationInfo.objectForKey(UIKeyboardFrameEndUserInfoKey).CGRectValue
-    animationDuration =notificationInfo.objectForKey(UIKeyboardAnimationDurationUserInfoKey).doubleValue
+    keyboardRect = notification_info.objectForKey(UIKeyboardFrameEndUserInfoKey).CGRectValue
+    animationDuration =notification_info.objectForKey(UIKeyboardAnimationDurationUserInfoKey).doubleValue
     frame = @text_view.frame
     # the keyboard rect' s width and height are reversed in landscape
     adjustDelta = (UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait) ? CGRectGetHeight(keyboardRect) : CGRectGetWidth(keyboardRect)
-    if showKeyboard
+    if show_keyboard
       frame.size.height -= adjustDelta
     else
       frame.size.height += adjustDelta
@@ -64,12 +63,12 @@ class RcTextViewController < UIViewController
     end
   end
 
-  def keyboardWillShow(aNotification)
-    adjustViewForKeyboardReveal(true, notificationInfo: aNotification.userInfo)
+  def keyboardWillShow(a_notification)
+    adjustViewForKeyboardReveal(true, notificationInfo: a_notification.userInfo)
   end
 
-  def keyboardWillHide(aNotification)
-    adjustViewForKeyboardReveal(false, notificationInfo: aNotification.userInfo)
+  def keyboardWillHide(a_notification)
+    adjustViewForKeyboardReveal(false, notificationInfo: a_notification.userInfo)
   end
 
   def viewDidDisappear(animated)
@@ -81,7 +80,7 @@ class RcTextViewController < UIViewController
 
 #pragma mark - UITextViewDelegate
 
-  def saveAction(sender)
+  def save_action(sender)
     # finish typing text/dismiss the keyboard by removing it as the first responder
     #
     @text_view.resignFirstResponder
@@ -90,8 +89,8 @@ class RcTextViewController < UIViewController
 
   def textViewDidBeginEditing(textView)
     # provide my own Save button to dismiss the keyboard
-    saveItem = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone, target: self, action: 'saveAction:')
-    self.navigationItem.rightBarButtonItem = saveItem
+    save_item = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone, target: self, action: 'save_action:')
+    self.navigationItem.rightBarButtonItem = save_item
   end
 
   private

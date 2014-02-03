@@ -43,7 +43,7 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_normal_view.setAccessibilityLabel('NormalTextField')
     end 
-    return @text_field_normal_view
+    @text_field_normal_view
   end
 
   def textFieldRounded
@@ -70,7 +70,7 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_rounded_view.setAccessibilityLabel('RoundedTextField')
     end
-    return @text_field_rounded_view
+    @text_field_rounded_view
   end
 
   def textFieldSecure
@@ -97,7 +97,7 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_secure_view.setAccessibilityLabel('SecureTextField')
     end
-    return @text_field_secure_view
+    @text_field_secure_view
   end
 
   def textFieldLeftView
@@ -131,7 +131,7 @@ class RcTextFieldViewController < UITableViewController
 
       @text_field_left_view.delegate = self # let us be the delegate so we know when the keyboard's 'Done' button is pressed
     end
-    return @text_field_left_view
+    @text_field_left_view
   end
 
   def numberOfSectionsInTableView(tableview)
@@ -148,7 +148,7 @@ class RcTextFieldViewController < UITableViewController
 
   def tableView(tableView, heightForRowAtIndexPath:index_path)
     height = index_path.row == 0 ? 50.0 : 22.0
-    return height
+    height
   end
 
   def tableView(tableView, cellForRowAtIndexPath:index_path)
@@ -187,7 +187,7 @@ class RcTextFieldViewController < UITableViewController
      cell.textLabel.text = @data_source_array[index_path.section][:source]
 
    end
-   return cell
+   cell
  end
 
 

@@ -7,10 +7,10 @@ class RcCustomPickerDataSource < NSObject
     # create the data source for this custom picker
     @custom_picker_array = []
     
-    @custom_picker_array << RcCustomView.alloc.initWithTitle('Early Morning', image: UIImage.imageNamed('12-6AM.png'))
-    @custom_picker_array << RcCustomView.alloc.initWithTitle('Late Morning', image: UIImage.imageNamed('6-12AM.png'))
-    @custom_picker_array << RcCustomView.alloc.initWithTitle('Afternoon', image: UIImage.imageNamed('12-6PM.png'))
-    @custom_picker_array << RcCustomView.alloc.initWithTitle('Evening', image: UIImage.imageNamed('6-12PM.png'))
+    @custom_picker_array << RcCustomView.alloc.initWithTitle('Early Morning', image: UIImage.imageNamed('/images/12-6AM.png'))
+    @custom_picker_array << RcCustomView.alloc.initWithTitle('Late Morning', image: UIImage.imageNamed('/images/6-12AM.png'))
+    @custom_picker_array << RcCustomView.alloc.initWithTitle('Afternoon', image: UIImage.imageNamed('/images/12-6PM.png'))
+    @custom_picker_array << RcCustomView.alloc.initWithTitle('Evening', image: UIImage.imageNamed('/images/6-12PM.png'))
     
     self
   end
