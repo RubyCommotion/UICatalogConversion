@@ -13,8 +13,8 @@ class RcTransitionViewController < UIViewController
     # create two toolbar buttons and center them with flexible space on both sides
     toolbar_buttons = [
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
-      UIBarButtonItem.alloc.initWithTitle( 'FlipTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'flipAction:' ),
-      UIBarButtonItem.alloc.initWithTitle( 'CurlTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'curlAction:' ),
+      UIBarButtonItem.alloc.initWithTitle( 'FlipTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'flip_action:' ),
+      UIBarButtonItem.alloc.initWithTitle( 'CurlTitle'.localized, style: UIBarButtonItemStylePlain, target: self, action: 'curl_action:' ),
       UIBarButtonItem.alloc.initWithBarButtonSystemItem( UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil ),
     ]
     self.setToolbarItems( toolbar_buttons )
@@ -65,7 +65,7 @@ class RcTransitionViewController < UIViewController
   #pragma mark - UIBarButtonItem actions
 
   # flip one image revealing the other
-  def flipAction( sender )
+  def flip_action( sender )
     # decide which view to show (the one without a superview) and setup the animation
     if @flip_to_view.superview.nil?
       from_view = @main_view
@@ -83,7 +83,7 @@ class RcTransitionViewController < UIViewController
   end
 
   # curl one image up / down revealing the other
-  def curlAction( sender )
+  def curl_action( sender )
     # decide which view to show (the one without a superview) and setup the animation
     if @flip_to_view.superview.nil?
       from_view = @main_view

@@ -31,12 +31,12 @@ class RcCustomView < UIView
   
   # Enable accessibility for this view.
   def isAccessibilityElement
-    return true
+    true
   end
   
   # Return a string that describes this view.
   def accessibilityLabel
-    return @title_label.text
+    @title_label.text
   end
   
 end

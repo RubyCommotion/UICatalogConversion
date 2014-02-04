@@ -31,13 +31,13 @@ class RcCustomPickerDataSource < NSObject
   end
   
   def numberOfComponentsInPickerView(picker_view)
-    return 1
+    1
   end
   
   #pragma mark - UIPickerViewDelegate
   
   # tell the picker which view to use for a given component and row, we have an array of views to show
   def pickerView(picker_view, viewForRow: row, forComponent: component, reusingView: view)
-    return @custom_picker_array[row]
+    @custom_picker_array[row]
   end
 end

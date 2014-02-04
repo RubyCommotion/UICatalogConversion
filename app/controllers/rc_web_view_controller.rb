@@ -9,7 +9,7 @@ class RcWebViewController < UIViewController
 
   TEXT_FIELD_HEIGHT = 30.0
 
-  attr_accessor :myWebView
+  attr_accessor :my_web_view
 
   def viewDidLoad
     super
@@ -18,36 +18,36 @@ class RcWebViewController < UIViewController
     self.navigationController.navigationBar.translucent = false
 
     # create the URL input field
-    textFieldFrame = CGRectMake(LEFT_MARGIN, TWEEN_MARGIN, CGRectGetWidth(self.view.bounds) - (LEFT_MARGIN * 2.0), TEXT_FIELD_HEIGHT)
-    urlField = UITextField.alloc.initWithFrame(textFieldFrame)
-    urlField.borderStyle = UITextBorderStyleBezel
-    urlField.textColor = UIColor.blackColor
-    urlField.delegate = self
-    urlField.placeholder = '<enter a full URL>'
-    urlField.text = 'http://www.apple.com'
-    urlField.backgroundColor = UIColor.whiteColor
-    urlField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin
-    urlField.returnKeyType = UIReturnKeyGo
-    urlField.keyboardType = UIKeyboardTypeURL   # this makes the keyboard more friendly for typing URLs
-    urlField.autocapitalizationType = UITextAutocapitalizationTypeNone    # don't capitalize
-    urlField.autocorrectionType = UITextAutocorrectionTypeNo    # we don't like autocompletion while typing
-    urlField.clearButtonMode = UITextFieldViewModeAlways
-    urlField.setAccessibilityLabel('URL entry')
-    self.view.addSubview(urlField)
+    text_field_frame = CGRectMake(LEFT_MARGIN, TWEEN_MARGIN, CGRectGetWidth(self.view.bounds) - (LEFT_MARGIN * 2.0), TEXT_FIELD_HEIGHT)
+    url_field = UITextField.alloc.initWithFrame(text_field_frame)
+    url_field.borderStyle = UITextBorderStyleBezel
+    url_field.textColor = UIColor.blackColor
+    url_field.delegate = self
+    url_field.placeholder = '<enter a full URL>'
+    url_field.text = 'http://www.apple.com'
+    url_field.backgroundColor = UIColor.whiteColor
+    url_field.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin
+    url_field.returnKeyType = UIReturnKeyGo
+    url_field.keyboardType = UIKeyboardTypeURL   # this makes the keyboard more friendly for typing URLs
+    url_field.autocapitalizationType = UITextAutocapitalizationTypeNone    # don't capitalize
+    url_field.autocorrectionType = UITextAutocorrectionTypeNo    # we don't like autocompletion while typing
+    url_field.clearButtonMode = UITextFieldViewModeAlways
+    url_field.setAccessibilityLabel('URL entry')
+    self.view.addSubview(url_field)
       
     # create the UIWebView
-    webFrame = self.view.frame
-    webFrame.origin.y += (TWEEN_MARGIN * 2.0) + TEXT_FIELD_HEIGHT  # leave room for the URL input field
-    webFrame.size.height -= 40.0
-    self.myWebView = UIWebView.alloc.initWithFrame(webFrame)
+    web_frame = self.view.frame
+    web_frame.origin.y += (TWEEN_MARGIN * 2.0) + TEXT_FIELD_HEIGHT  # leave room for the URL input field
+    web_frame.size.height -= 40.0
+    self.my_web_view = UIWebView.alloc.initWithFrame(web_frame)
       
-    self.myWebView.backgroundColor = UIColor.whiteColor
-    self.myWebView.scalesPageToFit = true
-    self.myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin)
-    self.myWebView.delegate = self
-    self.view.addSubview(self.myWebView)
+    self.my_web_view.backgroundColor = UIColor.whiteColor
+    self.my_web_view.scalesPageToFit = true
+    self.my_web_view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin)
+    self.my_web_view.delegate = self
+    self.view.addSubview(self.my_web_view)
     
-    self.myWebView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString('http://www.apple.com/')))
+    self.my_web_view.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString('http://www.apple.com/')))
   end
 
 
@@ -56,23 +56,23 @@ class RcWebViewController < UIViewController
   def viewWillAppear(animated)
     super
      
-    self.myWebView.delegate = self   # setup the delegate as the web view is shown
+    self.my_web_view.delegate = self   # setup the delegate as the web view is shown
   end
 
   def viewWillDisappear(animated)
     super
       
-    self.myWebView.stopLoading    # in case the web view is still loading its content
-    self.myWebView.delegate = nil    # disconnect the delegate as the webview is hidden
+    self.my_web_view.stopLoading    # in case the web view is still loading its content
+    self.my_web_view.delegate = nil    # disconnect the delegate as the webview is hidden
     UIApplication.sharedApplication.networkActivityIndicatorVisible = false
   end
 
   # this helps dismiss the keyboard when the 'Done' button is clicked
-  def textFieldShouldReturn(textField)
-    textField.resignFirstResponder
-    self.myWebView.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(textField.text)))
+  def textFieldShouldReturn(text_field)
+    text_field.resignFirstResponder
+    self.my_web_view.loadRequest(NSURLRequest.requestWithURL(NSURL.URLWithString(text_field.text)))
     
-    return true
+    true
   end
 
 
@@ -93,8 +93,8 @@ class RcWebViewController < UIViewController
     UIApplication.sharedApplication.networkActivityIndicatorVisible = false
 
     # report the error inside the webview
-    errorString = NSString.stringWithFormat("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"><html><head><meta http-equiv='Content-Type' content='text/html;charset=utf-8'><title></title></head><body><div style='width: 100%%; text-align: center; font-size: 36pt; color: red;'>An error occurred:<br>%@</div></body></html>", error.localizedDescription)
-    self.myWebView.loadHTMLString(errorString, baseURL:nil)
+    error_string = NSString.stringWithFormat("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\"><html><head><meta http-equiv='Content-Type' content='text/html;charset=utf-8'><title></title></head><body><div style='width: 100%%; text-align: center; font-size: 36pt; color: red;'>An error occurred:<br>%@</div></body></html>", error.localizedDescription)
+    self.my_web_view.loadHTMLString(error_string, baseURL:nil)
   end
 
 end
