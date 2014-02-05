@@ -54,7 +54,7 @@ class RcToolbarViewController < UIViewController
                                    barMetrics: UIBarMetricsDefault)
 
     # NSDictionary conversion
-    text_attributes = { UITextAttributeTextColor => UIColor.blackColor }
+    text_attributes = { NSForegroundColorAttributeName => UIColor.blackColor }
 
     custom_item1.setTitleTextAttributes(text_attributes,
                                        forState: UIControlStateNormal)

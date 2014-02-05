@@ -41,7 +41,7 @@ class RcSegmentViewController < UIViewController
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0),SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
     segmented_control.addTarget(self, action:'segment_action:', forControlEvents:UIControlEventValueChanged)
-    segmented_control.segmentedControlStyle = UISegmentedControlStylePlain
+    # deprecated and no longer used in iOS7 segmented_control.segmentedControlStyle = UISegmentedControlStylePlain
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @scroll_view.addSubview(segmented_control)
@@ -62,7 +62,7 @@ class RcSegmentViewController < UIViewController
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0), SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
     segmented_control.addTarget(self, action:'segment_action:', forControlEvents:UIControlEventValueChanged)
-    segmented_control.segmentedControlStyle = UISegmentedControlStyleBordered
+    # deprecated  and no longer used in iOS7 segmented_control.segmentedControlStyle = UISegmentedControlStyleBordered
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @scroll_view.addSubview(segmented_control)
@@ -78,7 +78,7 @@ class RcSegmentViewController < UIViewController
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0), SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
     segmented_control.addTarget(self, action:'segment_action:', forControlEvents:UIControlEventValueChanged)
-    segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
+    # deprecated and no longer used in iOS7 segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
     @scroll_view.addSubview(segmented_control)
@@ -94,7 +94,7 @@ class RcSegmentViewController < UIViewController
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0), SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
     segmented_control.addTarget(self, action:'segment_action:', forControlEvents:UIControlEventValueChanged)
-    segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
+    # deprecated and no longer used in iOS7 segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     segmented_control.tintColor = UIColor.colorWithRed(0.70, green:0.171, blue:0.1, alpha:1.0)
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
@@ -111,7 +111,7 @@ class RcSegmentViewController < UIViewController
     frame = CGRectMake(LEFT_MARGIN, y_placement, CGRectGetWidth(self.view.bounds) - (RIGHT_MARGIN * 2.0), SEGMENTCONTROL_HEIGHT)
     segmented_control.frame = frame
     segmented_control.addTarget(self, action:'segment_action:', forControlEvents:UIControlEventValueChanged)
-    segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
+    # deprecated and no longer used in iOS7 segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     segmented_control.selectedSegmentIndex = 1
     segmented_control.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin
 
@@ -119,9 +119,9 @@ class RcSegmentViewController < UIViewController
     segmented_control.setDividerImage(UIImage.imageNamed('/images/divider.png'), forLeftSegmentState:UIControlStateNormal,
                                       rightSegmentState:UIControlStateNormal, barMetrics:UIBarMetricsDefault)
 
-    text_attributes = {UITextAttributeTextColor => UIColor.blueColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
+    text_attributes = {NSForegroundColorAttributeName => UIColor.blueColor, NSFontAttributeName => UIFont.systemFontOfSize(13.0)}
     segmented_control.setTitleTextAttributes(text_attributes, forState:UIControlStateNormal)
-    text_attributes = {UITextAttributeTextColor => UIColor.redColor, UITextAttributeFont => UIFont.systemFontOfSize(13.0)}
+    text_attributes = {NSForegroundColorAttributeName => UIColor.redColor, NSFontAttributeName => UIFont.systemFontOfSize(13.0)}
     segmented_control.setTitleTextAttributes(text_attributes, forState:UIControlStateNormal)
 
     @scroll_view.addSubview(segmented_control)
