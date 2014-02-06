@@ -177,11 +177,16 @@ class RcPickerViewController < UIViewController
     @button_bar_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     @button_bar_segmented_control.tintColor = UIColor.darkGrayColor
     # @button_bar_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
-    @button_bar_segmented_control.addTarget(self, action: 'toggle_pickers:', forControlEvents: UIControlEventValueChanged)
+    @button_bar_segmented_control.addTarget(self,
+                                            action: 'toggle_pickers:',
+                                            forControlEvents: UIControlEventValueChanged)
 
-    flexible_space = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace, target: nil, action: nil)
+    flexible_space = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemFlexibleSpace,
+                                                                       target: nil,
+                                                                       action: nil)
     bar_button_item = UIBarButtonItem.alloc.initWithCustomView(@button_bar_segmented_control)
-    @toolbar.setItems([flexible_space, bar_button_item, flexible_space], animated: false)
+    @toolbar.setItems([flexible_space, bar_button_item, flexible_space],
+                      animated: false)
 
     @scroll_view = UIScrollView.alloc.init
     frame = self.view.frame
@@ -199,7 +204,9 @@ class RcPickerViewController < UIViewController
     @picker_style_segmented_control.tintColor = UIColor.darkGrayColor
     @picker_style_segmented_control.segmentedControlStyle = UISegmentedControlStyleBar
     @picker_style_segmented_control.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin
-    @picker_style_segmented_control.addTarget(self, action: 'toggle_picker_style:', forControlEvents: UIControlEventValueChanged)
+    @picker_style_segmented_control.addTarget(self,
+                                              action: 'toggle_picker_style:',
+                                              forControlEvents: UIControlEventValueChanged)
     @scroll_view.addSubview @picker_style_segmented_control
     
     @segment_label = UILabel.alloc.initWithFrame [[20, 243], [280, 21]]
@@ -257,7 +264,9 @@ class RcPickerViewController < UIViewController
         end
         # apply red text for normal state
         attributed_title = NSMutableAttributedString.alloc.initWithString(title)
-        attributed_title.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor, range: NSMakeRange(0, attributed_title.length))
+        attributed_title.addAttribute(NSForegroundColorAttributeName,
+                                      value: UIColor.redColor,
+                                      range: NSMakeRange(0, attributed_title.length))
       end
     end
 

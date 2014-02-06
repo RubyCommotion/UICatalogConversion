@@ -22,9 +22,13 @@ class RcButtonsViewController < UITableViewController
         new_image = image.stretchableImageWithLeftCapWidth( 12.0, topCapHeight: 0.0 )
         new_image_pressed = image_pressed.stretchableImageWithLeftCapWidth( 12.0, topCapHeight: 0.0 )
 
-        button.setBackgroundImage( new_image, forState: UIControlStateNormal )
-        button.setBackgroundImage( new_image_pressed, forState: UIControlStateHighlighted )
-        button.addTarget( target, action: selector, forControlEvents: UIControlEventTouchUpInside )
+        button.setBackgroundImage( new_image,
+                                   forState: UIControlStateNormal )
+        button.setBackgroundImage( new_image_pressed,
+                                   forState: UIControlStateHighlighted )
+        button.addTarget( target,
+                          action: selector,
+                          forControlEvents: UIControlEventTouchUpInside )
 
         # in case the parent view draws with a custom color or gradient, use a transparent color
         button.backgroundColor = UIColor.clearColor
@@ -207,8 +211,11 @@ class RcButtonsViewController < UITableViewController
     # create a UIButton (UIButtonTypeRoundedRect)
     @rounded_button_type ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
       button.frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
-      button.setTitle( 'Rounded', forState: UIControlStateNormal )
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.setTitle( 'Rounded',
+                       forState: UIControlStateNormal )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       button.tag = VIEW_TAG # tag to be able to remove it from recycled tabel cells
     end
@@ -218,21 +225,28 @@ class RcButtonsViewController < UITableViewController
     # create a UIButton with attributed text for its title
     @attr_text_button ||= UIButton.buttonWithType( UIButtonTypeRoundedRect ).tap do |button|
       button.frame = [ [ 0.0, 5.0 ], [ STD_BUTTON_WIDTH, STD_BUTTON_HEIGHT ] ]
-      button.setTitle( 'Rounded', forState: UIControlStateNormal )
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.setTitle( 'Rounded',
+                       forState: UIControlStateNormal )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       # add an accessibility label
       button.setAccessibilityLabel( 'AttrTextButton'.localized )
 
       # apply red text for normal state
       normal_attr_string = NSMutableAttributedString.alloc.initWithString( 'Rounded' ).tap do |attr_string|
-        attr_string.addAttribute( NSForegroundColorAttributeName, value: UIColor.redColor, range: [0, attr_string.length ] )
+        attr_string.addAttribute( NSForegroundColorAttributeName,
+                                  value: UIColor.redColor,
+                                  range: [0, attr_string.length ] )
       end
       button.setAttributedTitle( normal_attr_string, forState: UIControlStateNormal )
 
       # apply green text for pressed state
       highlighted_attr_string = NSMutableAttributedString.alloc.initWithString( 'Rounded' ).tap do |attr_string|
-        attr_string.addAttribute( NSForegroundColorAttributeName, value: UIColor.greenColor, range: [0, attr_string.length ] )
+        attr_string.addAttribute( NSForegroundColorAttributeName,
+                                  value: UIColor.greenColor,
+                                  range: [0, attr_string.length ] )
       end
       button.setAttributedTitle( highlighted_attr_string, forState: UIControlStateHighlighted )
 
@@ -246,7 +260,9 @@ class RcButtonsViewController < UITableViewController
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
       button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
       button.setAccessibilityLabel( 'MoreInfoButton'.localized )
@@ -259,9 +275,12 @@ class RcButtonsViewController < UITableViewController
     # create a UIButton (UIButtonTypeInfoLight)
     @info_light_button_type ||= UIButton.buttonWithType( UIButtonTypeInfoLight ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
-      button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
+      button.setTitle( 'Detail Disclosure',
+                       forState: UIControlStateNormal )
       button.backgroundColor = UIColor.grayColor
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
       button.setAccessibilityLabel( 'MoreInfoButton'.localized )
@@ -274,9 +293,12 @@ class RcButtonsViewController < UITableViewController
     # create a UIButton (UIButtonTypeInfoDark)
     @info_dark_button_type ||= UIButton.buttonWithType( UIButtonTypeInfoDark ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
-      button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
+      button.setTitle( 'Detail Disclosure',
+                       forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
       button.setAccessibilityLabel( 'MoreInfoButton'.localized )
@@ -289,9 +311,12 @@ class RcButtonsViewController < UITableViewController
     # create a UIButton (UIButtonTypeContactAdd)
     @contact_add_button_type ||= UIButton.buttonWithType( UIButtonTypeContactAdd ).tap do |button|
       button.frame = [ [ 0.0, 8.0 ], [ 25.0, 25.0 ] ]
-      button.setTitle( 'Detail Disclosure', forState: UIControlStateNormal )
+      button.setTitle( 'Detail Disclosure',
+                       forState: UIControlStateNormal )
       button.backgroundColor = UIColor.clearColor
-      button.addTarget( self, action: 'action:', forControlEvents: UIControlEventTouchUpInside )
+      button.addTarget( self,
+                        action: 'action:',
+                        forControlEvents: UIControlEventTouchUpInside )
 
       # Add a custom accessibility label to the button because it has  no associated text.
       button.setAccessibilityLabel( 'AddContactButton'.localized )

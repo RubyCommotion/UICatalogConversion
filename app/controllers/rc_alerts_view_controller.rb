@@ -186,10 +186,12 @@ class RcAlertsViewController < UITableViewController
     cell = nil
 
     if index_path.row == 0
-      cell = tableView.dequeueReusableCellWithIdentifier( ALERT_CELL_ID, forIndexPath: index_path )
+      cell = tableView.dequeueReusableCellWithIdentifier( ALERT_CELL_ID,
+                                                          forIndexPath: index_path )
       cell.textLabel.text = @data_source_array[index_path.section][:label]
     else
-      cell = tableView.dequeueReusableCellWithIdentifier( SOURCE_CELL_ID, forIndexPath: index_path )
+      cell = tableView.dequeueReusableCellWithIdentifier( SOURCE_CELL_ID,
+                                                          forIndexPath: index_path )
       cell.selectionStyle = UITableViewCellSelectionStyleNone
         
       cell.textLabel.opaque = false

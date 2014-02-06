@@ -55,7 +55,10 @@ class RcControlsViewController < UITableViewController
       }
     ]
 
-    tintButton = UIBarButtonItem.alloc.initWithTitle('Tinted', style: UIBarButtonItemStyleBordered, target: self, action: 'tint_action:')
+    tintButton = UIBarButtonItem.alloc.initWithTitle('Tinted',
+                                                     style: UIBarButtonItemStyleBordered,
+                                                     target: self,
+                                                     action: 'tint_action:')
     self.navigationItem.rightBarButtonItem = tintButton
 
     self.tableView.registerClass(UITableViewCell, :forCellReuseIdentifier => DISPLAY_CELL_ID)
@@ -135,7 +138,9 @@ class RcControlsViewController < UITableViewController
   def switch_control
     @switch_control ||= begin
       UISwitch.alloc.initWithFrame(CGRectMake(0.0, 12.0, 94.0, 27.0)).tap do |control|
-        control.addTarget(self, action: 'switch_action:', forControlEvents: UIControlEventValueChanged)
+        control.addTarget(self,
+                          action: 'switch_action:',
+                          forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
         control.setAccessibilityLabel('Standard Switch')
         control.tag = VIEW_TAG        # tag this view for later so we can remove it from recycled table cells
@@ -146,7 +151,9 @@ class RcControlsViewController < UITableViewController
   def slider_control
     @slider_control ||= begin
       UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
-        control.addTarget(self, action: 'slider_action:', forControlEvents: UIControlEventValueChanged)
+        control.addTarget(self,
+                          action: 'slider_action:',
+                          forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor # in case the parent view draws with a custom color or gradient, use a transparent color
         control.setAccessibilityLabel('Standard Slider')
         control.minimumValue = 0.0
@@ -161,7 +168,9 @@ class RcControlsViewController < UITableViewController
   def custom_slider_control
     @custom_slider_control ||= begin
       UISlider.alloc.initWithFrame(CGRectMake(0.0, 12.0, 120.0, SLIDER_HEIGHT)).tap do |control|
-        control.addTarget(self, action: 'slider_action:', forControlEvents: UIControlEventValueChanged)
+        control.addTarget(self,
+                          action: 'slider_action:',
+                          forControlEvents: UIControlEventValueChanged)
         control.backgroundColor = UIColor.clearColor
 
         stetchLeftTrack = UIImage.imageNamed('/images/orangeslide.png').stretchableImageWithLeftCapWidth(10.0, topCapHeight: 0.0)
@@ -183,7 +192,9 @@ class RcControlsViewController < UITableViewController
   def page_control
     @page_control ||= begin
       UIPageControl.alloc.initWithFrame(CGRectMake(0.0, 14.0, 178.0, 20.0)).tap do |control|
-        control.addTarget(self, action: 'page_action:', forControlEvents: UIControlEventTouchUpInside)
+        control.addTarget(self,
+                          action: 'page_action:',
+                          forControlEvents: UIControlEventTouchUpInside)
         control.backgroundColor = UIColor.grayColor
         control.numberOfPages = 10
         control.tag = VIEW_TAG
@@ -223,7 +234,9 @@ class RcControlsViewController < UITableViewController
         stepper.minimumValue = 0
         stepper.maximumValue = 10
         stepper.stepValue = 1
-        stepper.addTarget(self, action: 'stepper_action:', forControlEvents: UIControlEventValueChanged)
+        stepper.addTarget(self,
+                          action: 'stepper_action:',
+                          forControlEvents: UIControlEventValueChanged)
       end
     end
   end

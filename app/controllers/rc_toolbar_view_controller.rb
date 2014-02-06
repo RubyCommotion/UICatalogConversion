@@ -68,7 +68,7 @@ class RcToolbarViewController < UIViewController
 
    	# apply the bar button items to the toolbar
     @toolbar.setItems([system_item, flex_item, custom_item1, custom_item2, info_item],
-                          animated: false)
+                      animated: false)
   end
 
 
@@ -279,9 +279,7 @@ class RcToolbarViewController < UIViewController
       sv.backgroundColor = UIColor.whiteColor
     end
     # remember our scroll view's content height (a fixed size) later when we set its content size in viewWillAppear
-    @saved_content_height_size = @scroll_view.frame.size.height -
-                                    CGRectGetHeight(self.navigationController.navigationBar.frame) -
-                                    @toolbar.frame.size.height
+    @saved_content_height_size = @scroll_view.frame.size.height - CGRectGetHeight(self.navigationController.navigationBar.frame) - @toolbar.frame.size.height
 
   @scroll_view
   end

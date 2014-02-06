@@ -1,5 +1,3 @@
-#pragma mark -
-
 class RcWebViewController < UIViewController
 
   LEFT_MARGIN       = 20.0

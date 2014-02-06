@@ -197,13 +197,3 @@ class RcTextFieldViewController < UITableViewController
   end
 
 end
-
-
-
-
-
-
-
-
-
-

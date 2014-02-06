@@ -6,11 +6,11 @@ class RcCustomView < UIView
   MARGIN_SIZE = 10
   
   def self.view_width
-    return VIEW_WIDTH
+    VIEW_WIDTH
   end
   
   def self.view_height 
-    return VIEW_HEIGHT
+    VIEW_HEIGHT
   end
   
   def initWithTitle(title, image: image)

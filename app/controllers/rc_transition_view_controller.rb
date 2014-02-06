@@ -79,7 +79,11 @@ class RcTransitionViewController < UIViewController
 
     # the XCode sample uses old-style animations - this is ruby so we use the
     # recommended new style / shorthand call to do just the same :)
-    UIView.transitionFromView( from_view, toView: to_view, duration: TRANSITION_DURATION, options: transition, completion: nil )
+    UIView.transitionFromView( from_view,
+                               toView: to_view,
+                               duration: TRANSITION_DURATION,
+                               options: transition,
+                               completion: nil )
   end
 
   # curl one image up / down revealing the other
@@ -97,6 +101,10 @@ class RcTransitionViewController < UIViewController
 
     # the XCode sample uses old-style animations - this is ruby so we use the
     # recommended new style / shorthand call to do just the same :)
-    UIView.transitionFromView( from_view, toView: to_view, duration: TRANSITION_DURATION, options: transition, completion: nil )
+    UIView.transitionFromView( from_view,
+                               toView: to_view,
+                               duration: TRANSITION_DURATION,
+                               options: transition,
+                               completion: nil )
   end
 end

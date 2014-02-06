@@ -14,8 +14,10 @@ class RcCustomPickerDataSource < NSObject
     
     # two assignment lines of code added below are to fix a custom picker mis-alignment issue using the original UICatalog code for iOS 6
     @time_of_day_titles =  %w(Early\ Morning Late\ Morning Afternoon Evening)
-    @image_named = [ UIImage.imageNamed('/images/12-6AM.png'), UIImage.imageNamed('/images/6-12AM.png'),
-                    UIImage.imageNamed('/images/12-6PM.png'), UIImage.imageNamed('/images/6-12PM.png') ]
+    @image_named = [ UIImage.imageNamed('/images/12-6AM.png'),
+                     UIImage.imageNamed('/images/6-12AM.png'),
+                     UIImage.imageNamed('/images/12-6PM.png'),
+                     UIImage.imageNamed('/images/6-12PM.png') ]
     self
   end
   

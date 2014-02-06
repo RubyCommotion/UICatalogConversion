@@ -13,11 +13,17 @@ class RcTextViewController < UIViewController
     attr_string = NSMutableAttributedString.alloc.initWithString(text_to_add)
 
     # make red text
-    attr_string.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor, range: NSMakeRange(attr_string.length - 19, 19))
+    attr_string.addAttribute(NSForegroundColorAttributeName,
+                             value: UIColor.redColor,
+                             range: NSMakeRange(attr_string.length - 19, 19))
 
     # make blue text
-    attr_string.addAttribute(NSForegroundColorAttributeName, value: UIColor.blueColor, range: NSMakeRange(attr_string.length - 23, 3))
-    attr_string.addAttribute(NSUnderlineStyleAttributeName, value: NSNumber.numberWithInteger(1), range: NSMakeRange(attr_string.length - 23, 3))
+    attr_string.addAttribute(NSForegroundColorAttributeName,
+                             value: UIColor.blueColor,
+                             range: NSMakeRange(attr_string.length - 23, 3))
+    attr_string.addAttribute(NSUnderlineStyleAttributeName,
+                             value: NSNumber.numberWithInteger(1),
+                             range: NSMakeRange(attr_string.length - 23, 3))
 
     @text_view.setAttributedText(attr_string)
 
@@ -40,8 +46,14 @@ class RcTextViewController < UIViewController
   def viewWillAppear(animated)
     super
     # listen for keyboard hide/show notifications so we can properly adjust the table's height
-    default_notification_center.addObserver(self, selector: 'keyboardWillShow:', name: UIKeyboardWillShowNotification, object: nil)
-    default_notification_center.addObserver(self, selector: 'keyboardWillHide:', name: UIKeyboardWillHideNotification, object: nil)
+    default_notification_center.addObserver(self,
+                                            selector: 'keyboardWillShow:',
+                                            name: UIKeyboardWillShowNotification,
+                                            object: nil)
+    default_notification_center.addObserver(self,
+                                            selector: 'keyboardWillHide:',
+                                            name: UIKeyboardWillHideNotification,
+                                            object: nil)
   end
 
 
@@ -74,8 +86,12 @@ class RcTextViewController < UIViewController
   def viewDidDisappear(animated)
     super
 
-    default_notification_center.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-    default_notification_center.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    default_notification_center.removeObserver(self,
+                                               name: UIKeyboardWillShowNotification,
+                                               object: nil)
+    default_notification_center.removeObserver(self,
+                                               name: UIKeyboardWillHideNotification,
+                                               object: nil)
   end
 
 #pragma mark - UITextViewDelegate
@@ -89,7 +105,9 @@ class RcTextViewController < UIViewController
 
   def textViewDidBeginEditing(textView)
     # provide my own Save button to dismiss the keyboard
-    save_item = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone, target: self, action: 'save_action:')
+    save_item = UIBarButtonItem.alloc.initWithBarButtonSystemItem(UIBarButtonSystemItemDone,
+                                                                  target: self,
+                                                                  action: 'save_action:')
     self.navigationItem.rightBarButtonItem = save_item
   end
 
