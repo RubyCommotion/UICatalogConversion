@@ -92,4 +92,4 @@ Delegate Folder -a delegate folder was added to the usual RubyMotion folder buil
 Contributors
 ============
 
-Salman Ansari, Yaakov Gamliel, Forrest Grant, René Köcher, Dennis Major, Matthew Nguyen, Yvan Ross and Jack Watson-Hamblin
+Salman Ansari, Yaakov Gamliel, Forrest Grant, René Köcher, Dennis Major, Andrew McNamara, Matthew Nguyen, Yvan Ross and Jack Watson-Hamblin
