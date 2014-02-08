@@ -1,7 +1,8 @@
 UICatalogConversion App
 =======================
 
-The UICatalogConversion app is a conversion of Apple's iOS UICatalog source code into RubyMotion source code.
+The UICatalogConversion app is a conversion of Apple's iOS UICatalog source code into RubyMotion source code. This first iteration does not include any spec tests - testing will be added in iteration two.
+This is contrary to normal TDD sequence but was done aon an exception basis for this first Ruby Commotion community's app.
 
 RubyMotion Web Site: http://www.rubymotion.com
 
